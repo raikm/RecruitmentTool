@@ -6,9 +6,9 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ---
-#### [☑️Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
+#### [🎯Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
-#### [☑️Kanban Board Frontend Software](https://github.com/raikm/RecruitmentTool/projects/3)
+#### [🎯Kanban Board Frontend Software](https://github.com/raikm/RecruitmentTool/projects/3)
 
 # 🏗Timeline Progress
 
