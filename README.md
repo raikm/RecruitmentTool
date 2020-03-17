@@ -6,7 +6,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ---
-[Kanban Board Software](https://www.notion.so/a49c76b9a47d4533a8f0f53c7dc7f218?v=71c60468e61a4894bdd2953bbf4676bf)
+[Kanban Board Software](https://github.com/raikm/RecruitmentTool/projects/1)
 
 # 🏗Timeline Progress
 
