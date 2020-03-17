@@ -1,4 +1,5 @@
 # RecruitmentTool (Master Thesis by Raik Mueller) 
+## Semiautomatische Rekrutierung von Studienpatienten unter Nutzung von ELGA-Daten: Konzeptionierung und prototypische Implementierung eines IT-Tools
 
 The thesis deals with the conception and development of a tool for the semi- automatic recruitment of study patients. The focus is on a user-friendly and reusable support-tool, that improves the processes for clinical trial staff to be more efficient in recruiting.
 This includes an analysis of possible frameworks and programming lan- guages and elaboration for usability in collaboration with possible end users. The process will be iterative to evaluate various options for the usability re- garding to the application and test of different software solutions.
