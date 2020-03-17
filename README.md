@@ -13,8 +13,10 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ## 03.03.2020 - 31.03.2020: Kickoff
-- erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths
-➡️ TODO *verlinken*
+[Tasks für Software](https://www.notion.so/a49c76b9a47d4533a8f0f53c7dc7f218?v=71c60468e61a4894bdd2953bbf4676bf)
+
+
+- erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths -> TODO *verlinken*
 - Konzept für Requierments Analyse recherchiert
 - [1. Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
 
