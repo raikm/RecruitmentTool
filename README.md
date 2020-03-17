@@ -6,6 +6,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ---
+[Kanban Board Software](https://www.notion.so/a49c76b9a47d4533a8f0f53c7dc7f218?v=71c60468e61a4894bdd2953bbf4676bf)
 
 # 🏗Timeline Progress
 
@@ -13,7 +14,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ## 03.03.2020 - 31.03.2020: Kickoff
-[Tasks für Software](https://www.notion.so/a49c76b9a47d4533a8f0f53c7dc7f218?v=71c60468e61a4894bdd2953bbf4676bf)
+
 
 
 - erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths -> TODO *verlinken*
