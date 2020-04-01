@@ -17,11 +17,14 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ## 03.03.2020 - 31.03.2020: Kickoff
-Focus: Backend
-- erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths -> TODO *verlinken*
+Fokus: Basis für Front- und Back-End
+- erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths
 - Konzept für Requierments Analyse recherchiert
-- [1. Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
+- [Erstes Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
+- Basic Electron App (Front-End) mit Basic REST-Interaktionen
+- Basic Django Server (Back-End) mit Basic REST-Interaktionen
+    - ermöglicht auch Speicherung von xml Dateien auf dem Server zur Ablage und weiteren Verarbeitung
 
-
-![Erster Entwurf](images_readme/Untitled-6.jpg)
+### Erster Entwurf:
+![Erster Entwurf für Front-End und Back-End](images_readme/Untitled-6.jpg)
 
