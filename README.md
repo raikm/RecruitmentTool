@@ -16,8 +16,13 @@ This includes an analysis of possible frameworks and programming lan- guages and
 ## 01.04.2020 - 30.04.2020: 1. Monat
 <details><summary>Ausblick</summary>
 <p>
-- neue xPaths erstellt für weitere Test mit Hilfe der ArtDecor-Erweiterung
-- Verbesserung der Robustheit bei der xPath Auswertung
+<ul>
+  <li>neue xPaths erstellt für weitere Test mit Hilfe der ArtDecor-Erweiterung</li>
+  <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
+  <li>Verbesserung der Datenhaltung der XML Files</li>
+  <li>Erweiterung der GUI</li>
+  <li>Rest siehe Kanban Board</li>
+</ul>
 </p>
 </details>
 
