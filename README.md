@@ -30,7 +30,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 ## 03.03.2020 - 31.03.2020: Kickoff
 - Konzept für Requierments Analyse recherchiert
-- [Erstes Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
+  - [Erstes Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
 <br/><br/>
 - erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths
     - noch fehleranfällig mit den gegebenen xPaths
