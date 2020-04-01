@@ -20,5 +20,5 @@ This includes an analysis of possible frameworks and programming lan- guages and
 Focus: Backend
 - erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths -> TODO *verlinken*
 - Konzept für Requierments Analyse recherchiert
-- [1. Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
+- [1. Konzept erstellt](images_readme/Untitled-6.jpg)
 
