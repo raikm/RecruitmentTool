@@ -14,7 +14,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 # 🏗Timeline Progress
 
 ## 01.04.2020 - 30.04.2020: 1. Monat
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ed502af7-9227-445d-83ac-541e07c37256/Untitled-6.jpg](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ed502af7-9227-445d-83ac-541e07c37256/Untitled-6.jpg)
+
 
 ## 03.03.2020 - 31.03.2020: Kickoff
 Focus: Backend
