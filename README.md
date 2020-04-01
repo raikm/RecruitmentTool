@@ -14,11 +14,19 @@ This includes an analysis of possible frameworks and programming lan- guages and
 # 🏗Timeline Progress
 
 ## 01.04.2020 - 30.04.2020: 1. Monat
+<details><summary>Ausblick</summary>
+<p>
+- neue xPaths erstellt für weitere Test mit Hilfe der ArtDecor-Erweiterung
+- Verbesserung der Robustheit bei der xPath Auswertung
+</p>
+</details>
+
 
 
 ## 03.03.2020 - 31.03.2020: Kickoff
 Fokus: Basis für Front- und Back-End
 - erstes Protyping testing mit Python für Auswertung von CDA Dokumenten mit Hilfe von XPaths
+    - noch fehleranfällig bzw. xPath 
 - Konzept für Requierments Analyse recherchiert
 - [Erstes Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
 - Basic Electron App (Front-End) mit Basic REST-Interaktionen
