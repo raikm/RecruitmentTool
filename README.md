@@ -25,6 +25,6 @@ Fokus: Basis für Front- und Back-End
 - Basic Django Server (Back-End) mit Basic REST-Interaktionen
     - ermöglicht auch Speicherung von xml Dateien auf dem Server zur Ablage und weiteren Verarbeitung
 
-#### Erster Entwurf für Front-End und Back-End:
+#### Erster Entwurf für Front und Back-End:
 ![](images_readme/Untitled-6.jpg)
 
