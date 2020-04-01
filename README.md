@@ -22,5 +22,6 @@ Focus: Backend
 - Konzept für Requierments Analyse recherchiert
 - [1. Konzept erstellt](https://www.notion.so/Konzept-a88d0a9f79ec4122bc6533d7d3cdb702)
 
-![](images_readme/Untitled-6.jpg)
+
+![Erster Entwurf](images_readme/Untitled-6.jpg)
 
