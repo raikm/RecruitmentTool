@@ -21,6 +21,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
   <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
   <li>Verbesserung der Datenhaltung der XML Files</li>
   <li>Erweiterung der GUI</li>
+  <li>Fertigstellung von v1.0 für die Auswertung von einem Pool von CDA Dokumenten</li>
   <li>Rest siehe Kanban Board</li>
 </ul>
 </p>
