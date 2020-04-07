@@ -7,28 +7,47 @@
     <link href="resources/css/index.css" rel="stylesheet" type="text/css" />
     <!-- Javascript -->
     <script src="resources/js/api.js"></script>
+    <script src="resources/js/mockupMethods.js"></script>
     
   </head>
 
   <body>
 
     
-    <h1>Recruitment Tool</h1>
+    <h1>Neuen Filter anlegen</h1>
     <label for="fname">Name:</label>
-    <input type="text" id="fname" name="fname" />
+    <input type="text" id="criteria" name="fname" />
+    <input type="checkbox" id="only_current_cohort">
+    <label for="only_current_cohort"> Nur die aktuelle Kohort in die Suche mit einbeziehen</label>
     <br />
     <br />
-    <label for="fxpath">xPath:</label>
+    <label for="fDescription">Kurzbeschreibung:</label>
+    <br />
+    <form>
+      <textarea cols="80" rows="2" id="description" type="text" name="textbox"></textarea >
+    </form>
+    <br />
+    <label for="fname">Kriterium</label>
+    <input type="text" id="criterium" name="fname" />
+    <br />
+    <label for="fxpath">xPath</label>
     <br />
     <form>
       <textarea cols="80" rows="10" id="xPathInputText" type="text" name="textbox"></textarea >
     </form>
+    <button onclick="fillxPath_1()", type="button">Älter als 6</button>
+    <button onclick="fillxPath_2()", type="button">ICD-Diagnose "M25.46"</button>
+    <button onclick="fillxPath_3()", type="button">TODO</button>
+
+
+
+
     <!-- TODO: seperate in div-container -->
     <br />
-
+    <br />
     <div class="file-upload">
       <!-- TODO: only accept xml format! -->
-      <input class="file-upload__input" type="file" name="Files[]" id="Files" multiple> 
+      <input class="file-upload__input" type="file" name="Files[]" id="files" multiple> 
       <button class="file-upload__button" type="button">Choose File(s)</button>
       <span class="file-upload__label"></span>
     </div>

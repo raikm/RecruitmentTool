@@ -1,38 +1,33 @@
 function sendRequest(){
-    var requestName = document.getElementById("fname").value
-    var xPathInput = document.getElementById("xPathInputText").value
-    var xhr = new XMLHttpRequest();
-    var url = "http://192.168.0.39:8000/request/"
-    xhr.open("POST", url, true);
 
-    //Send the proper header information along with the request
-    //xhr.setRequestHeader("Content-Type", "application/json");
+    var url = "http://192.168.0.30:8000/api/create/"
 
-    // var request = {
-    //     "name": requestName,
-    //     "xPath": xPathInput 
-    // }
-    // var xPathRequestJson = JSON.stringify(request)
+    const criteria = document.getElementById("criteria").value
+    const xPathInput = document.getElementById("xPathInputText").value
+    const files = document.getElementById("files")
+    const only_current_cohort = document.getElementById("only_current_cohort").checked
+    const description = document.getElementById("description").value
+    const criterium = document.getElementById("criterium").value
 
-    var file = document.getElementById("Files").files[0]
-    console.log(file)
-    var formData = new FormData();
-    formData.append("name", requestName);
-    formData.append("xPath", xPathInput);
-    formData.append("File", file);
-    console.log(formData)
 
-    
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-            // Request finished. Do processing here.
 
-        }
+    const formData = new FormData()
+    formData.append("Criteria_Name", criteria)
+    formData.append("Description", description)
+    formData.append("Only_current_patient_cohort", only_current_cohort)
+    //TODO: loop threw a list 
+    formData.append("Criterium_Name", criterium)
+    formData.append("xPath", xPathInput)
+    for (const file of files.files){
+        formData.append("file", file);
     }
 
-    
 
-    xhr.send(formData);
+    fetch(url, {
+        method: "POST",
+        body: formData
+    }).catch(console.error)
+
 
 }
 
