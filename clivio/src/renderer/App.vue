@@ -7,11 +7,8 @@
 
 <script>
 import NewStudyPage from './pages/NewStudyPage'
-import Vue from 'vue';
-import Antd from 'ant-design-vue';
-import 'ant-design-vue/dist/antd.css';
 
-Vue.use(Antd);
+
   export default {
     name: 'clivio', 
     components: {
@@ -21,7 +18,8 @@ Vue.use(Antd);
   }
 </script>
 
-<style>
+<style lang="scss">
+
 :root{
     --main-color: #028482;
     --main-text-color: rgb(253, 249, 249);
@@ -54,5 +52,6 @@ h3 {
   color: var(--main-color);
   margin: 1%;
 }
+
 
 </style>

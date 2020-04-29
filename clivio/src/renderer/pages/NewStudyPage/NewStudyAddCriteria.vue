@@ -1,26 +1,30 @@
 <template>
-  <div class="main">
+  <!-- <div class="main"> -->
     <form>
       <h3>Neues Kriterium</h3>
       <!-- TODO: put in new divs and change margin instead of br -->
-      <div class="inputContainer">
-        <a-input
+      <div class="columns">
+        <div class="column">
+        <b-input
           id="criterium"
           type="text"
           v-model="name"
           placeholder="Kriterium"
         />
-        <a-input
+        </div>
+        <div class="column">
+        <b-input
           id="xPathInputText"
           type="text"
           v-model="xPath"
           placeholder="xPath"
         />
+        </div>
       </div>
         
-        <a-button id="btn" @click="addCriteria">Hinzufügen</a-button>
+        <b-button id="btn" @click="addCriteria">Hinzufügen</b-button>
     </form>
-  </div>
+  <!-- </div> -->
 </template>
 
 <script>
@@ -48,25 +52,17 @@ export default {
 };
 </script>
 
-<style scoped>
-.inputContainer {
+<style lang="scss">
+/* .inputContainer {
   display: inline-flex;
   width: 100%;
   margin-bottom: 1%;
   /* background-color:green; */
-}
+/* }  */
 
-#criterium {
-  margin-right: 0.5%;
-  width: 30%;
-}
 
-#xPathInputText {
-  margin-left: 0.5%;
-  width: 70%;
-}
 #btn{
     float: right;
-    /* margin: 1%; */
+    margin: 0 0 1% 1%;
 }
 </style>

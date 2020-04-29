@@ -5,18 +5,21 @@
             <div class="upperContainer">
                 <NewStudyAddBasicinfos />
             </div>
-            <div class="leftMainContainer container">
+            <div>
                
                 <NewStudyAddCriteria v-on:add-criteria="addCriteria"/>
-                 <NewStudyCriteriaList v-bind:criterias="criterias"/>
+                <NewStudyCriteriaList id="criteriaList" v-bind:criterias="criterias"/>
                 
             </div>
 
 
-            <div class="rightMainContainer container" >
-              <NewStudyAddFile />    
+            <div>
+              <NewStudyAddFile id="addFile"/>    
             </div>
-            <a-button id="btnValidate" type ="primary">Validieren</a-button>
+
+            <b-button id="btnValidate">Validieren</b-button>
+
+
         </div>
         
 
@@ -61,36 +64,20 @@ export default {
 .mainContainer {
     background-color: rgba(245, 245, 245, 0.3);
     margin: 0px 50px 0px 50px;
-    overflow: hidden; /* will contain if #first is longer than #second */
-}
-.container {
-    width: 48%;
-    margin: 1%;
-    float: left;
-    display: flex;
-    flex-flow: column;
-    -ms-flex-align: center;
+    padding: 10px;
+    /* overflow: hidden;  */
 }
 
 #btnValidate {
-    float: right;
-    margin: 1%;
+    margin-top: 25px;
+    /* float: right; */
+    /* margin: 1%; */
     /* background-color: var(--main-color); */
 }
 
-
-
-
-
-
-.leftMainContainer {
-    /* background-color: darkorange; */
+#criteriaList #addFile{
+    margin-top: 80px;
 }
-.rightMainContainer {
-    /* background-color: orangered; */
-}
-
-
 
 
 

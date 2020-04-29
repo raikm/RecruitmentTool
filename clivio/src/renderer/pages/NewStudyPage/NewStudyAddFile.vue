@@ -1,46 +1,82 @@
 <template>
-<div class="main">
-  <h3>Neue CDA Files hinzufügen</h3>
-  <div class="dragfield">
-  <a-upload-dragger
-    name="file"
-    :multiple="true"
-    action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-    @change="handleChange"
-  >
-    <p class="ant-upload-drag-icon">
-      <a-icon type="inbox" />
-    </p>
-    <p class="ant-upload-text">Click oder drag file to this area to upload</p>
-  </a-upload-dragger>
-  </div>
+  <div class="main">
+    <h3>Neue CDA Files hinzufügen</h3>
+    <div class="dragfield">
+      <section>
+        <b-field>
+          <b-upload v-model="dropFiles" multiple drag-drop>
+            <section class="section">
+              <div class="content has-text-centered">
+                <p>Drop your files here or click to upload</p>
+              </div>
+            </section>
+          </b-upload>
+        </b-field>
+      </section>
+    </div>
+    <div class="fileList">
+      <!-- <label v-for="(file, index) in dropFiles" :key="index">
+        {{ file.name }}
+      </label> -->
+      <!-- <b-table :columns="columns" :data="dropFiles">
+
+      </b-table> -->
+      <b-table :data="dropFiles">
+        <template slot-scope="props">
+          <b-table-column label="File">
+            {{ props.row.name }}
+          </b-table-column>
+
+
+        <b-table-column label="" width="50px">
+          <button
+            class="button is-small is-danger"
+            @click.prevent="onDelete(props.row)"
+          >
+            <b-icon icon="delete" size="is-small"></b-icon>
+          </button>
+        </b-table-column>
+                </template>
+      </b-table>
+    </div>
   </div>
 </template>
 <script>
 export default {
   name: "NewStudyAddFile",
   data() {
-    return {};
+    return {
+      dropFiles: [],
+      columns: [
+        {
+          field: "name",
+          label: "name",
+          width: "50%",
+        },
+        {
+          field: "index",
+          label: "index",
+          width: "50%",
+        },
+      ],
+    };
   },
   methods: {
-    handleChange(info) {
-      const status = info.file.status;
-      if (status !== 'uploading') {
-        console.log(info.file, info.fileList);
-      }
-      if (status === 'done') {
-        this.$message.success(`${info.file.name} file uploaded successfully.`);
-      } else if (status === 'error') {
-        this.$message.error(`${info.file.name} file upload failed.`);
-      }
+    deleteDropFile(index) {
+      this.dropFiles.splice(index, 1);
     },
   },
 };
 </script>
 
-<style>
-.dragfield{
- margin-top: 80px;   
+<style lang="scss">
+.upload {
+  width: 100%;
+}
+.upload-draggable {
+  width: 100%;
 }
 
+.file-list {
+}
 </style>

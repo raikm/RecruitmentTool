@@ -1,12 +1,15 @@
 <template>
-  <div class="main">
-    <a-input
-      id="analysename"
-      type="text"
-      placeholder="Name der Analyse"
-    />
-    <a-input id="description" type="text" placeholder="Kurzbeschreibung" />
-  </div>
+  <form>
+    <h3>Suchanfrage</h3>
+    <div class="columns">
+      <div class="column">
+        <b-input id="analysename" type="text" placeholder="Name der Analyse" />
+      </div>
+      <div class="column">
+        <b-input id="description" type="text" placeholder="Kurzbeschreibung" />
+      </div>
+    </div>
+  </form>
 </template>
 
 <script>
@@ -15,15 +18,9 @@ export default {
 };
 </script>
 
-<style scoped>
-div {
-  display: inline-flex;
-  width: 100%;
-}
-
+<style lang="scss">
 #analysename,
 #description {
-  width: 50%;
-  margin: 1%;
+  // display: block;
 }
 </style>
