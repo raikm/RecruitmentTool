@@ -31,7 +31,7 @@
         <b-table-column label="" width="50px">
           <button
             class="button is-small is-danger"
-            @click.prevent="onDelete(props.row)"
+            @click.prevent="deleteDropFile(props.row)"
           >
             <b-icon icon="delete" size="is-small"></b-icon>
           </button>
@@ -44,9 +44,9 @@
 <script>
 export default {
   name: "NewStudyAddFile",
+  props: ["dropFiles"],
   data() {
     return {
-      dropFiles: [],
       columns: [
         {
           field: "name",
@@ -65,6 +65,7 @@ export default {
     deleteDropFile(index) {
       this.dropFiles.splice(index, 1);
     },
+  
   },
 };
 </script>

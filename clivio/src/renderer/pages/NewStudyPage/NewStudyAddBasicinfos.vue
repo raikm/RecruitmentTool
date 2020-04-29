@@ -19,8 +19,5 @@ export default {
 </script>
 
 <style lang="scss">
-#analysename,
-#description {
-  // display: block;
-}
+
 </style>
