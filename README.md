@@ -16,20 +16,10 @@ This includes an analysis of possible frameworks and programming lan- guages and
 # 🏗Timeline Progress
 
 ## 01.04.2020 - 30.04.2020: 1. Monat
-<details><summary>Ausblick</summary>
-<p>
-<ul>
-  <li>neue xPaths erstellt für weitere Test mit Hilfe der ArtDecor-Erweiterung</li>
-  <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
-  <li>Fertigstellung von v1.0 für die Auswertung von einem Pool von CDA Dokumenten</li>
-</ul>
-</p>
-</details>
-
-
+- Fertigstellung von v0.1 für die Auswertung von einem Pool von CDA Dokumenten
+- Verbesserung der Robustheit bei der xPath Auswertung
 - Verbesserung der Datenhaltung der XML Files
 - Erweiterung der GUI
-- Rest siehe Kanban Board
 
 #### Erster Entwurf Datenbank:
 ![](images_readme/Skizze_DB.jpg)
