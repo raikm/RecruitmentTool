@@ -22,7 +22,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 - Erweiterung der GUI
 
 #### Erster Entwurf Datenbank:
-![](images_readme/Skizze_DB.jpg)
+![](external_resources/images_readme/Skizze_DB.jpg)
 
 
 
@@ -37,4 +37,4 @@ This includes an analysis of possible frameworks and programming lan- guages and
     - ermöglicht auch Speicherung von xml Dateien auf dem Server zur Ablage und weiteren Verarbeitung
 
 #### Erster Entwurf für Front und Back-End:
-![](images_readme/Untitled-6.jpg)
+![](external_resources/images_readme/Untitled-6.jpg)
