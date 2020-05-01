@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <!-- <router-view></router-view> -->
-    <NewStudyPage />
+    <router-view></router-view>
+    <!-- <NewStudyPage /> -->
+    <!-- <EvaluationPage /> -->
   </div>
 </template>
 
 <script>
 import NewStudyPage from './pages/NewStudyPage'
+import EvaluationPage from './pages/EvaluationPage'
 
 
   export default {
     name: 'clivio', 
     components: {
-        NewStudyPage
+        NewStudyPage,
+        EvaluationPage
       }
     
   }

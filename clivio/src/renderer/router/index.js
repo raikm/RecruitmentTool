@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import NewStudyPage from '../pages/NewStudyPage'
+import EvaluationPage from '../pages/EvaluationPage'
 Vue.use(Router)
 
 export default new Router({
@@ -8,7 +9,17 @@ export default new Router({
     {
       path: '/',
       name: 'newstudy-page',
-      component: require('../pages/NewStudyPage').default
+      component: NewStudyPage,
+      props: true,
+      query: true
+    },
+    {
+      path: '/evaluation',
+      name: 'evaluation-page',
+      component: EvaluationPage,
+      props: true,
+      query: true
+      
     },
     {
       path: '*',

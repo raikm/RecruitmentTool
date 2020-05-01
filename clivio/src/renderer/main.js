@@ -3,9 +3,11 @@ import axios from 'axios'
 
 import App from './App'
 import router from './router'
+import VueRouter from 'vue-router'
+
 import store from './store'
 
-import { Table, Input, Upload, Field, Button} from 'buefy'
+import { Table, Input, Upload, Field, Button, Collapse} from 'buefy'
 import 'buefy/dist/buefy.css'
 
 
@@ -20,6 +22,9 @@ Vue.use(Input)
 Vue.use(Upload)
 Vue.use(Field)
 Vue.use(Button)
+Vue.use(Collapse)
+Vue.use(VueRouter)
+
 
 new Vue({
   components: { App },

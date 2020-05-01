@@ -1,6 +1,6 @@
 <template>
   <main>
-    <AppHeader />
+    <AppHeader v-bind:headerName="headerName" />
     <div class="mainContainer">
       <div class="upperContainer">
         <NewStudyAddBasicinfos />
@@ -15,6 +15,8 @@
       </div>
 
       <b-button id="btnValidate" @click="validateData()">Validieren</b-button>
+
+
     </div>
   </main>
 </template>
@@ -32,8 +34,12 @@ export default {
     return {
       criterias: [],
       dropFiles: [],
+      headerName: "NEUE SUCHE",
+      // maybe use {}
+      responseJson: []  
     };
   },
+  
   components: {
     AppHeader,
     NewStudyAddBasicinfos,
@@ -46,45 +52,43 @@ export default {
       this.criterias = [...this.criterias, newCriteria];
     },
     validateData() {
-      console.log("start");
-
+      const formData = new FormData();
       const criteria = document.getElementById("analysename").value;
       const description = document.getElementById("description").value;
       const criterias = this.criterias;
       const files = this.dropFiles;
-
-      const formData = new FormData();
-      formData.append("Criteria_Name", criteria);
-      formData.append("Description", description);
-      // formData.append("Only_current_patient_cohort", only_current_cohort)
-
+      //TODO: loop necessary?
       var criteriumArray = [];
       for (var i = 0; i < criterias.length; i++) {
         criteriumArray.push([criterias[i].name, criterias[i].xPath]);
       }
-
       var json_arr = JSON.stringify(criteriumArray);
-
-      formData.append("Criterium_Names[]", json_arr);
-
       //TODO: is for loop necessary?
       for (const file of files) {
         formData.append("file", file);
       }
-axios({
-    method: 'post',
-    url: 'http://192.168.0.30:8000/api/create/',
-    data: formData,
-    headers: {'Content-Type': 'multipart/form-data' }
-    })
-    // .then(function (response) {
-    //     //handle success
-    //     console.log(response);
-    // })
-    // .catch(function (response) {
-    //     //handle error
-    //     console.log(response);
-    // });
+      formData.append("Criteria_Name", criteria);
+      formData.append("Description", description);
+      formData.append("Criterium_Names[]", json_arr);
+
+      axios({
+        method: "post",
+        url: "http://192.168.0.37:8000/api/create/",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+          console.log(response)
+          this.responseJson = JSON.parse(response.data)
+          this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
+          // console.log(this.responseJson)
+      })
+      .catch((response) => {
+          //TODO: handle error: toast
+
+          console.log(response);
+            
+      });
     },
   },
 };

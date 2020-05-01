@@ -1,10 +1,17 @@
 <template>
 <div class="main">
     <!-- TODO: {{}} -->
-    <h1 id="clivioheader">NEUE SUCHE</h1>
+    <h1 id="clivioheader">{{headerName}}</h1>
 </div>
 </template>
 
+
+<script>
+export default {
+    name: "AppHeader",
+    props: ["headerName"],
+}
+</script>
 <style scoped>
 .main {
     background-color: var(--main-color);
