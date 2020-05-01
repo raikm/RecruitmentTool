@@ -17,8 +17,13 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 # 01.05.2020 - 31.05.2020: 2. Monat
 
-- Verbesserung der Robustheit bei der xPath Auswertung
-
+<details><summary>Ausblick</summary>
+<p>
+<ul>
+  <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
+</ul>
+</p>
+</details>
 
 ## 01.04.2020 - 30.04.2020: Fertigstellung von v 0.1
 - Fertigstellung von v0.1 für die Auswertung von einem Pool von CDA Dokumenten
@@ -30,7 +35,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 - Testing CDA Libraries (SAXCON, ETREE).
 - Verbesserung der Datenhaltung der XML Files
 
-### VERSION 0.1
+#### Screenshots Version 0.1
 ![](external_resources/images_readme/Neue_Studie.png)
 
 ![](external_resources/images_readme/Auswertung.png)
