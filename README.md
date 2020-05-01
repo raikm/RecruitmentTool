@@ -15,18 +15,29 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 # 🏗Timeline Progress
 
+# 01.05.2020 - 31.05.2020: 2. Monat
+
+<details><summary>Ausblick</summary>
+<p>
+<ul>
+  <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
+  <li>Weitere xPaths verwenden</li>
+  <li>Kategorien für Übersicht festlegen: NEW, CHANGE, IMPROVE</li>
+</ul>
+</p>
+</details>
+
 ## 01.04.2020 - 30.04.2020: Fertigstellung von v 0.1
 - Fertigstellung von v0.1 für die Auswertung von einem Pool von CDA Dokumenten
 - Daten (Name, IDs,...) auslesen aus CDA Dateien
 - Umstellung auf Vue.js für Front-End
     - erstes Basic Design
-- Erstellung Konzept für Datenhaltung
 - Basic Auswertung der CDA Files im Front-End
-- Testing CDA Libraries (SAXCON, ETREE).
-- Verbesserung der Robustheit bei der xPath Auswertung
-- Verbesserung der Datenhaltung der XML Files
+- Testing CDA Libraries (SAXCON, ETREE)
+- Erstellung Konzept für Datenhaltung
+- Verbesserung der Datenhaltung
 
-### VERSION 0.1
+#### Screenshots Version 0.1
 ![](external_resources/images_readme/Neue_Studie.png)
 
 ![](external_resources/images_readme/Auswertung.png)
