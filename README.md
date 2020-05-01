@@ -21,10 +21,6 @@ This includes an analysis of possible frameworks and programming lan- guages and
 - Verbesserung der Datenhaltung der XML Files
 - Erweiterung der GUI
 
-#### Erster Entwurf Datenbank:
-![](external_resources/images_readme/Skizze_DB.jpg)
-
-
 
 ## 03.03.2020 - 31.03.2020: Kickoff
 - Konzept für Requierments Analyse recherchiert
