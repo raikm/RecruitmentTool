@@ -79,7 +79,7 @@ export default {
       })
       .then((response) => {
           console.log(response)
-          this.responseJson = JSON.parse(response.data)
+          this.responseJson = response.data
           this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
           // console.log(this.responseJson)
       })
