@@ -21,6 +21,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 <p>
 <ul>
   <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
+  <li>Kategorien festlegen: NEW, CHANGE, IMPROVE</li>
 </ul>
 </p>
 </details>
@@ -30,10 +31,10 @@ This includes an analysis of possible frameworks and programming lan- guages and
 - Daten (Name, IDs,...) auslesen aus CDA Dateien
 - Umstellung auf Vue.js für Front-End
     - erstes Basic Design
-- Erstellung Konzept für Datenhaltung
 - Basic Auswertung der CDA Files im Front-End
-- Testing CDA Libraries (SAXCON, ETREE).
-- Verbesserung der Datenhaltung der XML Files
+- Testing CDA Libraries (SAXCON, ETREE)
+- Erstellung Konzept für Datenhaltung
+- Verbesserung der Datenhaltung
 
 #### Screenshots Version 0.1
 ![](external_resources/images_readme/Neue_Studie.png)
