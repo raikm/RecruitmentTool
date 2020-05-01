@@ -15,16 +15,21 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 # 🏗Timeline Progress
 
-## 01.04.2020 - 30.04.2020: 1. Monat
+## 01.04.2020 - 30.04.2020: Fertigstellung von v 0.1
 - Fertigstellung von v0.1 für die Auswertung von einem Pool von CDA Dokumenten
+- Daten (Name, IDs,...) auslesen aus CDA Dateien
+- Umstellung auf Vue.js für Front-End
+    - erstes Basic Design
+- Erstellung Konzept für Datenhaltung
+- Basic Auswertung der CDA Files im Front-End
+- Testing CDA Libraries (SAXCON, ETREE).
 - Verbesserung der Robustheit bei der xPath Auswertung
 - Verbesserung der Datenhaltung der XML Files
-- Erweiterung der GUI
 
-#### Erster Entwurf Datenbank:
-![](images_readme/Skizze_DB.jpg)
+### VERSION 0.1
+![](external_resources/images_readme/Neue_Studie.png)
 
-
+![](external_resources/images_readme/Auswertung.png)
 
 ## 03.03.2020 - 31.03.2020: Kickoff
 - Konzept für Requierments Analyse recherchiert
@@ -37,4 +42,4 @@ This includes an analysis of possible frameworks and programming lan- guages and
     - ermöglicht auch Speicherung von xml Dateien auf dem Server zur Ablage und weiteren Verarbeitung
 
 #### Erster Entwurf für Front und Back-End:
-![](images_readme/Untitled-6.jpg)
+![](external_resources/images_readme/Untitled-6.jpg)
