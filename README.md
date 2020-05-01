@@ -21,7 +21,8 @@ This includes an analysis of possible frameworks and programming lan- guages and
 <p>
 <ul>
   <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
-  <li>Kategorien festlegen: NEW, CHANGE, IMPROVE</li>
+  <li>Weitere xPaths verwenden</li>
+  <li>Kategorien für Übersicht festlegen: NEW, CHANGE, IMPROVE</li>
 </ul>
 </p>
 </details>
