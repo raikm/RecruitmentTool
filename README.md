@@ -7,6 +7,12 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 
 ---
+## Aktuelle Version [v0.1]
+- Feature 1
+- Feature 2
+
+
+
 #### [🎯 Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
 #### [Backend Repository (Private)](https://github.com/raikm/RecruitmentTool_Backend)
