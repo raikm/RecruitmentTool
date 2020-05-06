@@ -26,9 +26,15 @@ This includes an analysis of possible frameworks and programming lan- guages and
 <details><summary>Ausblick</summary>
 <p>
 <ul>
+  <li>Konzept für Auswertung</li>
+  <li>RA - Analyse vorbereiten</li>
+</ul>
+<ul>
   <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
   <li>Weitere xPaths verwenden</li>
-  <li>Kategorien für Übersicht festlegen: NEW, CHANGE, IMPROVE</li>
+</ul>
+<ul>
+  <li>Kategorien für Timeline-Progess-Übersicht festlegen: NEW, CHANGE, IMPROVE</li>
 </ul>
 </p>
 </details>
