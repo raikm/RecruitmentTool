@@ -8,10 +8,10 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 ---
 ## Aktuelle Version [v0.1]
-- Feature 1
-- Feature 2
-
-
+- CDA Parsing
+- Eingabe von xPath Kriterien
+- Minimal Auswertung nach xPath Kriterien
+- alle akt. Patienten in der DB werden validiert
 
 #### [🎯 Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
@@ -21,23 +21,36 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 # 🏗Timeline Progress
 
-# 01.05.2020 - 31.05.2020: 2. Monat
+## 01.06.2020 - 30.06.2020: 4. Monat
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>Konzept für Auswertung</li>
-  <li>RA - Analyse vorbereiten</li>
+  <li>Weitere RA durchführen</li>
+  <li>Auswertung der RA-Analyse</li>
 </ul>
 <ul>
-  <li>Verbesserung der Robustheit bei der xPath Auswertung</li>
   <li>Weitere xPaths verwenden</li>
-</ul>
-<ul>
-  <li>Kategorien für Timeline-Progess-Übersicht festlegen: NEW, CHANGE, IMPROVE</li>
+  <li>Weitere CDA Testfiles erstellen</li>
+  <li>xPath Gruppen akzeptieren</li>
+  <li>Startseite erstellen</li>
 </ul>
 </p>
 </details>
+
+
+## 01.05.2020 - 31.05.2020: RA-Analyse
+
+- Fertigstellung der RA-Analyse -> im Juni Auswertung
+
+### Software
+#### NEW
+- nur XML Files werden akzeptiert
+- UnitTests
+#### IMPROVE / CHANGE
+- Verbesserung der Robustheit bei der xPath Auswertung: wenn Wert nicht gefunden wird, dann Prüfung, ob überhaupt Wert enthalten ist
+
+
 
 ## 01.04.2020 - 30.04.2020: Fertigstellung von v 0.1
 - Fertigstellung von v0.1 für die Auswertung von einem Pool von CDA Dokumenten
