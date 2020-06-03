@@ -34,7 +34,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
   <li>Weitere xPaths verwenden</li>
   <li>Weitere CDA Testfiles erstellen</li>
   <li>xPath Gruppen akzeptieren</li>
-  <li>Startseite erstellen</li>
+  <li>CDA Auswertung verbessern auf Grundlage der RA</li>
 </ul>
 </p>
 </details>
