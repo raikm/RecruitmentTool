@@ -28,6 +28,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 <ul>
   <li>Weitere RA durchführen</li>
   <li>Auswertung der RA-Analyse</li>
+  <li>Testumgebung in MedUni Wien einrichten</li>
 </ul>
 <ul>
   <li>Weitere xPaths verwenden</li>
