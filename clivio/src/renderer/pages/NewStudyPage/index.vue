@@ -1,17 +1,17 @@
 <template>
   <main>
-    <AppHeader v-bind:headerName="headerName" />
+    <AppHeader :headerName="headerName" />
     <div class="mainContainer">
       <div class="upperContainer">
         <NewStudyAddBasicinfos />
       </div>
       <div>
         <NewStudyAddCriteria v-on:add-criteria="addCriteria" />
-        <NewStudyCriteriaList id="criteriaList" v-bind:criterias="criterias" />
+        <NewStudyCriteriaList id="criteriaList" :criterias="criterias" />
       </div>
 
       <div>
-        <NewStudyAddFile id="addFile" v-bind:dropFiles="dropFiles" />
+        <NewStudyAddFile id="addFile" :dropFiles="dropFiles" />
       </div>
 
       <b-button id="btnValidate" @click="validateData()">Validieren</b-button>
@@ -28,13 +28,15 @@ import NewStudyAddCriteria from "./NewStudyAddCriteria";
 import NewStudyCriteriaList from "./NewStudyCriteriaList";
 import NewStudyAddFile from "./NewStudyAddFile";
 
+
+
 export default {
   name: "NewStudyPage",
   data() {
     return {
       criterias: [],
       dropFiles: [],
-      headerName: "NEUE SUCHE",
+      headerName: "NEUE STUDIE ANLEGEN",
       // maybe use {}
       responseJson: []  
     };
@@ -60,7 +62,7 @@ export default {
       //TODO: loop necessary?
       var criteriumArray = [];
       for (var i = 0; i < criterias.length; i++) {
-        criteriumArray.push([criterias[i].name, criterias[i].xPath]);
+        criteriumArray.push([criterias[i].criteria_type, criterias[i].name, criterias[i].xPath]);
       }
       var json_arr = JSON.stringify(criteriumArray);
       //TODO: is for loop necessary?
@@ -73,15 +75,16 @@ export default {
 
       axios({
         method: "post",
-        url: "http://192.168.0.37:8000/api/create/",
+        url: "http://192.168.0.22:8000/api/create/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
           console.log(response)
           this.responseJson = response.data
+          console.log(this.responseJson)
           this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
-          // console.log(this.responseJson)
+          
       })
       .catch((response) => {
           //TODO: handle error: toast

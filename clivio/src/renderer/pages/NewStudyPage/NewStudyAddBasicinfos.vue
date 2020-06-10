@@ -1,12 +1,12 @@
 <template>
   <form>
-    <h3>Suchanfrage</h3>
+    <h3>Basis Informationen</h3>
     <div class="columns">
       <div class="column">
-        <b-input id="analysename" type="text" placeholder="Name der Analyse" />
+        <b-input id="analysename" type="text" placeholder="Name der Studie" />
       </div>
       <div class="column">
-        <b-input id="description" type="text" placeholder="Kurzbeschreibung" />
+        <b-input id="description" type="text" placeholder="Kurzbeschreibung / Hinweise" />
       </div>
     </div>
   </form>
