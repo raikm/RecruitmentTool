@@ -15,7 +15,6 @@
         >
           <div
             slot="trigger"
-            slot-scope="props"
             class="card-header"
             role="button"
           >
