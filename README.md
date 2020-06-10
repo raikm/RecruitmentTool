@@ -39,6 +39,7 @@ This includes an analysis of possible frameworks and programming lan- guages and
 </p>
 </details>
 
+![](external_resources/images_readme/IMG_30C4767AAE61-1.jpeg)
 
 ## 01.05.2020 - 31.05.2020: RA-Analyse
 
