@@ -22,26 +22,30 @@ export default {
     AppHeader,
     CurrentStudiesList,
   },
-  created: function() {
-    //TODO: get saved studies
+  mounted() {
+    this.getAllStudies();
+  },
+  methods: {
+    getAllStudies(){
+      axios({
+        method: "get",
+        url: "http://192.168.0.33:8000/api/getAllStudies/",
+        // headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+          this.responseJson = response.data
+          this.currentStudies = this.responseJson
+      })
+      .catch((response) => {
+          //TODO: handle error: toast
+          console.log(response);
+      });
+    }
   },
   data() {
     return {
       headerName: "DASHBOARD",
-      currentStudies: [
-        {
-          id: 1, //db-id
-          name: "Studie A",
-          investigator: "Prof. X",
-          lastCheck: "Date()",
-        },
-        {
-          id: 2,
-          name: "Studie B",
-          investigator: "Prof. X",
-          lastCheck: "Date()",
-        },
-      ],
+      currentStudies: [],
     };
   },
 };
