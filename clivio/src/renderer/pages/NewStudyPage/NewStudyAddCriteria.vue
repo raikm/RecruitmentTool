@@ -1,13 +1,17 @@
 <template>
-  <!-- <div class="main"> -->
-  <form>
+  <main>
     <h3>Neues Kriterium</h3>
     <!-- TODO: put in new divs and change margin instead of br -->
 
     <div class="columns">
-      <div id = "parent" class="column">
+      <div id="parent" class="column">
         <div class="cleft">
-          <b-select  id="selector" v-model="criteria_type" placeholder="Typ" size="is-small">
+          <b-select
+            id="selector"
+            v-model="criteria_type"
+            placeholder="Typ"
+            size="is-small"
+          >
             <option value="EK">Einschlusskriterium</option>
             <option value="AK">Ausschlusskriterium</option>
           </b-select>
@@ -22,22 +26,43 @@
           />
         </div>
       </div>
+    </div>
+
+    <div
+      class="input-area columns"
+      v-for="condition in conditions"
+      :key="condition.conditionId"
+    >
+      <div class="column">
+        <b-input
+          :id="condition.conditionId"
+          v-model="condition.conditionName"
+          type="text"
+          placeholder="Bedingung"
+        />
+      </div>
 
       <div class="column is-half">
         <b-input
-          id="xPathInputText"
+          :id="condition.xPathId"
           type="text"
-          v-model="xPath"
+          v-model="condition.condtionxPath"
           placeholder="xPath"
         />
+        <b-input
+          :id="condition.valuexPathId"
+          type="text"
+          v-model="condition.valuexPath"
+          placeholder="Value xPath"
+        />
+        
       </div>
     </div>
-    
+    <b-button id="btn_add" @click="addNewLine">+</b-button>
+    <b-button id="btn_add" @click="removeLastLine">-</b-button>
     <b-button id="btn_add" @click="addCriteria">Hinzufügen</b-button>
-    <b-button id="btn_import">Import</b-button>
-     
-  </form>
-  <!-- </div> -->
+
+  </main>
 </template>
 
 <script>
@@ -48,7 +73,17 @@ export default {
       // TODO: make to one object
       criteria_type: "",
       name: "",
-      xPath: "",
+      counter: 0,
+      conditions: [
+        {
+          conditionId: "condition-0",
+          xPathId: "xPath-0",
+          valuexPathId: "value-xPath-0",
+          conditionName: "",
+          condtionxPath: "",
+          valuexPath: ""
+        },
+      ],
     };
   },
   methods: {
@@ -57,12 +92,33 @@ export default {
       const newCriteria = {
         criteria_type: this.criteria_type,
         name: this.name,
-        xPath: this.xPath,
+        conditions: this.conditions
       };
       this.$emit("add-criteria", newCriteria);
-      document.getElementById("criterium").value = ""
-      document.getElementById("xPathInputText").value = ""
+      this.name = ""
+      this.criteria_type = ""
+      this.conditions = [{
+          conditionId: "condition-0",
+          xPathId: "xPath-0",
+          valuexPathId: "value-xPath-0",
+          conditionName: "",
+          condtionxPath: "",
+          valuexPath: ""
+        },]
     },
+    addNewLine() {
+      this.conditions.push({
+        conditionId: `condition-${++this.counter}`,
+        xPathId: `xPath-${++this.counter}`,
+        valuexPathId:`value-xPath-${++this.counter}`,
+        conditionName: "",
+        condtionxPath: "",
+        valuexPath: "",
+      }); 
+    },
+    removeLastLine() {
+        this.conditions.pop(); 
+    }
   },
 };
 </script>
@@ -75,7 +131,8 @@ export default {
   /* background-color:green; */
 /* }  */
 
-#btn_add, #btn_import {
+#btn_add,
+#btn_import {
   float: right;
   margin: 0 0 1% 1%;
 }
@@ -84,7 +141,6 @@ export default {
   display: flex;
   justify-content: flex-start;
 }
-
 
 .cleft {
   width: 150px;
