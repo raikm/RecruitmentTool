@@ -7,7 +7,7 @@
 <script>
 import DashboardPage from './pages/DashboardPage'
 import NewStudyPage from './pages/NewStudyPage'
-import EvaluationPage from './pages/EvaluationPage'
+// import EvaluationPage from './pages/EvaluationPage'
 
 
   export default {
@@ -18,7 +18,7 @@ import EvaluationPage from './pages/EvaluationPage'
     name: 'clivio', 
     components: {
         NewStudyPage,
-        EvaluationPage,
+        // EvaluationPage,
         DashboardPage
       }
     

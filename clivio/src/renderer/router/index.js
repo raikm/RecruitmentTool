@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import NewStudyPage from '../pages/NewStudyPage'
+import StudyPage from '../pages/StudyPage'
 import EvaluationPage from '../pages/EvaluationPage'
 import DashboardPage from '../pages/DashboardPage'
 
@@ -26,6 +27,14 @@ export default new Router({
       path: '/evaluation',
       name: 'evaluation-page',
       component: EvaluationPage,
+      props: true,
+      query: true
+      
+    },
+    {
+      path: '/study',
+      name: 'study-page',
+      component: StudyPage,
       props: true,
       query: true
       
