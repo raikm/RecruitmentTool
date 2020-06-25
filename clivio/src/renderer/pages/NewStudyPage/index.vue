@@ -8,6 +8,8 @@
       <div>
         <NewStudyAddCriteria v-on:add-criteria="addCriteria" />
         <NewStudyCriteriaList id="criteriaList" :criterias="criterias" />
+        <NewStudyAddInformation v-on:add-information="addInformation" />
+        <NewStudyInformationList id="criteriaList" :informations="informations" />
       </div>
 
       <div>
@@ -26,6 +28,8 @@ import AppHeader from "../../components/AppHeader";
 import NewStudyAddBasicinfos from "./NewStudyAddBasicinfos";
 import NewStudyAddCriteria from "./NewStudyAddCriteria";
 import NewStudyCriteriaList from "./NewStudyCriteriaList";
+import NewStudyAddInformation from "./NewStudyAddInformation";
+import NewStudyInformationList from "./NewStudyInformationList"
 import NewStudyAddFile from "./NewStudyAddFile";
 
 
@@ -35,9 +39,9 @@ export default {
   data() {
     return {
       criterias: [],
+      informations: [],
       dropFiles: [],
-      headerName: "NEUE STUDIE ANLEGEN",
-      // maybe use {}
+      headerName: "EDITOR",
       responseJson: []  
     };
   },
@@ -47,35 +51,48 @@ export default {
     NewStudyAddBasicinfos,
     NewStudyAddCriteria,
     NewStudyCriteriaList,
+    NewStudyAddInformation,
+    NewStudyInformationList,
     NewStudyAddFile,
   },
   methods: {
     addCriteria(newCriteria) {
       this.criterias = [...this.criterias, newCriteria];
     },
+     addInformation(newInformation) {
+      this.informations = [...this.informations, newInformation];
+    },
     validateData() {
       const formData = new FormData();
-      const criteria = document.getElementById("analysename").value;
-      const description = document.getElementById("description").value;
+
+      const studyName = document.getElementById("study-name").value;
+      const description = document.getElementById("study-description").value;
+
       const criterias = this.criterias;
+      const informations = this.informations
       const files = this.dropFiles;
+
       //TODO: loop necessary?
-      var criteriumArray = [];
-      for (var i = 0; i < criterias.length; i++) {
-        criteriumArray.push([criterias[i].criteria_type, criterias[i].name, criterias[i].xPath]);
-      }
-      var json_arr = JSON.stringify(criteriumArray);
+      // var criteriumArray = [];
+      // for (var i = 0; i < criterias.length; i++) {
+      //   criteriumArray.push([criterias[i].criteria_type, criterias[i].name, criterias[i].xPath]);
+      // }
+      var criteriasJson = JSON.stringify(criterias);
+      var informationsJson = JSON.stringify(informations);
+
       //TODO: is for loop necessary?
       for (const file of files) {
         formData.append("file", file);
       }
-      formData.append("Criteria_Name", criteria);
+
+      formData.append("Study_Name", studyName);
       formData.append("Description", description);
-      formData.append("Criterium_Names[]", json_arr);
+      formData.append("Criterias[]", criteriasJson);
+      formData.append("Information_Needs[]", informationsJson);
 
       axios({
         method: "post",
-        url: "http://192.168.0.22:8000/api/create/",
+        url: "http://192.168.0.33:8000/api/create/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
