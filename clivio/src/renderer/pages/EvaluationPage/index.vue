@@ -54,7 +54,7 @@ import AppHeader from "../../components/AppHeader";
 
 export default {
   name: "EvaluationPage",
-  props: ["responseJson"],
+  props: ["responseJson"], //TODO: that can be deleted I think
   components: {
     AppHeader,
   },
