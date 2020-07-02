@@ -21,25 +21,41 @@ This includes an analysis of possible frameworks and programming lan- guages and
 
 # 🏗Timeline Progress
 
-## 01.06.2020 - 30.06.2020: 4. Monat
+## 01.07.2020 - 31.07.2020: 5. Monat
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>Weitere RA durchführen</li>
-  <li>Auswertung der RA-Analyse</li>
-  <li>Testumgebung in MedUni Wien einrichten</li>
+  <li>weitere RA-Analyse</li>
+  <li>Feedback von Ärzten über neue Mockups einholen</li>
+  <li>Kl. Studien aufarbeiten: xPaths definieren und schauen was in ELGA möglich ist</li>
 </ul>
 <ul>
-  <li>Weitere xPaths verwenden</li>
-  <li>Weitere CDA Testfiles erstellen</li>
-  <li>xPath Gruppen akzeptieren</li>
-  <li>CDA Auswertung verbessern auf Grundlage der RA</li>
+  <li>TODO: Sofware-Ausblick</li>
 </ul>
 </p>
 </details>
 
-![](external_resources/images_readme/IMG_30C4767AAE61-1.jpeg)
+## 01.06.2020 - 30.06.2020: 4. Monat
+
+- Auswertung von Experterninterviews
+- Zusammenfassung der möglichen Studien
+- Mockups nach Auswertung angepasst
+- neue Aufbau der Baumstruktur von Kl. Studien (technischer Aufbau):
+![](external_resources/images_readme/Baumstruktur.png)
+
+
+### Software
+- Testumgebung in MedUni Wien eingerichtet
+#### NEW
+- Dashboard über aktuelle Studien
+- Unterscheidung von Editor und Validierungsmodul für Ersteller und Anwender
+- Unterstützung für die Suche nach Informationsbedürfnisse
+
+#### IMPROVE / CHANGE
+- xPath Gruppierung (Condition + Value Abfrage)
+- Datenbankstruktur
+- weitere ELGA-Testdaten getestet
 
 ## 01.05.2020 - 31.05.2020: RA-Analyse
 
