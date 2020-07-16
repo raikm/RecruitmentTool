@@ -33,10 +33,9 @@ export default {
   methods: {
     select(row) {
       var study_id = row.Study_ID;
-      console.log(study_id)
       axios({
         method: "get",
-        url: "http://192.168.0.33:8000/api/getStudy/study_id=" + study_id,
+        url: "http://192.168.0.71:8000/api/getStudy/study_id=" + study_id,
         // headers: { "Content-Type": "multipart/form-data" },
       })
         .then((response) => {

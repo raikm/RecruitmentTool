@@ -92,14 +92,12 @@ export default {
 
       axios({
         method: "post",
-        url: "http://192.168.0.33:8000/api/create/",
+        url: "http://192.168.0.71:8000/api/create/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
-          console.log(response)
           this.responseJson = response.data
-          console.log(this.responseJson)
           this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
           
       })
