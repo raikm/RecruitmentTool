@@ -42,7 +42,7 @@
 
 - Auswertung von Experterninterviews --> Ergänzung der Mockups
 - Experteninterviews abgeschllossen
-- 2. Mini Evaluierung vorbereitet (Feedback von Ärzten über neue Mockups einholen)
+- Mini Evaluierung vorbereitet (Feedback von Ärzten über neue Mockups einholen)
 - Fertigstellung Mockups V.2
 - WIP xPaths für Kl. Studien
 
