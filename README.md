@@ -10,11 +10,7 @@
 
 
 ---
-## Aktuelle Version [v0.1]
-- CDA Parsing
-- Eingabe von xPath Kriterien
-- Minimal Auswertung nach xPath Kriterien
-- alle akt. Patienten in der DB werden validiert
+
 
 #### [🎯 Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
