@@ -24,20 +24,43 @@
 
 # 🏗Timeline Progress
 
-## 01.07.2020 - 31.07.2020: 5. Monat
+## 01.08.2020 - 31.08.2020: 6. Monat
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>weitere RA-Analyse</li>
-  <li>Feedback von Ärzten über neue Mockups einholen</li>
-  <li>Kl. Studien aufarbeiten: xPaths definieren und schauen was in ELGA möglich ist</li>
+  <li>2. Mini Evaluierung abgeschlossen</li>
+  <li>Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet</li>
 </ul>
 <ul>
-  <li>TODO: Sofware-Ausblick</li>
+  <li>Umsetzung der Auswertung noch Mockups V.2</li>
+  <li>eHealth Connector Integration</li>
+  <li>Testing XDS Repository</li>
+  <li>CDA2PDF Integration</li>
 </ul>
 </p>
 </details>
+
+
+## 01.07.2020 - 31.07.2020: 5. Monat
+
+- Auswertung von Experterninterviews --> Ergänzung der Mockups
+- Experteninterviews abgeschllossen
+- 2. Mini Evaluierung vorbereitet (Feedback von Ärzten über neue Mockups einholen)
+- Fertigstellung Mockups V.2
+- WIP xPaths für Kl. Studien
+
+### Software
+- Weiterentwicklung an Auswertungssformular
+- Recherche für CDA2PDF Integration
+
+#### NEW
+- XDS Repository auf MedUni Server
+
+#### IMPROVE / CHANGE
+- Beginn mit eHealth Connector
+- JSON Antwort
+
 
 ## 01.06.2020 - 30.06.2020: 4. Monat
 
