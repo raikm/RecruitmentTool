@@ -73,8 +73,8 @@ export default {
       formData.append("Information_Needs[]", informationsJson);
 
       axios({
-        method: "GET",
-        url: "http://192.168.0.71:8000/api/debug/",
+        method: "POST",
+        url: "http://127.0.0.1:8000/api/debug/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })

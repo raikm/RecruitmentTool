@@ -23,40 +23,104 @@
           </b-table-column>
 
           <b-table-column
+            :visible="columnsVisible['ek'].display"
+            :label="columnsVisible['ek'].title"
+            :centered=true
             width="500"
           >
           </b-table-column>
 
           <b-table-column
+            :visible="columnsVisible['ak'].display"
+            :label="columnsVisible['ak'].title"
             width="500"
-          >
-          </b-table-column>
-
-          <b-table-column            
-            width="500"
+            :centered=true
           >
           </b-table-column>
         </template>
 
-        <!-- <template slot="detail" slot-scope="props">
-          <tr v-for="item in props.row.conditions" :key="item.name">
-            <td width="50" v-show="columnsVisible['name'].display">
-              &nbsp;&nbsp;&nbsp;&nbsp;
-            </td>
-            <td width="500" v-show="columnsVisible['conditionName'].display">
+        <template slot="detail" slot-scope="props">
+          <template v-for="item in props.row.criterium_results" >
+          <tr :key="item.name">
+            <td v-show="columnsVisible['name'].display">
+              <div
+                class="type-tag"
+                :class="{
+                  greenBackgroundClass: item.criterium_type == 'EK',
+                  redBackgroundClass: item.criterium_type == 'AK',
+                }"
+              >
+                {{ item.criterium_type }}
+              </div>
               {{ item.name }}
             </td>
-            <td td width="500" v-show="columnsVisible['condtionxPath'].display">
-              {{ item.xPath }}
-            </td>
-            <td td width="500" v-show="columnsVisible['valuexPath'].display">
-              {{ item.value_xPath }}
-            </td>
+
+            <template v-if="item.criterium_type == 'EK'">
+              <td
+                v-show="columnsVisible['ek'].display"
+                :class="{
+                  greenFillClass: item.criterium_summary_result == 0,
+                  
+                }"
+                class="has-text-centered"
+              >
+              <!-- redFillClass: item.criterium_type == 1, -->
+                ⬤
+              </td>
+              <td v-show="columnsVisible['ak'].display"></td>
+            </template>
+
+            <template v-else>
+              <td v-show="columnsVisible['ek'].display"></td>
+              <td
+                v-show="columnsVisible['ak'].display"
+                :class="{
+                  
+                  redFillClass: item.criterium_summary_result == 0,    
+                }"
+                class="has-text-centered"
+              >
+              <!-- greenFillClass: item.criterium_summary_result == 1, -->
+              
+                ⬤
+              </td>
+            </template>
           </tr>
-        </template> -->
+          <tr v-for="condition in item.conditions" :key="condition.name">
+            <td class="condition-td">
+             &emsp;&emsp;&emsp;{{ condition.name }}
+            </td>
+            <template v-if="item.criterium_type == 'EK'">
+              <td
+                v-show="columnsVisible['ek'].display"
+                :class="{
+                  greenFillClass: Array.isArray(condition.evaluation_result) && condition.evaluation_result.length > 0,
+                  redFillClass: condition.evaluation_result.length == 0,
+                }"
+                class="has-text-centered condition-details" 
+              >
+                ⬤
+              </td>
+              <td v-show="columnsVisible['ak'].display"></td>
+            </template>
+
+            <template v-else>
+              <td v-show="columnsVisible['ek'].display"></td>
+              <td
+                v-show="columnsVisible['ak'].display"
+               :class="{
+                  greenFillClass: condition.evaluation_result.length == 0,
+                  redFillClass: Array.isArray(condition.evaluation_result) && condition.evaluation_result.length > 0,
+                }"
+                class="has-text-centered condition-details" 
+              >
+                ⬤
+              </td>
+            </template>
+          </tr>
+          </template>
+        </template>
       </b-table>
-
-
     </div>
   </main>
 </template>
@@ -68,15 +132,15 @@ export default {
   data() {
     return {
       columnsVisible: {
-        name: { title: "Name", display: true },
-        ek: { title: "EK", display: true },
-        ak: { title: "AK", display: true },
-        noData: { title: "keine Daten", display: true },
+        name: { title: "Patientenname", display: true },
+        conditionName: { title: "Bedingung", display: true },
+        ek: { title: "Einschlusskriterien", display: true },
+        ak: { title: "Ausschlusskriterien", display: true },
       },
     };
   },
-  created: function(){
-    console.log(this.response)
+  created: function() {
+    console.log(this.response);
   },
   methods: {
     toggle(row) {
@@ -88,7 +152,6 @@ export default {
 
 <style lang="scss">
 .type-tag {
-  
   border-radius: 4px;
   padding: 0 1vh;
   height: 50%;
@@ -99,13 +162,24 @@ export default {
   margin-right: 2vh;
   color: white;
 }
-.greenBackgroundClass{
+.greenBackgroundClass {
   background-color: rgb(4, 196, 90);
-  
 }
 
-.redBackgroundClass{
+.redBackgroundClass {
   background-color: rgb(223, 51, 51);
 }
 
+.greenFillClass {
+  color: rgb(4, 196, 90);
+}
+
+.redFillClass {
+  color: rgb(223, 51, 51);
+}
+
+.condition-details{
+  font-size: small;
+
+}
 </style>

@@ -17,7 +17,7 @@ export default {
     ResultList
   },
   created: function() {
-    this.response = this.$route.query.patients
+    // this.response = this.$route.query.patients
    
   },
   data() {
@@ -27,15 +27,16 @@ export default {
     };
   },
   mounted: function(){
-    // DEBUG ----------------------
-     axios({
-        method: "GET",
-        url: "http://192.168.0.71:8000/api/debug/",
+    // // DEBUG ----------------------
+   axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/api/debug/",
+        headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
-
+          console.log(response.data.patients)
           this.response = response.data.patients
-          console.log(this.response)
+          
       })
       .catch((response) => {
           console.log(response);
