@@ -39,6 +39,7 @@
   <li>Mockup Updates</li>
 </ul>
 <ul>
+  <li>XML Visualisierung</li>
   <li>Testing XDS Repository</li>
   <li>Verbindung mit XDS Repository</li>
   <li>Real-Data testen (Robustheit)</li>
