@@ -7,7 +7,7 @@
 ##### Funktionalitäten für V.1
 - xPath "Algorithmus"  
 - Evaluations-Page (Auswertung der Patienten/-innen)
-- Detail-Ansicht von auswerteten Bedinungen (inkl. CDA Visualisierung)
+- Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
 - Studienverwaltung (z.B. Änderungen von xPaths bzw. Bedingungen)
 ##### Funktionalitäten für V.2 (bis Dezember)
 - Export-Möglichkeiten von selektierten Patienten/-innen
