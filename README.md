@@ -1,9 +1,11 @@
 # RecruitmentTool (Master Thesis by Raik Mueller) 
 ## Semiautomatische Rekrutierung von Studienpatienten unter Nutzung von ELGA-Daten: Konzeptionierung und prototypische Implementierung eines IT-Tools
 
-## Grober Zeitplan
+## Zeitplan
 
-#### 30.09.2020 Fertigstellung Prototypen V.1 (Konzepte/Mockups wurden grundsätzlich umgesetzt)
+#### 30.09.2020 Fertigstellung Prototype V.1 (Konzepte/Mockups wurden grundsätzlich umgesetzt)
+##### Funktionalitäten für V.1
+
 #### 1.10.2020 - 7.10.2020: Testing mit echten Daten, Evaluierung und Fehlverhalten finden und ausbessern (→ V.2)
 #### 01.11.2020 Masterarbeit V.1
 #### 01.12.2020 Abgabe der Masterarbeit und Prototyp V.2
@@ -20,22 +22,39 @@
 
 # 🏗Timeline Progress
 
-## 01.08.2020 - 31.08.2020: 6. Monat
+## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>2. Mini Evaluierung abgeschlossen</li>
-  <li>Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet</li>
+  <li>Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert</li>
+  <li>Klärung Inhaltsverzeichnis</li>
+  <li>Mockup Updates</li>
 </ul>
 <ul>
-  <li>Umsetzung der Auswertung noch Mockups V.2</li>
-  <li>eHealth Connector Integration</li>
   <li>Testing XDS Repository</li>
-  <li>CDA2PDF Integration</li>
+  <li>Verbindung mit XDS Repository</li>
+  <li>Real-Data testen (Robustheit)</li>
 </ul>
 </p>
 </details>
+
+
+## 01.08.2020 - 31.08.2020: 6. Monat
+- Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet (WIP)
+- Finalisierung der Funktionalitäten für Prototypen (siehe Zeitplan)
+
+### Software
+- Erste Versuche für XML Visualisierung (WIP)
+
+#### NEW
+- Erster Prototype für Evaluierung (nach Mockup)
+- Detailansicht für Bedingungen (PopUp)
+
+#### IMPROVE / CHANGE
+- JSON Antwort
+- neue Aufteilung der xPath-Auswertung (Positiv, Negativ, ...)
+
 
 
 ## 01.07.2020 - 31.07.2020: 5. Monat
