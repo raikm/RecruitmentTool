@@ -9,10 +9,10 @@
 - Evaluations-Page (Auswertung der Patienten/-innen)
 - Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
 - Studienverwaltung (z.B. Änderungen von xPaths bzw. Bedingungen)
+- XDS Anbindung; Optional: eHealthConnector
 ##### Funktionalitäten für V.2 (bis Dezember)
 - Export-Möglichkeiten von selektierten Patienten/-innen
 - openRDA Anbindung
-- XDS Anbindung; Optional: eHealthConnector
 #### 1.10.2020 - 7.10.2020: Testing mit echten Daten, Evaluierung und Fehlverhalten finden und ausbessern (→ V.2)
 #### 01.11.2020 Masterarbeit V.1
 #### 01.12.2020 Abgabe der Masterarbeit und Prototyp V.2
