@@ -52,6 +52,7 @@
 ## 01.08.2020 - 31.08.2020: 6. Monat
 - Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet (WIP)
 - Finalisierung der Funktionalitäten für Prototypen (siehe Zeitplan)
+- Anpassung der Mockups
 
 ### Software
 - Erste Versuche für XML Visualisierung (WIP)
