@@ -25,11 +25,24 @@
 
 #### [Backend Repository (Private)](https://github.com/raikm/RecruitmentTool_Backend)
 
+#### [eHC Repository](https://github.com/raikm/eHealthConnectorMiniAPI)
+
 #### [🎯 Kanban Board Frontend Software](https://github.com/raikm/RecruitmentTool/projects/3)
 
 # 🏗Timeline Progress
 
 ## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
+
+- Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert
+
+### Software
+- eHC Integration
+
+#### NEW
+- Backend erweitert mit dem eHealthConnector 
+
+#### IMPROVE / CHANGE
+- 
 
 <details><summary>Ausblick</summary>
 <p>
@@ -39,7 +52,7 @@
   <li>Mockup Updates</li>
 </ul>
 <ul>
-  <li>xPath "Algorithmus" Anpassung</li>
+  <li>xPath "Algorithmus" Anpassung (negative...)</li>
   <li>XML Visualisierung</li>
   <li>Testing XDS Repository</li>
   <li>Verbindung mit XDS Repository</li>
