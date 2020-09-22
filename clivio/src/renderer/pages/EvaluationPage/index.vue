@@ -34,7 +34,8 @@ export default {
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
-          console.log(response.data.patients)
+
+          //console.log(response.data.patients)
           this.response = response.data.patients
           
       })

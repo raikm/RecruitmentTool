@@ -1,14 +1,14 @@
 <template>
   <div>
+    <div id="overview-header"><b-button @click="showConditionDetails">Zurück</b-button></div>
+    <div id="overview-container">
     <div
       class="type-tag"
       :class="{
         greenBackgroundClass: currentCriterium.criterium_type == 'EK',
         redBackgroundClass: currentCriterium.criterium_type == 'AK',
       }"
-    >
-      {{ currentCriterium.criterium_type }}
-    </div>
+    >{{ currentCriterium.criterium_type }}</div>
     <h1 id="condition-name">{{ currentCondition.name }}</h1>
     <h2 class="matches-subtitle">Matches</h2>
 
@@ -19,13 +19,9 @@
       @click="openCDA(result.cda_id)"
     >
       <div class="cda-datum">12.05.2020 (3d)</div>
-      
 
       <ul>
-      <li class="hit-result" v-for="hit in result.hit_result" :key="hit">
-        {{ hit }}
-      </li>
-
+        <li class="hit-result" v-for="hit in result.hit_result" :key="hit">{{ hit }}</li>
       </ul>
     </div>
     <h2 class="matches-subtitle">Negative Matches</h2>
@@ -37,17 +33,14 @@
       @click="openCDA(result.cda_id)"
     >
       <div class="cda-datum">12.05.2020 (3d)</div>
-      
 
       <ul>
-      <li class="hit-result" v-for="hit in result.hit_result" :key="hit">
-        {{ hit }}
-      </li>
-
+        <li class="hit-result" v-for="hit in result.hit_result" :key="hit">{{ hit }}</li>
       </ul>
     </div>
-
-
+    </div>
+    <!-- TODO: Return Button-->
+    <div id="cda-viewer" v-html="htmlCDAFile"></div>
   </div>
 </template>
 
@@ -56,19 +49,49 @@ export default {
   name: "ConditionDetails",
   components: {},
   props: ["currentCondition", "currentCriterium"],
+  data() {
+    return {
+      htmlCDAFile: null,
+    }
+  },
   methods: {
     openCDA(cda_id) {
       console.log("open" + cda_id);
-    },
+   axios({
+        method: "GET",
+        //TODO: get parameters from variables
+        url: "http://127.0.0.1:8000/api/getVisualizedCda/patient_id=1111241261/document_id=1234567.1",
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+      .then((response) => {
+          this.htmlCDAFile = response.data
+          var overviewContainer= document.getElementById("overview-container")
+          overviewContainer.style.display = 'None'
+          var overviewHeader= document.getElementById("overview-header")
+          overviewHeader.style.display = 'inline'
+      })
+      .catch((response) => {
+          console.log(response);
+            
+      });    },
+      showConditionDetails(){
+         var overviewContainer= document.getElementById("overview-container")
+          overviewContainer.style.display = 'inline'
+          this.htmlCDAFile = null
+          var overviewHeader= document.getElementById("overview-header")
+          overviewHeader.style.display = 'None'
+      }
+
+      
+
   },
 };
 </script>
 
 <style>
-.matches-subtitle{
-    margin-left: 5%;
+.matches-subtitle {
+  margin-left: 5%;
 }
-
 
 .hit-container {
   width: 90%;
@@ -80,15 +103,20 @@ export default {
   display: inline-block;
 }
 
-
-
 .cda-datum {
   float: right;
-  
 }
-.hit-result{
-    
+.hit-result {
 }
 
+#overview-header{
+  display: None;
+}
 
+#cda-viewer{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 100%;
+  max-height: 80vh;
+}
 </style>
