@@ -1,44 +1,125 @@
 # RecruitmentTool (Master Thesis by Raik Mueller) 
 ## Semiautomatische Rekrutierung von Studienpatienten unter Nutzung von ELGA-Daten: Konzeptionierung und prototypische Implementierung eines IT-Tools
 
-The thesis deals with the conception and development of a tool for the semi- automatic recruitment of study patients. The focus is on a user-friendly and reusable support-tool, that improves the processes for clinical trial staff to be more efficient in recruiting.
-This includes an analysis of possible frameworks and programming lan- guages and elaboration for usability in collaboration with possible end users. The process will be iterative to evaluate various options for the usability re- garding to the application and test of different software solutions.
+## Zeitplan
 
+#### 30.09.2020 Fertigstellung Prototype V.1 (Konzepte/Mockups wurden grundsätzlich umgesetzt)
+##### Funktionalitäten für V.1
+- xPath "Algorithmus"  
+- Evaluations-Page (Auswertung der Patienten/-innen)
+- Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
+- XDS Anbindung (eHC und IPF Framework)
+##### Funktionalitäten für V.2 (bis Dezember)
+- Export-Möglichkeiten von selektierten Patienten/-innen
+- openRDA Anbindung
+- Studienverwaltung (z.B. Änderungen von xPaths bzw. Bedingungen)
+#### 1.10.2020 - 7.10.2020: Testing mit echten Daten, Evaluierung und Fehlverhalten finden und ausbessern (→ V.2)
+#### 01.11.2020 Masterarbeit V.1
+#### 01.12.2020 Abgabe der Masterarbeit und Prototyp V.2
 
 
 ---
-## Aktuelle Version [v0.1]
-- CDA Parsing
-- Eingabe von xPath Kriterien
-- Minimal Auswertung nach xPath Kriterien
-- alle akt. Patienten in der DB werden validiert
+
 
 #### [🎯 Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
 #### [Backend Repository (Private)](https://github.com/raikm/RecruitmentTool_Backend)
 
+#### [eHC Repository](https://github.com/raikm/eHealthConnectorMiniAPI)
+
 #### [🎯 Kanban Board Frontend Software](https://github.com/raikm/RecruitmentTool/projects/3)
 
 # 🏗Timeline Progress
 
-## 01.06.2020 - 30.06.2020: 4. Monat
+## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
+
+- Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert
+
+### Software
+- eHC Integration
+
+#### NEW
+- Backend erweitert mit dem eHealthConnector 
+
+#### IMPROVE / CHANGE
+- 
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>Weitere RA durchführen</li>
-  <li>Auswertung der RA-Analyse</li>
-  <li>Testumgebung in MedUni Wien einrichten</li>
+  <li>Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert</li>
+  <li>Klärung Inhaltsverzeichnis</li>
+  <li>Mockup Updates</li>
 </ul>
 <ul>
-  <li>Weitere xPaths verwenden</li>
-  <li>Weitere CDA Testfiles erstellen</li>
-  <li>xPath Gruppen akzeptieren</li>
-  <li>CDA Auswertung verbessern auf Grundlage der RA</li>
+  <li>xPath "Algorithmus" Anpassung (negative...)</li>
+  <li>XML Visualisierung</li>
+  <li>Testing XDS Repository</li>
+  <li>Verbindung mit XDS Repository</li>
+  <li>Real-Data testen (Robustheit)</li>
 </ul>
 </p>
 </details>
 
+
+## 01.08.2020 - 31.08.2020: 6. Monat
+- Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet (WIP)
+- Finalisierung der Funktionalitäten für Prototypen (siehe Zeitplan)
+- Anpassung der Mockups
+
+### Software
+- Erste Versuche für XML Visualisierung (WIP)
+
+#### NEW
+- Erster Prototype für Evaluierung (nach Mockup)
+- Detailansicht für Bedingungen (PopUp)
+
+#### IMPROVE / CHANGE
+- JSON Antwort
+- neue Aufteilung der xPath-Auswertung (Positiv, Negativ, ...)
+
+
+
+## 01.07.2020 - 31.07.2020: 5. Monat
+
+- Auswertung von Experterninterviews --> Ergänzung der Mockups
+- Experteninterviews abgeschllossen
+- Mini Evaluierung vorbereitet (Feedback von Ärzten über neue Mockups einholen)
+- Fertigstellung Mockups V.2
+- WIP xPaths für Kl. Studien
+
+### Software
+- Weiterentwicklung an Auswertungssformular
+- Recherche für CDA2PDF Integration
+
+#### NEW
+- XDS Repository auf MedUni Server
+
+#### IMPROVE / CHANGE
+- Beginn mit eHealth Connector
+- JSON Antwort
+
+
+## 01.06.2020 - 30.06.2020: 4. Monat
+
+- Auswertung von Experterninterviews
+- Zusammenfassung der möglichen Studien
+- Mockups nach Auswertung angepasst
+- neue Aufbau der Baumstruktur von Kl. Studien (technischer Aufbau):
+![](external_resources/images_readme/Baumstruktur.png)
+
+
+### Software
+- Testumgebung in MedUni Wien eingerichtet
+#### NEW
+- Dashboard über aktuelle Studien
+- Unterscheidung von Editor und Validierungsmodul für Ersteller und Anwender
+- Unterstützung für die Suche nach Informationsbedürfnisse
+
+#### IMPROVE / CHANGE
+- xPath Gruppierung (Condition + Value Abfrage)
+- Datenbankstruktur
+- weitere ELGA-Testdaten getestet
 
 ## 01.05.2020 - 31.05.2020: RA-Analyse
 

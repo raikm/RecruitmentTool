@@ -3,13 +3,11 @@
     <AppHeader :headerName="headerName" />
     <div class="mainContainer">
       <div class="upperContainer">
-        <NewStudyAddBasicinfos />
+        <StudyBasicinfos />
       </div>
       <div>
-        <NewStudyAddCriteria v-on:add-criteria="addCriteria" />
-        <NewStudyCriteriaList id="criteriaList" :criterias="criterias" />
-        <NewStudyAddInformation v-on:add-information="addInformation" />
-        <NewStudyInformationList id="criteriaList" :informations="informations" />
+        <StudyCriteriaList id="criteriaList" :criterias="criterias" />
+        <StudyInformationList id="criteriaList" :informations="informations" />
       </div>
 
       <div>
@@ -25,12 +23,10 @@
 
 <script>
 import AppHeader from "../../components/AppHeader";
-import NewStudyAddBasicinfos from "./NewStudyAddBasicinfos";
-import NewStudyAddCriteria from "./NewStudyAddCriteria";
-import NewStudyCriteriaList from "./NewStudyCriteriaList";
-import NewStudyAddInformation from "./NewStudyAddInformation";
-import NewStudyInformationList from "./NewStudyInformationList"
-import NewStudyAddFile from "./NewStudyAddFile";
+import StudyBasicinfos from "./StudyBasicinfos";
+import StudyCriteriaList from "./StudyCriteriaList";
+import StudyInformationList from "./StudyInformationList"
+import NewStudyAddFile from "../NewStudyPage/NewStudyAddFile";
 
 
 
@@ -41,27 +37,19 @@ export default {
       criterias: [],
       informations: [],
       dropFiles: [],
-      headerName: "EDITOR",
+      headerName: "VALIDATOR",
       responseJson: []  
     };
   },
   
   components: {
     AppHeader,
-    NewStudyAddBasicinfos,
-    NewStudyAddCriteria,
-    NewStudyCriteriaList,
-    NewStudyAddInformation,
-    NewStudyInformationList,
+    StudyBasicinfos,
+    StudyCriteriaList,
+    StudyInformationList,
     NewStudyAddFile,
   },
   methods: {
-    addCriteria(newCriteria) {
-      this.criterias = [...this.criterias, newCriteria];
-    },
-     addInformation(newInformation) {
-      this.informations = [...this.informations, newInformation];
-    },
     validateData() {
       const formData = new FormData();
 
@@ -72,15 +60,9 @@ export default {
       const informations = this.informations
       const files = this.dropFiles;
 
-      //TODO: loop necessary?
-      // var criteriumArray = [];
-      // for (var i = 0; i < criterias.length; i++) {
-      //   criteriumArray.push([criterias[i].criteria_type, criterias[i].name, criterias[i].xPath]);
-      // }
       var criteriasJson = JSON.stringify(criterias);
       var informationsJson = JSON.stringify(informations);
 
-      //TODO: is for loop necessary?
       for (const file of files) {
         formData.append("file", file);
       }
@@ -91,24 +73,35 @@ export default {
       formData.append("Information_Needs[]", informationsJson);
 
       axios({
-        method: "post",
-        url: "http://127.0.0.1:8000/api/create/",
+        method: "POST",
+        url: "http://127.0.0.1:8000/api/debug/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
           this.responseJson = response.data
+          console.log(this.responseJson)
           this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
           
       })
       .catch((response) => {
-          //TODO: handle error: toast
-
           console.log(response);
             
       });
     },
+    fillData(){
+      const study = this.$route.query[0]
+      var studyName = document.getElementById("study-name").value = study.name
+      var description = document.getElementById("study-description").value = study.description
+      
+      this.criterias = study.criteriums.sort(); //TODO: check names are equivalent
+      this.informations = study.information_needed
+    }
+  
   },
+  mounted() {
+    this.fillData()
+  }
 };
 </script>
 

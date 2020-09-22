@@ -20,6 +20,10 @@
             sortable
           >
             <template>
+              <div class="type-tag" :class="{greenBackgroundClass: props.row.criterium_type == 'EK', redBackgroundClass: props.row.criterium_type == 'AK'}">
+                {{ props.row.criterium_type }}
+              </div>
+
               <a @click="toggle(props.row)">
                 {{ props.row.name }}
               </a>
@@ -54,13 +58,13 @@
               &nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td width="500" v-show="columnsVisible['conditionName'].display">
-              {{ item.conditionName }}
+              {{ item.name }}
             </td>
             <td td width="500" v-show="columnsVisible['condtionxPath'].display">
-              {{ item.condtionxPath }}
+              {{ item.xPath }}
             </td>
             <td td width="500" v-show="columnsVisible['valuexPath'].display">
-              {{ item.valuexPath }}
+              {{ item.value_xPath }}
             </td>
           </tr>
         </template>
@@ -92,4 +96,26 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.type-tag {
+  
+  border-radius: 4px;
+  padding: 0 1vh;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  margin-right: 2vh;
+  color: white;
+}
+.greenBackgroundClass{
+  background-color: rgb(4, 196, 90);
+  
+}
+
+.redBackgroundClass{
+  background-color: rgb(223, 51, 51);
+}
+
+</style>

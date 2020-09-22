@@ -7,8 +7,9 @@ import VueRouter from 'vue-router'
 
 import store from './store'
 
-import { Table, Input, Upload, Field, Button, Collapse} from 'buefy'
-import 'buefy/dist/buefy.css'
+// import { Table, Input, Upload, Field, Button, Collapse, Select} from 'buefy'
+import Buefy from 'buefy'
+// import 'buefy/dist/buefy.css'
 
 
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
@@ -17,12 +18,16 @@ window.axios = require('axios')
 
 
 
-Vue.use(Table)
-Vue.use(Input)
-Vue.use(Upload)
-Vue.use(Field)
-Vue.use(Button)
-Vue.use(Collapse)
+// Vue.use(Table)
+// Vue.use(Input)
+// Vue.use(Upload)
+// Vue.use(Field)
+// Vue.use(Button)
+// Vue.use(Collapse)
+// Vue.use(Select)
+
+Vue.use(Buefy)
+
 Vue.use(VueRouter)
 
 
