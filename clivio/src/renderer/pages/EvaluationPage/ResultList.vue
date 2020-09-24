@@ -37,6 +37,7 @@
             width="500"
             :centered="true"
           >
+          {{ props.row.criterium_results_overview }}
           </b-table-column>
         </template>
 
@@ -89,7 +90,7 @@
               </template>
             </tr>
             <tr v-for="condition in item.conditions" :key="condition.name">
-              <td class="condition-td" @click="openSource(condition, item)">
+              <td class="condition-td" @click="openSource(condition, item, props.row.patient_id)">
                 &emsp;&emsp;&emsp;{{ condition.name }}
               </td>
               <template v-if="item.criterium_type == 'EK'">
@@ -137,7 +138,7 @@
 
         <transition name="slide" appear>
           <div class="popup-window" v-if="showModal">
-           <ConditionDetails :currentCondition="currentCondition" :currentCriterium="currentCriterium"/>
+           <ConditionDetails :currentCondition="currentCondition" :currentCriterium="currentCriterium" :patientID="patientID"/>
           </div>
         </transition>
       </div>
@@ -164,20 +165,22 @@ export default {
       },
      
       currentCondition: {},
+      patientID: 0,
     };
   },
   created: function() {
-    console.log(this.response);
+    //console.log(this.response);
   },
   methods: {
     toggle(row) {
       this.$refs.table.toggleDetails(row);
     },
-    openSource(condition, item) {
+    openSource(condition, item, patientId) {
       this.showModal = true;
       this.currentCondition = condition;
       this.currentCriterium = item;
-     
+      console.log(patientId);
+      this.patientID = patientId;
     },
   },
 };

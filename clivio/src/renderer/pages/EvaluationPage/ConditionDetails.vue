@@ -48,7 +48,7 @@
 export default {
   name: "ConditionDetails",
   components: {},
-  props: ["currentCondition", "currentCriterium"],
+  props: ["currentCondition", "currentCriterium", "patientID"],
   data() {
     return {
       htmlCDAFile: null,
@@ -60,7 +60,7 @@ export default {
    axios({
         method: "GET",
         //TODO: get parameters from variables
-        url: "http://127.0.0.1:8000/api/getVisualizedCda/patient_id=1111241261/document_id=1234567.1",
+        url: "http://127.0.0.1:8000/api/getVisualizedCda/patient_id="+ this.patientID +"/document_id=" + cda_id.toString(),
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {
