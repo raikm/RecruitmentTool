@@ -28,7 +28,7 @@
             :centered="true"
             width="500"
           >
-            5/25
+             {{ props.row.criterium_results_overview }}
           </b-table-column>
 
           <b-table-column
@@ -177,6 +177,7 @@ export default {
       this.showModal = true;
       this.currentCondition = condition;
       this.currentCriterium = item;
+     
     },
   },
 };

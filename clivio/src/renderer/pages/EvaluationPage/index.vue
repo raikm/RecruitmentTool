@@ -35,7 +35,7 @@ export default {
       })
       .then((response) => {
 
-          //console.log(response.data.patients)
+          console.log(response.data)
           this.response = response.data.patients
           
       })
