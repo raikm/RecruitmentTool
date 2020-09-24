@@ -8,6 +8,7 @@
       :currentStudies="currentStudies"
     />
     </div>
+    <b-button id="btn-upload-testdata" @click="uploadTestData()">Upload Testdata</b-button>
   </main>
 </template>
 
@@ -40,7 +41,21 @@ export default {
           //TODO: handle error: toast
           console.log(response);
       });
+    },
+    uploadTestData(){
+       axios({
+        method: "post",
+        url: "http://127.0.0.1:8000/api/prepareTestData/",
+      })
+      .then((response) => {
+         alert("Testdata successfuly uploaded!")
+      })
+      .catch((response) => {
+          //TODO: handle error: toast
+          console.log(response);
+      });
     }
+    
   },
   data() {
     return {
@@ -60,6 +75,12 @@ td:first-child {
   margin: 2vh 0 ;
 letter-spacing: 2px;
 }
+
+#btn-upload-testdata{
+  float: right;
+  margin-right: 1.5%;
+}
+
 
 
 
