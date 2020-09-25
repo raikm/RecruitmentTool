@@ -5,10 +5,10 @@
     <div
       class="type-tag"
       :class="{
-        greenBackgroundClass: currentCriterium.criterium_type == 'EK',
-        redBackgroundClass: currentCriterium.criterium_type == 'AK',
+        greenBackgroundClass: currentCriterion.criterion_type == 'EK',
+        redBackgroundClass: currentCriterion.criterion_type == 'AK',
       }"
-    >{{ currentCriterium.criterium_type }}</div>
+    >{{ currentCriterion.criterion_type }}</div>
     <h1 id="condition-name">{{ currentCondition.name }}</h1>
     <h2 class="matches-subtitle">Matches</h2>
 
@@ -48,7 +48,7 @@
 export default {
   name: "ConditionDetails",
   components: {},
-  props: ["currentCondition", "currentCriterium", "patientID"],
+  props: ["currentCondition", "currentCriterion", "patientID"],
   data() {
     return {
       htmlCDAFile: null,

@@ -93,8 +93,8 @@ export default {
       const study = this.$route.query[0]
       var studyName = document.getElementById("study-name").value = study.name
       var description = document.getElementById("study-description").value = study.description
-      
-      this.criterias = study.criteriums.sort(); //TODO: check names are equivalent
+      console.log(study)
+      this.criterias = study.criterions.sort(); //TODO: check names are equivalent
       this.informations = study.information_needed
     }
   

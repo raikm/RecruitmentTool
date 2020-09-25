@@ -28,7 +28,7 @@
             :centered="true"
             width="500"
           >
-             {{ props.row.criterium_results_overview_ek }}
+             {{ props.row.criterion_results_overview_ek }}
           </b-table-column>
 
           <b-table-column
@@ -37,34 +37,35 @@
             width="500"
             :centered="true"
           >
-          {{ props.row.criterium_results_overview_ak }}
+          {{ props.row.criterion_results_overview_ak }}
           </b-table-column>
         </template>
 
         <template slot="detail" slot-scope="props">
-          <template v-for="item in props.row.criterium_results">
+          <template v-for="item in props.row.criterion_results">
             <tr :key="item.name">
               <td v-show="columnsVisible['name'].display">
                 <div
                   class="type-tag"
                   :class="{
-                    greenBackgroundClass: item.criterium_type == 'EK',
-                    redBackgroundClass: item.criterium_type == 'AK',
+                    greenBackgroundClass: item.criterion_type == 'EK',
+                    redBackgroundClass: item.criterion_type == 'AK',
                   }"
                 >
-                  {{ item.criterium_type }}
+                  {{ item.criterion_type }}
                 </div>
                 {{ item.name }}
               </td>
 
-              <template v-if="item.criterium_type == 'EK'">
+              <template v-if="item.criterion_type == 'EK'">
                 <td
                   v-show="columnsVisible['ek'].display"
                   :class="{
-                    greenFillClass: item.criterium_summary_result == 'hit',
-                    greyFillClass: item.criterium_summary_result == 'no_hit',
+                    greenFillClass: item.criterion_summary_result == 'positive_hit',
+                    greyFillClass: item.criterion_summary_result == 'no_hit',
+                    yellowFillClass: item.criterion_summary_result == 'positive_and_negative_hit',
                     redFillClass:
-                      item.criterium_summary_result == 'negative_hit',
+                      item.criterion_summary_result == 'negative_hit',
                   }"
                   class="has-text-centered"
                 >
@@ -78,10 +79,11 @@
                 <td
                   v-show="columnsVisible['ak'].display"
                   :class="{
+                   redFillClass: item.criterion_summary_result == 'positive_hit',
+                    greyFillClass: item.criterion_summary_result == 'no_hit',
+                    yellowFillClass: item.criterion_summary_result == 'positive_and_negative_hit',
                     greenFillClass:
-                      item.criterium_summary_result == 'negative_hit',
-                    greyFillClass: item.criterium_summary_result == 'no_hit',
-                    redFillClass: item.criterium_summary_result == 'hit',
+                      item.criterion_summary_result == 'negative_hit',
                   }"
                   class="has-text-centered"
                 >
@@ -93,14 +95,16 @@
               <td class="condition-td" @click="openSource(condition, item, props.row.patient_id)">
                 &emsp;&emsp;&emsp;{{ condition.name }}
               </td>
-              <template v-if="item.criterium_type == 'EK'">
+              <template v-if="item.criterion_type == 'EK'">
                 <td
                   v-show="columnsVisible['ek'].display"
                   :class="{
                     greenFillClass:
-                      condition.evaluation_results.hits.length > 0,
+                      condition.evaluation_results.evaluation_result_summary == 'positive_hit',
+                    redFillClass:
+                      condition.evaluation_results.evaluation_result_summary == 'negative_hit',
                     greyFillClass:
-                      condition.evaluation_results.hits.length == 0,
+                       condition.evaluation_results.evaluation_result_summary == 'no_hit',
                   }"
                   class="has-text-centered condition-details"
                 >
@@ -114,9 +118,12 @@
                 <td
                   v-show="columnsVisible['ak'].display"
                   :class="{
-                    redFillClass: condition.evaluation_results.hits.length > 0,
+                    redFillClass:
+                      condition.evaluation_results.evaluation_result_summary == 'positive_hit',
+                    greenFillClass:
+                      condition.evaluation_results.evaluation_result_summary == 'negative_hit',
                     greyFillClass:
-                      condition.evaluation_results.hits.length == 0,
+                       condition.evaluation_results.evaluation_result_summary == 'no_hit',
                   }"
                   class="has-text-centered condition-details"
                 >
@@ -138,7 +145,7 @@
 
         <transition name="slide" appear>
           <div class="popup-window" v-if="showModal">
-           <ConditionDetails :currentCondition="currentCondition" :currentCriterium="currentCriterium" :patientID="patientID"/>
+           <ConditionDetails :currentCondition="currentCondition" :currentCriterion="currentCriterion" :patientID="patientID"/>
           </div>
         </transition>
       </div>
@@ -178,7 +185,7 @@ export default {
     openSource(condition, item, patientId) {
       this.showModal = true;
       this.currentCondition = condition;
-      this.currentCriterium = item;
+      this.currentCriterion = item;
       console.log(patientId);
       this.patientID = patientId;
     },
@@ -216,6 +223,10 @@ export default {
 
 .greyFillClass {
   color: rgb(154, 154, 154);
+}
+
+.yellowFillClass{
+  color: rgb(204, 180, 41);
 }
 
 .condition-details {
