@@ -28,7 +28,7 @@
             :centered="true"
             width="500"
           >
-             {{ props.row.criterium_results_overview }}
+             {{ props.row.criterium_results_overview_ek }}
           </b-table-column>
 
           <b-table-column
@@ -37,7 +37,7 @@
             width="500"
             :centered="true"
           >
-          {{ props.row.criterium_results_overview }}
+          {{ props.row.criterium_results_overview_ak }}
           </b-table-column>
         </template>
 
