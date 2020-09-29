@@ -10,13 +10,13 @@
       }"
     >{{ currentCriterion.criterion_type }}</div>
     <h1 id="condition-name">{{ currentCondition.name }}</h1>
-    <h2 class="matches-subtitle">Matches</h2>
+    <h2 class="matches-subtitle">Positive Treffer</h2>
 
     <div
       class="hit-container"
-      v-for="result in currentCondition.evaluation_results.hits"
-      :key="result.cda_id"
-      @click="openCDA(result.cda_id)"
+      v-for="result in currentCondition.evaluation_results.positive_hits"
+      :key="result.document_id"
+      @click="openCDA(result.document_id)"
     >
       <div class="cda-datum">12.05.2020 (3d)</div>
 
@@ -24,13 +24,13 @@
         <li class="hit-result" v-for="hit in result.hit_result" :key="hit">{{ hit }}</li>
       </ul>
     </div>
-    <h2 class="matches-subtitle">Negative Matches</h2>
+    <h2 class="matches-subtitle">Negative Treffer</h2>
 
     <div
       class="hit-container"
-      v-for="result in currentCondition.evaluation_results.hits"
-      :key="result.cda_id"
-      @click="openCDA(result.cda_id)"
+      v-for="result in currentCondition.evaluation_results.negative_hits"
+      :key="result.document_id"
+      @click="openCDA(result.document_id)"
     >
       <div class="cda-datum">12.05.2020 (3d)</div>
 
@@ -55,12 +55,11 @@ export default {
     }
   },
   methods: {
-    openCDA(cda_id) {
-      console.log("open" + cda_id);
+    openCDA(document_id) {
+      console.log("open" + document_id);
    axios({
         method: "GET",
-        //TODO: get parameters from variables
-        url: "http://127.0.0.1:8000/api/getVisualizedCda/patient_id="+ this.patientID +"/document_id=" + cda_id.toString(),
+        url: "http://127.0.0.1:8000/api/getVisualizedCda/patient_id="+ this.patientID +"/document_id=" + document_id.toString(),
         headers: { "Content-Type": "multipart/form-data" },
       })
       .then((response) => {

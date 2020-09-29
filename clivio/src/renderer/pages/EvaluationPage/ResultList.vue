@@ -9,10 +9,9 @@
         hoverable
         :show-detail-icon="false"
         custom-detail-row
-        detail-key="patient_id" 
-           @details-open="(row, index) => closeAllOtherDetails(row, index)"
-
-        >
+        detail-key="patient_id"
+        @details-open="(row, index) => closeAllOtherDetails(row, index)"
+      >
         <template slot-scope="props">
           <b-table-column
             :visible="columnsVisible['name'].display"
@@ -88,7 +87,7 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template  v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
+                <template v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
                   <td class="yellowFillClass has-text-centered">⬤</td>
                   <td></td>
                   <td></td>
@@ -122,7 +121,7 @@
                   <td></td>
                   <td></td>
                 </template>
-                 <template v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
+                <template v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
                   <td></td>
                   <td></td>
                   <td></td>
@@ -149,13 +148,18 @@
               </template>
             </tr>
 
-            <tr v-for="condition in item.conditions" :key="props.row.patient_id + '_cond_' + condition.name">
+            <tr
+              v-for="condition in item.conditions"
+              :key="props.row.patient_id + '_cond_' + condition.name"
+            >
               <td
                 class="condition-td"
                 @click="openSource(condition, item, props.row.patient_id)"
               >&emsp;&emsp;&emsp;{{ condition.name }}</td>
-                          <template v-if="item.criterion_type == 'EK'">
-                <template v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'">
+              <template v-if="item.criterion_type == 'EK'">
+                <template
+                  v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'"
+                >
                   <td class="greenFillClass has-text-centered condition-details">⬤</td>
                   <td></td>
                   <td></td>
@@ -163,7 +167,9 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'">
+                <template
+                  v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'"
+                >
                   <td></td>
                   <td class="redFillClass has-text-centered condition-details">⬤</td>
                   <td></td>
@@ -181,7 +187,9 @@
                 </template>
               </template>
               <template v-else>
-                <template v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'">
+                <template
+                  v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'"
+                >
                   <td></td>
                   <td></td>
                   <td></td>
@@ -189,7 +197,9 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'">
+                <template
+                  v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'"
+                >
                   <td></td>
                   <td></td>
                   <td></td>
@@ -284,13 +294,10 @@ export default {
   },
   methods: {
     closeAllOtherDetails(row, index) {
-  this.defaultOpenedDetails = [row.patient_id]
-
-
-},
+      this.defaultOpenedDetails = [row.patient_id];
+    },
     toggle(row) {
       this.$refs.table.toggleDetails(row);
-
     },
     openSource(condition, item, patientId) {
       this.showModal = true;
