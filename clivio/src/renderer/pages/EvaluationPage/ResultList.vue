@@ -67,7 +67,7 @@
         <template slot="detail" slot-scope="props">
           <template v-for="item in props.row.criterion_results">
             <tr :key="props.row.patient_id + item.name">
-              <td v-show="columnsVisible['name'].display">
+              <td class="criterium-name" v-show="columnsVisible['name'].display">
                 <div
                   class="type-tag"
                   :class="{
@@ -300,11 +300,14 @@ export default {
       this.$refs.table.toggleDetails(row);
     },
     openSource(condition, item, patientId) {
-      this.showModal = true;
-      this.currentCondition = condition;
-      this.currentCriterion = item;
-      console.log(patientId);
-      this.patientID = patientId;
+      if (item.criterion_summary_result != "no_hit") {
+        this.showModal = true;
+        this.currentCondition = condition;
+        this.currentCriterion = item;
+        this.patientID = patientId;
+      }else{
+        this.showToastError("Kriterium hat keine Ergebnisse!")
+      }
     }
   }
 };
@@ -375,9 +378,16 @@ export default {
 .yellowFillClass {
   color: rgb(204, 180, 41);
 }
-
+.criterium-name{
+  cursor: default;
+}
+.condition-td{
+ cursor: pointer;
+ //TODO only if results
+}
 .condition-details {
   font-size: small;
+ 
 }
 
 .popup-container {

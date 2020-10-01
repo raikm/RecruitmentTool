@@ -11,13 +11,13 @@ import ResultList from "./ResultList"
 
 export default {
   name: "EvaluationPage",
-  props: ["responseJson"],//TODO: that can be deleted I think
+  //props: ["responseJson"],//TODO: that can be deleted I think
   components: {
     AppHeader,
     ResultList
   },
   created: function() {
-    // this.response = this.$route.query.patients
+    this.response = this.$route.query.patients
    
   },
   data() {
@@ -28,7 +28,7 @@ export default {
   },
   mounted: function(){
     // // DEBUG ----------------------
-   axios({
+/*    axios({
         method: "POST",
         url: "http://127.0.0.1:8000/api/debug/",
         headers: { "Content-Type": "multipart/form-data" },
@@ -42,7 +42,7 @@ export default {
       .catch((response) => {
           console.log(response);
             
-      });
+      }); */
     // DEBUG ----------------------
   }
 };
