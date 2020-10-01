@@ -67,7 +67,7 @@
         <template slot="detail" slot-scope="props">
           <template v-for="item in props.row.criterion_results">
             <tr :key="props.row.patient_id + item.name">
-              <td class="criterium-name" v-show="columnsVisible['name'].display">
+              <td class="criterion-name" v-show="columnsVisible['name'].display">
                 <div
                   class="type-tag"
                   :class="{
@@ -151,6 +151,7 @@
             <tr
               v-for="condition in item.conditions"
               :key="props.row.patient_id + '_cond_' + condition.name"
+              class="condition-tr"
             >
               <td
                 class="condition-td"
@@ -378,9 +379,13 @@ export default {
 .yellowFillClass {
   color: rgb(204, 180, 41);
 }
-.criterium-name{
+.criterion-name{
   cursor: default;
 }
+.condition-t{
+  background: yellow;
+}
+
 .condition-td{
  cursor: pointer;
  //TODO only if results

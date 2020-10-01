@@ -4,7 +4,7 @@
     <br />
     <div class="main">
       <b-table
-        :data="criterias"
+        :data="criterions"
         ref="table"
         detailed
         hoverable
@@ -20,6 +20,10 @@
             sortable
           >
             <template>
+              <div class="type-tag" :class="{greenBackgroundClass: props.row.criterion_type == 'EK', redBackgroundClass: props.row.criterion_type == 'AK'}">
+                {{ props.row.criterion_type }}
+              </div>
+
               <a @click="toggle(props.row)">
                 {{ props.row.name }}
               </a>
@@ -34,15 +38,15 @@
           </b-table-column>
 
           <b-table-column
-            :visible="columnsVisible['condtionxPath'].display"
-            :label="columnsVisible['condtionxPath'].title"
+            :visible="columnsVisible['condtionXpath'].display"
+            :label="columnsVisible['condtionXpath'].title"
             width="500"
           >
           </b-table-column>
 
           <b-table-column
-            :visible="columnsVisible['valuexPath'].display"
-            :label="columnsVisible['valuexPath'].title"
+            :visible="columnsVisible['roughXpath'].display"
+            :label="columnsVisible['roughXpath'].title"
             width="500"
           >
           </b-table-column>
@@ -54,13 +58,13 @@
               &nbsp;&nbsp;&nbsp;&nbsp;
             </td>
             <td width="500" v-show="columnsVisible['conditionName'].display">
-              {{ item.conditionName }}
+              {{ item.name }}
             </td>
-            <td td width="500" v-show="columnsVisible['condtionxPath'].display">
-              {{ item.condtionxPath }}
+            <td td width="500" v-show="columnsVisible['condtionXpath'].display">
+              {{ item.xPath }}
             </td>
-            <td td width="500" v-show="columnsVisible['valuexPath'].display">
-              {{ item.valuexPath }}
+            <td td width="500" v-show="columnsVisible['roughXpath'].display">
+              {{ item.value_xPath }}
             </td>
           </tr>
         </template>
@@ -71,16 +75,16 @@
 
 <script>
 export default {
-  name: "NewStudyCriteriaList",
+  name: "NewStudyCriterionList",
   components: {},
-  props: ["criterias"],
+  props: ["criterions"],
   data() {
     return {
       columnsVisible: {
         name: { title: "Name", display: true },
         conditionName: { title: "Bedingung", display: true },
-        condtionxPath: { title: "xPath", display: true },
-        valuexPath: { title: "ValuexPath", display: true },
+        condtionXpath: { title: "xPath", display: true },
+        roughXpath: { title: "ValuexPath", display: true },
       },
     };
   },
@@ -92,4 +96,26 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.type-tag {
+  
+  border-radius: 4px;
+  padding: 0 1vh;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: left;
+  margin-right: 2vh;
+  color: white;
+}
+.greenBackgroundClass{
+  background-color: rgb(4, 196, 90);
+  
+}
+
+.redBackgroundClass{
+  background-color: rgb(223, 51, 51);
+}
+
+</style>

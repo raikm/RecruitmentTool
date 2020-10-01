@@ -8,7 +8,7 @@
         <div class="cleft">
           <b-select
             id="selector"
-            v-model="criteria_type"
+            v-model="criterion_type"
             placeholder="Typ"
             size="is-small"
           >
@@ -19,7 +19,7 @@
 
         <div class="cright">
           <b-input
-            id="criterium"
+            id="criterion"
             type="text"
             v-model="name"
             placeholder="Kriterium"
@@ -46,15 +46,22 @@
         <b-input
           :id="condition.xPathId"
           type="text"
-          v-model="condition.condtionxPath"
+          v-model="condition.condtionXpath"
           placeholder="xPath"
         />
-        <b-input
-          :id="condition.valuexPathId"
+       <b-input
+          :id="condition.condtionNegativeXpathId"
           type="text"
-          v-model="condition.valuexPath"
-          placeholder="Value xPath"
+          v-model="condition.condtionNegativeXpath"
+          placeholder="Negative xPath"
         />
+        <b-input
+          :id="condition.roughXpathId"
+          type="text"
+          v-model="condition.roughXpath"
+          placeholder="Rough xPath"
+        />
+
         
       </div>
     </div>
@@ -67,21 +74,23 @@
 
 <script>
 export default {
-  name: "NewStudyAddCriteria",
+  name: "NewStudyAddCriterion",
   data() {
     return {
       // TODO: make to one object
-      criteria_type: "",
+      criterion_type: "",
       name: "",
       counter: 0,
       conditions: [
         {
           conditionId: "condition-0",
           xPathId: "xPath-0",
-          valuexPathId: "value-xPath-0",
+          condtionNegativeXpathId: "neg-xPath-0",
+          roughXpathId: "value-xPath-0",
           conditionName: "",
-          condtionxPath: "",
-          valuexPath: ""
+          condtionXpath: "",
+          condtionNegativeXpath: "",
+          roughXpath: ""
         },
       ],
     };
@@ -90,30 +99,34 @@ export default {
     addCriteria(e) {
       e.preventDefault();
       const newCriteria = {
-        criteria_type: this.criteria_type,
+        criterion_type: this.criterion_type,
         name: this.name,
         conditions: this.conditions
       };
       this.$emit("add-criteria", newCriteria);
       this.name = ""
-      this.criteria_type = ""
+      this.criterion_type = ""
       this.conditions = [{
           conditionId: "condition-0",
           xPathId: "xPath-0",
-          valuexPathId: "value-xPath-0",
+          condtionNegativeXpathId: "neg-xPath-0",
+          roughXpathId: "value-xPath-0",
           conditionName: "",
-          condtionxPath: "",
-          valuexPath: ""
+          condtionXpath: "",
+          condtionNegativeXpath: "",
+          roughXpath: ""
         },]
     },
     addNewLine() {
       this.conditions.push({
         conditionId: `condition-${++this.counter}`,
         xPathId: `xPath-${++this.counter}`,
-        valuexPathId:`value-xPath-${++this.counter}`,
+        condtionNegativeXpathId: `neg-xPath-${++this.counter}`,
+        roughXpathId:`value-xPath-${++this.counter}`,
         conditionName: "",
-        condtionxPath: "",
-        valuexPath: "",
+        condtionXpath: "",
+        condtionNegativeXpath: "",
+        roughXpath: "",
       }); 
     },
     removeLastLine() {

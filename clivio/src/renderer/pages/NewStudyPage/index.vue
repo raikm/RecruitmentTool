@@ -6,8 +6,8 @@
         <NewStudyAddBasicinfos />
       </div>
       <div>
-        <NewStudyAddCriteria v-on:add-criteria="addCriteria" />
-        <NewStudyCriteriaList id="criteriaList" :criterias="criterias" />
+        <NewStudyAddCriterion v-on:add-criteria="addCriteria" />
+        <NewStudyCriterionList id="criteriaList" :criterions="criterions" />
         <NewStudyAddInformation v-on:add-information="addInformation" />
         <NewStudyInformationList id="criteriaList" :informations="informations" />
       </div>
@@ -26,8 +26,8 @@
 <script>
 import AppHeader from "../../components/AppHeader";
 import NewStudyAddBasicinfos from "./NewStudyAddBasicinfos";
-import NewStudyAddCriteria from "./NewStudyAddCriteria";
-import NewStudyCriteriaList from "./NewStudyCriteriaList";
+import NewStudyAddCriterion from "./NewStudyAddCriterion";
+import NewStudyCriterionList from "./NewStudyCriterionList";
 import NewStudyAddInformation from "./NewStudyAddInformation";
 import NewStudyInformationList from "./NewStudyInformationList"
 import NewStudyAddFile from "./NewStudyAddFile";
@@ -38,7 +38,7 @@ export default {
   name: "NewStudyPage",
   data() {
     return {
-      criterias: [],
+      criterions: [],
       informations: [],
       dropFiles: [],
       headerName: "EDITOR",
@@ -49,15 +49,15 @@ export default {
   components: {
     AppHeader,
     NewStudyAddBasicinfos,
-    NewStudyAddCriteria,
-    NewStudyCriteriaList,
+    NewStudyAddCriterion,
+    NewStudyCriterionList,
     NewStudyAddInformation,
     NewStudyInformationList,
     NewStudyAddFile,
   },
   methods: {
     addCriteria(newCriteria) {
-      this.criterias = [...this.criterias, newCriteria];
+      this.criterions = [...this.criterions, newCriteria];
     },
      addInformation(newInformation) {
       this.informations = [...this.informations, newInformation];
@@ -68,16 +68,16 @@ export default {
       const studyName = document.getElementById("study-name").value;
       const description = document.getElementById("study-description").value;
 
-      const criterias = this.criterias;
+      const criterions = this.criterions;
       const informations = this.informations
       const files = this.dropFiles;
 
       //TODO: loop necessary?
-      // var criteriumArray = [];
-      // for (var i = 0; i < criterias.length; i++) {
-      //   criteriumArray.push([criterias[i].criteria_type, criterias[i].name, criterias[i].xPath]);
+      // var criterionArray = [];
+      // for (var i = 0; i < criterions.length; i++) {
+      //   criterionArray.push([criterions[i].criterion_type, criterions[i].name, criterions[i].xPath]);
       // }
-      var criteriasJson = JSON.stringify(criterias);
+      var criterionsJson = JSON.stringify(criterions);
       var informationsJson = JSON.stringify(informations);
 
       //TODO: is for loop necessary?
@@ -87,7 +87,7 @@ export default {
 
       formData.append("Study_Name", studyName);
       formData.append("Description", description);
-      formData.append("Criterias[]", criteriasJson);
+      formData.append("Criterions[]", criterionsJson);
       formData.append("Information_Needs[]", informationsJson);
 
       axios({

@@ -6,7 +6,7 @@
         <StudyBasicinfos />
       </div>
       <div>
-        <StudyCriteriaList id="criteriaList" :criterias="criterias" />
+        <StudyCriterionList id="criteriaList" :criterions="criterions" />
         <StudyInformationList id="criteriaList" :informations="informations" />
       </div>
 
@@ -24,7 +24,7 @@
 <script>
 import AppHeader from "../../components/AppHeader";
 import StudyBasicinfos from "./StudyBasicinfos";
-import StudyCriteriaList from "./StudyCriteriaList";
+import StudyCriterionList from "./StudyCriterionList";
 import StudyInformationList from "./StudyInformationList"
 import NewStudyAddFile from "../NewStudyPage/NewStudyAddFile";
 
@@ -34,7 +34,7 @@ export default {
   name: "NewStudyPage",
   data() {
     return {
-      criterias: [],
+      criterions: [],
       informations: [],
       dropFiles: [],
       headerName: "VALIDATOR",
@@ -45,7 +45,7 @@ export default {
   components: {
     AppHeader,
     StudyBasicinfos,
-    StudyCriteriaList,
+    StudyCriterionList,
     StudyInformationList,
     NewStudyAddFile,
   },
@@ -56,11 +56,11 @@ export default {
       const studyName = document.getElementById("study-name").value;
       const description = document.getElementById("study-description").value;
 
-      const criterias = this.criterias;
+      const criterions = this.criterions;
       const informations = this.informations
       const files = this.dropFiles;
 
-      var criteriasJson = JSON.stringify(criterias);
+      var criterionsJson = JSON.stringify(criterions);
       var informationsJson = JSON.stringify(informations);
 
       for (const file of files) {
@@ -69,7 +69,7 @@ export default {
 
       formData.append("Study_Name", studyName);
       formData.append("Description", description);
-      formData.append("Criterias[]", criteriasJson);
+      formData.append("Criterias[]", criterionsJson);
       formData.append("Information_Needs[]", informationsJson);
 
       axios({
@@ -94,7 +94,7 @@ export default {
       var studyName = document.getElementById("study-name").value = study.name
       var description = document.getElementById("study-description").value = study.description
       console.log(study)
-      this.criterias = study.criterions.sort(); //TODO: check names are equivalent
+      this.criterions = study.criterions.sort(); //TODO: check names are equivalent
       this.informations = study.information_needed
     }
   
