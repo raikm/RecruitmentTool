@@ -5,10 +5,10 @@
 
 #### 30.09.2020 Fertigstellung Prototype V.1 (Konzepte/Mockups wurden grundsätzlich umgesetzt)
 ##### Funktionalitäten für V.1
-✓ xPath "Algorithmus"  
-✓ Evaluations-Page (Auswertung der Patienten/-innen)
-✓ Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
-✓ XDS Anbindung (eHC und IPF Framework)
+- ✓ xPath "Algorithmus"  
+- ✓ Evaluations-Page (Auswertung der Patienten/-innen)
+- ✓ Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
+- ✓ XDS Anbindung (eHC und IPF Framework)
 ##### Funktionalitäten für V.2 (bis Dezember)
 - Export-Möglichkeiten von selektierten Patienten/-innen
 - openRDA Anbindung
