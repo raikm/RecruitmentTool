@@ -7,12 +7,19 @@
       <div
         class="type-tag"
         :class="{
-        greenBackgroundClass: currentCriterion.criterion_type == 'EK',
-        redBackgroundClass: currentCriterion.criterion_type == 'AK',
-      }"
-      >{{ currentCriterion.criterion_type }}</div>
+          greenBackgroundClass: currentCriterion.criterion_type == 'EK',
+          redBackgroundClass: currentCriterion.criterion_type == 'AK',
+        }"
+      >
+        {{ currentCriterion.criterion_type }}
+      </div>
       <h1 id="condition-name">{{ currentCondition.name }}</h1>
-      <h2 v-if="currentCondition.evaluation_results.positive_hits.length > 0" class="matches-subtitle">Positive Treffer</h2>
+      <h2
+        v-if="currentCondition.evaluation_results.positive_hits.length > 0"
+        class="matches-subtitle"
+      >
+        Positive Treffer
+      </h2>
 
       <div
         class="hit-container"
@@ -21,16 +28,26 @@
         @click="openCDA(result.document_id)"
       >
         <div class="cda-datum-container">
-          <h2
-            class="cda-datum"
-          >{{new Date(result.document_date).toLocaleDateString('en-GB')}} ({{calculateMonths(new Date(result.document_date))}} Monate)</h2>
+          <h2 class="cda-datum">
+            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
+              calculateMonths(new Date(result.document_date))
+            }}
+            Monate)
+          </h2>
         </div>
 
         <ul>
-          <li class="hit-result" v-for="hit in result.hit_result" :key="hit">{{ hit }}</li>
+          <li class="hit-result" v-for="hit in result.hit_result" :key="hit">
+            {{ hit }}
+          </li>
         </ul>
       </div>
-      <h2 v-if="currentCondition.evaluation_results.negative_hits.length > 0" class="matches-subtitle">Negative Treffer</h2>
+      <h2
+        v-if="currentCondition.evaluation_results.negative_hits.length > 0"
+        class="matches-subtitle"
+      >
+        Negative Treffer
+      </h2>
 
       <div
         class="hit-container"
@@ -38,12 +55,46 @@
         :key="result.document_id"
         @click="openCDA(result.document_id)"
       >
-        <div
-          class="cda-datum"
-        >>{{new Date(result.document_date).toLocaleDateString('en-GB')}} ({{calculateMonths(new Date(result.document_date))}} Monate)</div>
-
+        <div class="cda-datum-container">
+          <div class="cda-datum">
+            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
+              calculateMonths(new Date(result.document_date))
+            }}
+            Monate)
+          </div>
+        </div>
         <ul>
-          <li class="hit-result" v-for="hit in result.hit_result" :key="hit">{{ hit }}</li>
+          <li class="hit-result" v-for="hit in result.hit_result" :key="hit">
+            {{ hit }}
+          </li>
+        </ul>
+      </div>
+
+      <h2
+        v-if="currentCondition.value_results.values.length > 0"
+        class="matches-subtitle"
+      >
+        Grobe Treffer
+      </h2>
+
+      <div
+        class="hit-container"
+        v-for="result in currentCondition.value_results.values"
+        :key="result.document_id"
+        @click="openCDA(result.document_id)"
+      >
+        <div class="cda-datum-container">
+          <div class="cda-datum">
+            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
+              calculateMonths(new Date(result.document_date))
+            }}
+            Monate)
+          </div>
+        </div>
+        <ul>
+          <li class="hit-result" v-for="hit in result.value_result" :key="hit">
+            {{ hit }}
+          </li>
         </ul>
       </div>
     </div>
@@ -59,7 +110,7 @@ export default {
   props: ["currentCondition", "currentCriterion", "patientID"],
   data() {
     return {
-      htmlCDAFile: null
+      htmlCDAFile: null,
     };
   },
   methods: {
@@ -72,16 +123,16 @@ export default {
           this.patientID +
           "/document_id=" +
           document_id.toString(),
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       })
-        .then(response => {
+        .then((response) => {
           this.htmlCDAFile = response.data;
           var overviewContainer = document.getElementById("overview-container");
           overviewContainer.style.display = "None";
           var overviewHeader = document.getElementById("overview-header");
           overviewHeader.style.display = "inline";
         })
-        .catch(response => {
+        .catch((response) => {
           console.log(response);
         });
     },
@@ -99,16 +150,18 @@ export default {
         current_date.getMonth() -
         (document_date.getFullYear() * 12 + document_date.getMonth());
       return months;
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
+.overview-container {
+  background: white;
+}
 
-
-#condition-name{
-   font-size: large;
+#condition-name {
+  font-size: large;
 }
 .matches-subtitle {
   margin-left: 6%;
@@ -124,13 +177,12 @@ export default {
   border-color: teal;
   border-style: solid;
   display: inline-block;
-   cursor: pointer;
-
+  cursor: pointer;
+  background: white;
 }
 .hit-container:hover {
   background: rgba(128, 128, 128, 0.09);
 }
-
 
 .cda-datum-container {
   float: right;
@@ -145,7 +197,6 @@ export default {
   border-color: rgba(0, 128, 128, 0.513);
   border-style: dotted;
   display: inline-block;
-
 }
 
 #overview-header {
@@ -159,6 +210,5 @@ export default {
   max-height: 80vh;
   background: white;
   padding: 1%;
-  
 }
 </style>

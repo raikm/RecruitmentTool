@@ -71,7 +71,7 @@ export default {
       formData.append("Description", description);
       formData.append("Criterias[]", criterionsJson);
       formData.append("Information_Needs[]", informationsJson);
-
+      this.showToastInfo("Daten werden verarbeitet...")
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/api/debug/",

@@ -18,7 +18,9 @@
             :label="columnsVisible['name'].title"
           >
             <template>
-              <a @click="toggle(props.row)">{{ props.row.first_name }} {{ props.row.last_name }}</a>
+              <a @click="toggle(props.row)"
+                >{{ props.row.first_name }} {{ props.row.last_name }}</a
+              >
             </template>
           </b-table-column>
 
@@ -27,59 +29,83 @@
             :label="columnsVisible['icAchieved'].title"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ic }}</b-table-column>
+            >{{ props.row.criterion_results_overview_ic }}</b-table-column
+          >
 
           <b-table-column
             :visible="columnsVisible['icNotAchieved'].display"
             :label="columnsVisible['icNotAchieved'].title"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ic_negative }}</b-table-column>
+            >{{
+              props.row.criterion_results_overview_ic_negative
+            }}</b-table-column
+          >
 
           <b-table-column
             :visible="columnsVisible['icNoData'].display"
             :label="columnsVisible['icNoData'].title"
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ic_no_data }}</b-table-column>
+            >{{
+              props.row.criterion_results_overview_ic_no_data
+            }}</b-table-column
+          >
 
           <b-table-column
             :visible="columnsVisible['ecAchieved'].display"
             :label="columnsVisible['ecAchieved'].title"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ec }}</b-table-column>
+            >{{ props.row.criterion_results_overview_ec }}</b-table-column
+          >
 
           <b-table-column
             :visible="columnsVisible['ecNotAchieved'].display"
             :label="columnsVisible['ecNotAchieved'].title"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ec_negative }}</b-table-column>
+            >{{
+              props.row.criterion_results_overview_ec_negative
+            }}</b-table-column
+          >
           <b-table-column
             :visible="columnsVisible['ecNoData'].display"
             :label="columnsVisible['ecNoData'].title"
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
-          >{{ props.row.criterion_results_overview_ec_no_data }}</b-table-column>
+            >{{
+              props.row.criterion_results_overview_ec_no_data
+            }}</b-table-column
+          >
         </template>
 
         <template slot="detail" slot-scope="props">
           <template v-for="item in props.row.criterion_results">
-            <tr :key="props.row.patient_id + item.name">
-              <td class="criterion-name" v-show="columnsVisible['name'].display">
+            <tr
+              :key="props.row.patient_id + item.name"
+              @click="showCirterionDetails(item.name.replace(/ /g,'-'))"
+            >
+              <td
+                class="criterion-name"
+                v-show="columnsVisible['name'].display"
+              >
                 <div
                   class="type-tag"
                   :class="{
-                   greenBackgroundClass: item.criterion_type == 'EK',
-                   redBackgroundClass: item.criterion_type == 'AK',
-                 }"
-                >{{ item.criterion_type }}</div>
+                    greenBackgroundClass: item.criterion_type == 'EK',
+                    redBackgroundClass: item.criterion_type == 'AK',
+                  }"
+                >
+                  {{ item.criterion_type }}
+                </div>
                 {{ item.name }}
               </td>
 
               <template v-if="item.criterion_type == 'EK'">
-                <template v-if="item.criterion_summary_result == 'positive_hit'">
+                <template
+                  v-if="item.criterion_summary_result == 'positive_hit'"
+                >
                   <td class="greenFillClass has-text-centered">⬤</td>
                   <td></td>
                   <td></td>
@@ -87,7 +113,11 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
+                <template
+                  v-else-if="
+                    item.criterion_summary_result == 'positive_and_negative_hit'
+                  "
+                >
                   <td class="yellowFillClass has-text-centered">⬤</td>
                   <td></td>
                   <td></td>
@@ -95,7 +125,9 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="item.criterion_summary_result == 'negative_hit'">
+                <template
+                  v-else-if="item.criterion_summary_result == 'negative_hit'"
+                >
                   <td></td>
                   <td class="redFillClass has-text-centered">⬤</td>
                   <td></td>
@@ -113,7 +145,9 @@
                 </template>
               </template>
               <template v-else>
-                <template v-if="item.criterion_summary_result == 'positive_hit'">
+                <template
+                  v-if="item.criterion_summary_result == 'positive_hit'"
+                >
                   <td></td>
                   <td></td>
                   <td></td>
@@ -121,7 +155,11 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="item.criterion_summary_result == 'positive_and_negative_hit'">
+                <template
+                  v-else-if="
+                    item.criterion_summary_result == 'positive_and_negative_hit'
+                  "
+                >
                   <td></td>
                   <td></td>
                   <td></td>
@@ -129,7 +167,9 @@
                   <td></td>
                   <td></td>
                 </template>
-                <template v-else-if="item.criterion_summary_result == 'negative_hit'">
+                <template
+                  v-else-if="item.criterion_summary_result == 'negative_hit'"
+                >
                   <td></td>
                   <td></td>
                   <td></td>
@@ -151,17 +191,28 @@
             <tr
               v-for="condition in item.conditions"
               :key="props.row.patient_id + '_cond_' + condition.name"
-              class="condition-tr"
+
+              :class="item.name.replace(/ /g,'-')"
+               class="condition-tr"
             >
               <td
                 class="condition-td"
                 @click="openSource(condition, item, props.row.patient_id)"
-              >&emsp;&emsp;&emsp;{{ condition.name }}</td>
+              >
+                &emsp;&emsp;&emsp;{{ condition.name }}
+              </td>
               <template v-if="item.criterion_type == 'EK'">
                 <template
-                  v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'"
+                  v-if="
+                    condition.evaluation_results.evaluation_result_summary ==
+                    'positive_hit'
+                  "
                 >
-                  <td class="greenFillClass has-text-centered condition-details">⬤</td>
+                  <td
+                    class="greenFillClass has-text-centered condition-details"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -169,10 +220,15 @@
                   <td></td>
                 </template>
                 <template
-                  v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'"
+                  v-else-if="
+                    condition.evaluation_results.evaluation_result_summary ==
+                    'negative_hit'
+                  "
                 >
                   <td></td>
-                  <td class="redFillClass has-text-centered condition-details">⬤</td>
+                  <td class="redFillClass has-text-centered condition-details">
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -181,7 +237,9 @@
                 <template v-else>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered condition-details">⬤</td>
+                  <td class="greyFillClass has-text-centered condition-details">
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -189,23 +247,35 @@
               </template>
               <template v-else>
                 <template
-                  v-if="condition.evaluation_results.evaluation_result_summary == 'positive_hit'"
+                  v-if="
+                    condition.evaluation_results.evaluation_result_summary ==
+                    'positive_hit'
+                  "
                 >
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="redFillClass has-text-centered condition-details">⬤</td>
+                  <td class="redFillClass has-text-centered condition-details">
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                 </template>
                 <template
-                  v-else-if="condition.evaluation_results.evaluation_result_summary == 'negative_hit'"
+                  v-else-if="
+                    condition.evaluation_results.evaluation_result_summary ==
+                    'negative_hit'
+                  "
                 >
                   <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="greenFillClass has-text-centered condition-details">⬤</td>
+                  <td
+                    class="greenFillClass has-text-centered condition-details"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                 </template>
                 <template v-else>
@@ -214,7 +284,9 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered condition-details">⬤</td>
+                  <td class="greyFillClass has-text-centered condition-details">
+                    ⬤
+                  </td>
                 </template>
               </template>
             </tr>
@@ -224,7 +296,11 @@
 
       <div class="popup-container">
         <transition name="fade" appear>
-          <div class="modal-overlay" v-if="showModal" @click="showModal = false"></div>
+          <div
+            class="modal-overlay"
+            v-if="showModal"
+            @click="showModal = false"
+          ></div>
         </transition>
 
         <transition name="slide" appear>
@@ -257,40 +333,40 @@ export default {
         icAchieved: {
           title: "erfüllt",
           display: true,
-          headerClass: "ic-achieved"
+          headerClass: "ic-achieved",
         },
         icNotAchieved: {
           title: "nicht erfüllt",
           display: true,
-          headerClass: "ic-not-achieved"
+          headerClass: "ic-not-achieved",
         },
         icNoData: {
           title: "keine Daten",
           display: true,
-          headerClass: "ic-no-data"
+          headerClass: "ic-no-data",
         },
         ecAchieved: {
           title: " erfüllt",
           display: true,
-          headerClass: "ec-achieved"
+          headerClass: "ec-achieved",
         }, //BUG: same name not valid
         ecNotAchieved: {
           title: " nicht erfüllt",
           display: true,
-          headerClass: "ec-not-achieved"
+          headerClass: "ec-not-achieved",
         },
         ecNoData: {
           title: " keine Daten",
           display: true,
-          headerClass: "ec-no-data"
-        }
+          headerClass: "ec-no-data",
+        },
       },
 
       currentCondition: {},
-      patientID: 0
+      patientID: 0,
     };
   },
-  created: function() {
+  created: function () {
     //console.log(this.response);
   },
   methods: {
@@ -301,16 +377,29 @@ export default {
       this.$refs.table.toggleDetails(row);
     },
     openSource(condition, item, patientId) {
-      if (item.criterion_summary_result != "no_hit") {
-        this.showModal = true;
-        this.currentCondition = condition;
-        this.currentCriterion = item;
-        this.patientID = patientId;
-      }else{
-        this.showToastError("Kriterium hat keine Ergebnisse!")
+      // if (item.criterion_summary_result != "no_hit") {
+      this.showModal = true;
+      this.currentCondition = condition;
+      this.currentCriterion = item;
+      this.patientID = patientId;
+      // }else{
+      //   this.showToastError("Kriterium hat keine Ergebnisse!")
+      // }
+    },
+    showCirterionDetails(criterion_name) {
+      var classList = document.getElementsByClassName(criterion_name);
+      for (var i = 0; i < classList.length; i++) {
+        console.log(classList[i])
+        if (classList[i].style.display == "" || classList[i].style.display == "none"){
+          classList[i].setAttribute('style', 'display:table-row !important');
+          console.log("1")
+        }else {
+            classList[i].setAttribute('style', 'display:none');
+            console.log("2")
+        }
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -356,6 +445,12 @@ export default {
 
   color: white;
 }
+.condition-tr {
+  display: none;
+}
+
+//display: contents;
+
 .greenBackgroundClass {
   background-color: rgb(4, 196, 90);
 }
@@ -379,20 +474,19 @@ export default {
 .yellowFillClass {
   color: rgb(204, 180, 41);
 }
-.criterion-name{
+.criterion-name {
   cursor: default;
 }
-.condition-t{
+.condition-t {
   background: yellow;
 }
 
-.condition-td{
- cursor: pointer;
- //TODO only if results
+.condition-td {
+  cursor: pointer;
+  //TODO only if results
 }
 .condition-details {
   font-size: small;
- 
 }
 
 .popup-container {

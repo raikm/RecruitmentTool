@@ -11,7 +11,6 @@ import ResultList from "./ResultList"
 
 export default {
   name: "EvaluationPage",
-  //props: ["responseJson"],//TODO: that can be deleted I think
   components: {
     AppHeader,
     ResultList
@@ -26,25 +25,6 @@ export default {
       response: [],
     };
   },
-  mounted: function(){
-    // // DEBUG ----------------------
-/*    axios({
-        method: "POST",
-        url: "http://127.0.0.1:8000/api/debug/",
-        headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-
-          console.log(response.data)
-          this.response = response.data.patients
-          
-      })
-      .catch((response) => {
-          console.log(response);
-            
-      }); */
-    // DEBUG ----------------------
-  }
 };
 </script>
 

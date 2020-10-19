@@ -43,16 +43,16 @@ export default {
       });
     },
     uploadTestData(){
+        this.showToastInfo("CDA Files werden hochgeladen ...")
        axios({
         method: "post",
         url: "http://127.0.0.1:8000/api/prepareTestData/",
       })
       .then((response) => {
-         alert("Testdata successfuly uploaded!")
+           this.showToastInfo("Upload der Testdaten abgeschlossen!")
       })
       .catch((response) => {
-          //TODO: handle error: toast
-          console.log(response);
+          this.showToastError(response)
       });
     }
     
