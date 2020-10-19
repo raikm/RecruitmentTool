@@ -5,10 +5,10 @@
 
 #### 30.09.2020 Fertigstellung Prototype V.1 (Konzepte/Mockups wurden grundsätzlich umgesetzt)
 ##### Funktionalitäten für V.1
-- xPath "Algorithmus"  
-- Evaluations-Page (Auswertung der Patienten/-innen)
-- Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
-- XDS Anbindung (eHC und IPF Framework)
+- ✓ xPath "Algorithmus"  
+- ✓ Evaluations-Page (Auswertung der Patienten/-innen)
+- ✓ Detail-Ansicht von ausgewerteten Bedinungen (inkl. CDA Visualisierung)
+- ✓ XDS Anbindung (eHC und IPF Framework)
 ##### Funktionalitäten für V.2 (bis Dezember)
 - Export-Möglichkeiten von selektierten Patienten/-innen
 - openRDA Anbindung
@@ -31,36 +31,43 @@
 
 # 🏗Timeline Progress
 
-## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
 
-- Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert
-
-### Software
-- eHC Integration
-
-#### NEW
-- Backend erweitert mit dem eHealthConnector 
-
-#### IMPROVE / CHANGE
-- 
+## 1.10.2010 - 31.10.2020: Fokus auf schriflichen Teil + Doku
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>Alle xPaths für Studie A und B sind für den ersten Versuch finalisiert</li>
-  <li>Klärung Inhaltsverzeichnis</li>
-  <li>Mockup Updates</li>
+  <li>schriftlicher Teil grob fertig</li>
+  <li>Doku Architektur</li>
+
 </ul>
 <ul>
-  <li>xPath "Algorithmus" Anpassung (negative...)</li>
-  <li>XML Visualisierung</li>
-  <li>Testing XDS Repository</li>
-  <li>Verbindung mit XDS Repository</li>
-  <li>Real-Data testen (Robustheit)</li>
+   <li>Doku im Code</li>
+   <li>Bugfixes</li>
 </ul>
 </p>
 </details>
 
+## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
+
+- Alle xPaths für Studie A und B sind für die ersten Versuche finalisiert (WIP)
+- erster Entwurf für Inhaltsverzeichnis steht
+- Mockup Updates
+
+### Software
+#### NEW
+- BE: eHC Integration (Java): Upload & Download von CDA Files
+- BE: erweitert mit eHealthConnector (Python Django)
+- BE: Testdaten Upload Funktionalität
+- BE: neue Regel bei positiven und negativen Ergebnissen
+- FE: PopUp für Bedinungen-Details
+- FE: Visualisierung von CDA Dokumente
+
+
+#### IMPROVE / CHANGE
+- BE: Response + DB Anpassung für neg. xPaths
+- FE: EvaluationsPage nach Mockup
+- FE: Neue Studie anlegen angepasst für neg. xPaths
 
 ## 01.08.2020 - 31.08.2020: 6. Monat
 - Alle xPaths für Studie A und B sind für den ersten Versuch vorbereitet (WIP)
