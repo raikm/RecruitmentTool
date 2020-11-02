@@ -78,13 +78,41 @@
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
           >
+          <b-table-column
+            :visible="columnsVisible['check'].display"
+            :label="columnsVisible['check'].title"
+            :centered="true"
+            class="checkbox-patient"
+          >
+            <b-button
+              :id="'checkbox-t-' + props.row.patient_id"
+              @click="checkPatient(props.row.patient_id, true)"
+              size="is-small"
+            >
+              <b-icon icon="check" size="is-small"> </b-icon
+            ></b-button>
+          </b-table-column>
+          <b-table-column
+            :visible="columnsVisible['uncheck'].display"
+            :label="columnsVisible['uncheck'].title"
+            :centered="true"
+            class="checkbox-patient"
+          >
+            <b-button
+              :id="'checkbox-f-' + props.row.patient_id"
+              @click="checkPatient(props.row.patient_id, false)"
+              size="is-small"
+            >
+              <b-icon icon="close" size="is-small"> </b-icon
+            ></b-button>
+          </b-table-column>
         </template>
 
         <template slot="detail" slot-scope="props">
           <template v-for="item in props.row.criterion_results">
             <tr
               :key="props.row.patient_id + item.name"
-              @click="showCirterionDetails(item.name.replace(/ /g,'-'))"
+              @click="showCirterionDetails(item.name.replace(/ /g, '-'))"
             >
               <td
                 class="criterion-name"
@@ -191,9 +219,8 @@
             <tr
               v-for="condition in item.conditions"
               :key="props.row.patient_id + '_cond_' + condition.name"
-
-              :class="item.name.replace(/ /g,'-')"
-               class="condition-tr"
+              :class="item.name.replace(/ /g, '-')"
+              class="condition-tr"
             >
               <td
                 class="condition-td"
@@ -328,6 +355,8 @@ export default {
     return {
       showModal: false,
       defaultOpenedDetails: [1],
+      selectedPatients: [],
+      rejectedPatients: [],
       columnsVisible: {
         name: { title: "Patientenname", display: true },
         icAchieved: {
@@ -360,6 +389,14 @@ export default {
           display: true,
           headerClass: "ec-no-data",
         },
+        check: {
+          title: "✓",
+          display: true,
+        },
+        uncheck: {
+          title: "⨉",
+          display: true,
+        },
       },
 
       currentCondition: {},
@@ -370,6 +407,44 @@ export default {
     //console.log(this.response);
   },
   methods: {
+    checkPatient(patient_id, check_type) {
+      if (check_type == true && !this.selectedPatients.includes(patient_id)) {
+        var checkboxTrueElement = document.getElementById(
+          "checkbox-t-" + patient_id
+        );
+        checkboxTrueElement.classList.add("is-success");
+        this.selectedPatients.push(patient_id);
+        if (this.rejectedPatients.includes(patient_id)) {
+          const index = this.rejectedPatients.indexOf(patient_id);
+          if (index > -1) {
+            this.rejectedPatients.splice(index, 1);
+          }
+          var checkboxFalseElement = document.getElementById(
+            "checkbox-f-" + patient_id
+          );
+          checkboxFalseElement.classList.remove("is-danger");
+        }
+      }
+      if (check_type == false && !this.rejectedPatients.includes(patient_id)) {
+       var checkboxFalseElement = document.getElementById(
+            "checkbox-f-" + patient_id
+          );
+        checkboxFalseElement.classList.add("is-danger");
+        this.rejectedPatients.push(patient_id);
+        if (this.selectedPatients.includes(patient_id)) {
+          const index = this.selectedPatients.indexOf(patient_id);
+          if (index > -1) {
+            this.selectedPatients.splice(index, 1);
+          }
+          var checkboxTrueElement = document.getElementById(
+          "checkbox-t-" + patient_id
+        );
+          checkboxTrueElement.classList.remove("is-success");
+        }
+
+      }
+
+    },
     closeAllOtherDetails(row, index) {
       this.defaultOpenedDetails = [row.patient_id];
     },
@@ -389,13 +464,16 @@ export default {
     showCirterionDetails(criterion_name) {
       var classList = document.getElementsByClassName(criterion_name);
       for (var i = 0; i < classList.length; i++) {
-        console.log(classList[i])
-        if (classList[i].style.display == "" || classList[i].style.display == "none"){
-          classList[i].setAttribute('style', 'display:table-row !important');
-          console.log("1")
-        }else {
-            classList[i].setAttribute('style', 'display:none');
-            console.log("2")
+        console.log(classList[i]);
+        if (
+          classList[i].style.display == "" ||
+          classList[i].style.display == "none"
+        ) {
+          classList[i].setAttribute("style", "display:table-row !important");
+          console.log("1");
+        } else {
+          classList[i].setAttribute("style", "display:none");
+          console.log("2");
         }
       }
     },
@@ -406,6 +484,10 @@ export default {
 <style lang="scss">
 .ic-ac-main-header.th {
   text-align: center;
+}
+
+.checkbox-patient {
+  width: 3%;
 }
 
 .ic-achieved,

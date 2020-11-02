@@ -12,6 +12,9 @@ import Buefy from 'buefy'
 // import 'buefy/dist/buefy.css'
 import './mixins/helpersMixin'
 
+
+
+
 if (!process.env.IS_WEB) Vue.use(require('vue-electron'))
 Vue.http = Vue.prototype.$http = axios
 window.axios = require('axios')
