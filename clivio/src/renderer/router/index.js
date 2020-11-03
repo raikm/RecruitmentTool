@@ -4,6 +4,7 @@ import NewStudyPage from '../pages/NewStudyPage'
 import StudyPage from '../pages/StudyPage'
 import EvaluationPage from '../pages/EvaluationPage'
 import DashboardPage from '../pages/DashboardPage'
+import SelectedPatientsHistoryPage from '../pages/SelectedPatientsHistoryPage'
 
 Vue.use(Router)
 
@@ -35,6 +36,14 @@ export default new Router({
       path: '/study',
       name: 'study-page',
       component: StudyPage,
+      props: true,
+      query: true
+      
+    },
+    {
+      path: '/patientHistory',
+      name: 'selected-patient-history-page',
+      component: SelectedPatientsHistoryPage,
       props: true,
       query: true
       

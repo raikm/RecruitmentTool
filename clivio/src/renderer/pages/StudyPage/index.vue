@@ -5,6 +5,7 @@
       <div class="upperContainer">
         <StudyBasicinfos />
       </div>
+      <b-button id="btn-selected-patients" class="is-small" title="Patienten die nach Überprüfung gespeichert wurden" @click="getSelectedPatients()">Gespeicherte Patienten/Patientinnen aufrufen</b-button>
       <div>
         <StudyCriterionList id="criteriaList" :criterions="criterions" />
         <StudyInformationList id="criteriaList" :informations="informations" />
@@ -53,6 +54,7 @@ export default {
       headerName: "VALIDATOR",
       responseJson: [],
       patientData: [],
+      study_id: 1, //Debug
     };
   },
 
@@ -65,6 +67,24 @@ export default {
     StudyPatientCollectionList,
   },
   methods: {
+    getSelectedPatients(){
+ axios({
+        method: "get", 
+        url: "http://127.0.0.1:8000/api/getSelectedPatients/study_id=" + this.study_id.toString(),
+      })
+      .then((response) => {
+          this.$router.push({
+            name: "selected-patient-history-page",
+            query: response.data
+          });
+      })
+      .catch((response) => {
+        
+          this.showToastInfo(response);
+      });
+
+       
+    },
     collectPatients(){
       this.getPatients()
       document.getElementById("patienten-collection-list-container").style.display = "inline";
@@ -115,7 +135,7 @@ export default {
       this.showToastInfo("Daten werden verarbeitet...");
       axios({
         method: "POST",
-        url: "http://127.0.0.1:8000/api/debug/",
+        url: "http://127.0.0.1:8000/api/validateData/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -174,5 +194,10 @@ export default {
 #upload-container{
   display: none;
 
+}
+
+#btn-selected-patients{
+  margin-top: 25px;
+  float: right;
 }
 </style>

@@ -7,7 +7,7 @@
         ref="table"
         detailed
         hoverable
-        :show-detail-icon="false"
+        :show-detail-icon="true"
         custom-detail-row
         detail-key="patient_id"
         @details-open="(row, index) => closeAllOtherDetails(row, index)"
