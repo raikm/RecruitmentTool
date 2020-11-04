@@ -1,13 +1,13 @@
 <template>
   <main>
     <div class="main">
-      <b-table :data="selectedPatients" ref="table">
+      <b-table :data="currentSelectedPatients" ref="table">
         <template slot-scope="props">
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
           >
-            {{ props.row.first_name }} {{ props.row.last_name }}
+            {{ props.row.patient_first_name }} {{ props.row.patient_last_name }}
           </b-table-column>
 
           <b-table-column
@@ -71,6 +71,7 @@
             class="checkbox-patient"
           >
             <b-button
+              class="is-success"
               :id="'checkbox-t-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, true)"
               size="is-small"
@@ -102,10 +103,12 @@
 
 export default {
   name: "ResultListLight",
-  props: ["selectedPatients"],
+  props: ["currentSelectedPatients"],
   data() {
     return {
       showModal: false,
+      selectedPatients: [],
+      rejectedPatients: [],
       defaultOpenedDetails: [1],
       columnsVisible: {
         name: { title: "Patientenname", display: true },
@@ -153,7 +156,9 @@ export default {
     };
   },
   created: function () {
-    //console.log(this.response);
+    for (var i = 0; i < this.currentSelectedPatients.length; i++) {
+      this.selectedPatients.push(this.currentSelectedPatients[i].patient_id)
+    }
   },
   methods: {
     checkPatient(patient_id, check_type) {

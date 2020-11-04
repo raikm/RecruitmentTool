@@ -77,8 +77,11 @@ letter-spacing: 2px;
 }
 
 #btn-upload-testdata{
-  float: right;
-  margin-right: 1.5%;
+
+ position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 1.6%;
 }
 
 

@@ -26,6 +26,11 @@ export default {
 .header-line {
   background-color: var(--main-color);
   margin: 40px 0px 40px 0px;
+  display: flex;
+   line-height: 4vh;
+    font-size: 3vh;
+      letter-spacing: 3px;
+
 }
 
 #clivioheader {
@@ -33,21 +38,22 @@ export default {
   color: var(--main-text-color);
   -webkit-margin-before: 0;
   padding-left: 20px;
-    font-size: 24px;
+  width: 30%;
 
-  letter-spacing: 3px;
-  display: inline-block;
-  line-height: 4vh;
+  
 }
 
 .menu{
-    float: right;
+display: flex;
+justify-content: flex-end;
+  width: 70%;
+   
 
 }
-.menu-link {
-  font-size: 24px;
+.menu-link { 
   color: var(--main-text-color);
   margin: 0 2vh;
+   
 
 }
 
@@ -57,11 +63,10 @@ a:hover {
 }
 
 a:active {
-  color: rgba(255, 255, 0, 0.639);
+  color: rgba(255, 102, 0, 0.796);
   background-color: transparent;
 }
 
 h1 {
-  font-size: 28px;
 }
 </style>

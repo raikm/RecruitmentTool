@@ -1,7 +1,13 @@
 <template>
   <main>
     <AppHeader :headerName="headerName" />
-    <ResultListLight :selectedPatients="selectedPatients"/>
+    <ResultListLight :currentSelectedPatients="currentSelectedPatients"/>
+
+
+      <b-button id="btn-save-selected-patients" @click="saveSelectedPatients()"
+      >Speichern und Beenden</b-button
+    >
+
   </main>
 </template>
 
@@ -16,9 +22,17 @@ export default {
   data() {
     return {    
       headerName: "HISTORIE: AUSGEWÄHLTE PATIENTEN/PATIENTINNEN",
-      selectedPatients: this.$route.query,
+      currentSelectedPatients: this.$route.query,
     };
   },
 }
 
 </script>
+
+<style lang="scss">
+#btn-save-selected-patients {
+  margin-top: 25px;
+  margin-right: 25px;
+  float: right;
+}
+</style>

@@ -12,7 +12,7 @@
           >
             <section class="section">
               <div class="content has-text-centered">
-                <p>Drop your files here or click to upload</p>
+                <p>Legen Sie Ihre Dateien hier ab oder klicken Sie zum Hochladen</p>
               </div>
             </section>
           </b-upload>
@@ -22,11 +22,11 @@
     <div class="fileList">
       <b-table :data="dropFiles">
         <template slot-scope="props">
-          <b-table-column label="File">
+          <b-table-column label="Ausgewählte ELGA-Dokumente:" width=97%>
             {{ props.row.name }}
           </b-table-column>
 
-          <b-table-column label="" width="50px">
+          <b-table-column label="" width=3%>
             <button
               class="button is-small is-danger"
               @click.prevent="deleteDropFile(props.row)"
@@ -37,6 +37,7 @@
         </template>
       </b-table>
     </div>
+    <b-checkbox id="decision-checkbox" v-model="repositorySave" size="is-small">Daten im Repository abspeichern</b-checkbox>
   </div>
 </template>
 <script>
@@ -45,6 +46,7 @@ export default {
   props: ["dropFiles"],
   data() {
     return {
+      repositorySave: false,
       columns: [
         {
           field: "name",
@@ -93,5 +95,10 @@ export default {
 }
 .upload-draggable {
   width: 100%;
+}
+
+
+#decision-checkbox{
+  float: right;
 }
 </style>

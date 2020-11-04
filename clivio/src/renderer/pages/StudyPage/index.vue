@@ -5,33 +5,61 @@
       <div class="upperContainer">
         <StudyBasicinfos />
       </div>
-      <b-button id="btn-selected-patients" class="is-small" title="Patienten die nach Überprüfung gespeichert wurden" @click="getSelectedPatients()">Gespeicherte Patienten/Patientinnen aufrufen</b-button>
+      <b-button
+        id="btn-selected-patients"
+        class="is-small"
+        title="Patienten die nach Überprüfung gespeichert wurden"
+        @click="getSelectedPatients()"
+        >Gespeicherte Patienten/Patientinnen aufrufen</b-button
+      >
       <div>
         <StudyCriterionList id="criteriaList" :criterions="criterions" />
         <StudyInformationList id="criteriaList" :informations="informations" />
       </div>
+      <div id="next-step-container">
+        <span id="next-step-info">⇾ Nächster Schritt: </span>
 
-      <b-button
-        title="PatientenInnen aus Repository auswählen"
-        class="btn-next-step"
-        id="btnShowPatients"
-        @click="collectPatients()"
-        >Patienten/Patientinnen auswählen</b-button
-      >
+        <b-button
+          title="Aus Repository auswählen"
+          class="btn-next-step"
+          id="btnShowPatients"
+          @click="collectPatients()"
+          >Patienten/Patientinnen auswählen</b-button
+        >
 
-      <b-button title=""  class="btn-next-step" id="btnShowPatients"  @click="uploadCDALocal()"
-        >ELGA Dokumente Lokal überprüfen</b-button
-      >
+        <b-button
+          title=""
+          class="btn-next-step"
+          id="btnShowPatients"
+          @click="uploadCDALocal()"
+          >ELGA Dokumente auswählen</b-button
+        >
+      </div>
       <br />
 
       <div id="upload-container">
-        <NewStudyAddFile id="addFile" :dropFiles="dropFiles" />
+        <NewStudyAddFile
+          ref="NewStudyAddFile"
+          id="addFile"
+          :dropFiles="dropFiles"
+        />
+        <br />
+        <b-button id="button-validate-cda-files" @click="validateCDAFiles()"
+          >Dateien überprüfen</b-button
+        >
+        <br />
+        <br />
       </div>
       <div id="patienten-collection-list-container">
-        <StudyPatientCollectionList ref="StudyPatientCollectionList" :patientData="patientData"/>
+        <StudyPatientCollectionList
+          ref="StudyPatientCollectionList"
+          :patientData="patientData"
+        />
       </div>
       <br />
-      <b-button v-if="patientData.length != 0" id="btnValidate" @click="validateData()">Patienten/Patientinnen überprüfen</b-button>
+      <b-button id="btnValidate" @click="validateData()"
+        >Patienten/Patientinnen überprüfen</b-button
+      >
     </div>
   </main>
 </template>
@@ -51,10 +79,11 @@ export default {
       criterions: [],
       informations: [],
       dropFiles: [],
-      headerName: "VALIDATOR",
+      headerName: "ÜBERPRÜFUNG",
       responseJson: [],
       patientData: [],
       study_id: 1, //Debug
+      localAnalysis: true,
     };
   },
 
@@ -67,46 +96,85 @@ export default {
     StudyPatientCollectionList,
   },
   methods: {
-    getSelectedPatients(){
- axios({
-        method: "get", 
-        url: "http://127.0.0.1:8000/api/getSelectedPatients/study_id=" + this.study_id.toString(),
+    validateCDAFiles() {
+      const formData = new FormData();
+
+      const files = this.dropFiles;
+      const repositorySave = this.$refs.NewStudyAddFile.repositorySave;
+
+      for (const file of files) {
+        formData.append("file", file);
+      }
+
+      formData.append("Repository_Save", repositorySave);
+
+      this.showToastInfo("Daten werden verarbeitet...");
+      axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/api/validateSelectedCdaFiles/",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((response) => {
+        .then((response) => {
+          this.patientData = response.data;
+         
+          document.getElementById("btnValidate").style.display = "inline";
+          document.getElementById("upload-container").style.display = "none";
+          document.getElementById(
+            "patienten-collection-list-container"
+          ).style.display = "inline";
+           document.getElementById("next-step-container").style.display = "none";
+        })
+        .catch((response) => {
+          this.showToastInfo(response);
+        });
+    },
+    getSelectedPatients() {
+      axios({
+        method: "get",
+        url:
+          "http://127.0.0.1:8000/api/getSelectedPatients/study_id=" +
+          this.study_id.toString(),
+      })
+        .then((response) => {
           this.$router.push({
             name: "selected-patient-history-page",
-            query: response.data
+            query: response.data,
           });
-      })
-      .catch((response) => {
-        
+        })
+        .catch((response) => {
           this.showToastInfo(response);
-      });
-
-       
+        });
     },
-    collectPatients(){
-      this.getPatients()
-      document.getElementById("patienten-collection-list-container").style.display = "inline";
+    collectPatients() {
+      this.getPatients();
+       this.localAnalysis = false;
+      document.getElementById(
+        "patienten-collection-list-container"
+      ).style.display = "inline";
       document.getElementById("upload-container").style.display = "none";
+      document.getElementById("btnValidate").style.display = "inline";
     },
-    uploadCDALocal(){
+    uploadCDALocal() {
       document.getElementById("upload-container").style.display = "inline";
-      document.getElementById("patienten-collection-list-container").style.display = "none";
+      document.getElementById(
+        "patienten-collection-list-container"
+      ).style.display = "none";
+      document.getElementById("btnValidate").style.display = "none";
+       this.localAnalysis = true;
     },
-     getPatients(){
+    getPatients() {
       axios({
         method: "get",
         url: "http://127.0.0.1:8000/api/getAllPatients/",
       })
-      .then((response) => {
-          console.log(response.data)
-          this.patientData = response.data
-      })
-      .catch((response) => {
-        
+        .then((response) => {
+          console.log(response.data);
+          this.patientData = response.data;
+        })
+        .catch((response) => {
           this.showToastInfo(response);
-      });
+        });
     },
     validateData() {
       const formData = new FormData();
@@ -130,8 +198,10 @@ export default {
       formData.append("Study_Name", studyName);
       formData.append("Description", description);
       formData.append("Criterias[]", criterionsJson);
+      formData.append("Local_Analysis", this.localAnalysis);
       formData.append("Information_Needs[]", informationsJson);
-      formData.append("Selected_Patients[]", patientDataJson)
+      formData.append("Selected_Patients[]", patientDataJson);
+
       this.showToastInfo("Daten werden verarbeitet...");
       axios({
         method: "POST",
@@ -174,29 +244,45 @@ export default {
   padding: 10px;
   /* overflow: hidden;  */
 }
+
+#button-validate-cda-files {
+  margin-top: 25px;
+  float: right;
+}
 #btnValidate {
   margin-top: 25px;
   float: right;
+  display: none;
   /* margin: 1%; */
   /* background-color: var(--main-color); */
 }
 #criteriaList #addFile {
   margin-top: 80px;
 }
-
-.btn-next-step{
+#next-step-container {
+  display: flex;
+  align-items: center;
+  justify-content: right;
   float: right;
 }
-#patienten-collection-list-container{
+
+#next-step-info {
+  font-size: 12px;
+  font-style: italic;
+  margin: 5px;
+}
+.btn-next-step {
+  margin: 5px;
+}
+#patienten-collection-list-container {
   display: none;
 }
 
-#upload-container{
+#upload-container {
   display: none;
-
 }
 
-#btn-selected-patients{
+#btn-selected-patients {
   margin-top: 25px;
   float: right;
 }

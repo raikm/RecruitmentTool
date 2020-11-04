@@ -3,19 +3,26 @@
     <div class="main">
       <b-table
         :data="response"
-        :opened-detailed="defaultOpenedDetails"
         ref="table"
+        paginated
+        per-page="30"
+        :opened-detailed="defaultOpenedDetails"
         detailed
-        hoverable
-        :show-detail-icon="true"
-        custom-detail-row
         detail-key="patient_id"
         @details-open="(row, index) => closeAllOtherDetails(row, index)"
+        show-detail-icon="true"
+        aria-next-label="Next page"
+        aria-previous-label="Previous page"
+        aria-page-label="Page"
+        aria-current-label="Current page"
+        hoverable
+        custom-detail-row
       >
         <template slot-scope="props">
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
+            width="100%"
           >
             <template>
               <a @click="toggle(props.row)"
@@ -114,6 +121,8 @@
               :key="props.row.patient_id + item.name"
               @click="showCirterionDetails(item.name.replace(/ /g, '-'))"
             >
+              <td></td>
+
               <td
                 class="criterion-name"
                 v-show="columnsVisible['name'].display"
@@ -140,6 +149,8 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template
                   v-else-if="
@@ -147,6 +158,8 @@
                   "
                 >
                   <td class="yellowFillClass has-text-centered">⬤</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -162,11 +175,15 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template v-else>
                   <td></td>
                   <td></td>
                   <td class="greyFillClass has-text-centered">⬤</td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -182,6 +199,8 @@
                   <td class="redFillClass has-text-centered">⬤</td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template
                   v-else-if="
@@ -194,6 +213,8 @@
                   <td class="yellowFillClass has-text-centered">⬤</td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template
                   v-else-if="item.criterion_summary_result == 'negative_hit'"
@@ -204,6 +225,8 @@
                   <td></td>
                   <td class="greenFillClass has-text-centered">⬤</td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template v-else>
                   <td></td>
@@ -212,6 +235,8 @@
                   <td></td>
                   <td></td>
                   <td class="greyFillClass has-text-centered">⬤</td>
+                  <td></td>
+                  <td></td>
                 </template>
               </template>
             </tr>
@@ -222,9 +247,11 @@
               :class="item.name.replace(/ /g, '-')"
               class="condition-tr"
             >
+             <td></td>
               <td
                 class="condition-td"
                 @click="openSource(condition, item, props.row.patient_id)"
+                title="Bedingung"
               >
                 &emsp;&emsp;&emsp;{{ condition.name }}
               </td>
@@ -245,6 +272,8 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template
                   v-else-if="
@@ -260,6 +289,8 @@
                   <td></td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template v-else>
                   <td></td>
@@ -267,6 +298,8 @@
                   <td class="greyFillClass has-text-centered condition-details">
                     ⬤
                   </td>
+                  <td></td>
+                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -287,6 +320,8 @@
                   </td>
                   <td></td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template
                   v-else-if="
@@ -304,6 +339,8 @@
                     ⬤
                   </td>
                   <td></td>
+                  <td></td>
+                  <td></td>
                 </template>
                 <template v-else>
                   <td></td>
@@ -314,11 +351,13 @@
                   <td class="greyFillClass has-text-centered condition-details">
                     ⬤
                   </td>
+                  <td></td>
+                  <td></td>
                 </template>
               </template>
             </tr>
           </template>
-        </template>
+        </template> 
       </b-table>
 
       <div class="popup-container">
@@ -426,9 +465,9 @@ export default {
         }
       }
       if (check_type == false && !this.rejectedPatients.includes(patient_id)) {
-       var checkboxFalseElement = document.getElementById(
-            "checkbox-f-" + patient_id
-          );
+        var checkboxFalseElement = document.getElementById(
+          "checkbox-f-" + patient_id
+        );
         checkboxFalseElement.classList.add("is-danger");
         this.rejectedPatients.push(patient_id);
         if (this.selectedPatients.includes(patient_id)) {
@@ -437,13 +476,11 @@ export default {
             this.selectedPatients.splice(index, 1);
           }
           var checkboxTrueElement = document.getElementById(
-          "checkbox-t-" + patient_id
-        );
+            "checkbox-t-" + patient_id
+          );
           checkboxTrueElement.classList.remove("is-success");
         }
-
       }
-
     },
     closeAllOtherDetails(row, index) {
       this.defaultOpenedDetails = [row.patient_id];

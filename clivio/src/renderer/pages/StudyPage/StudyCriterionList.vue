@@ -8,7 +8,7 @@
         ref="table"
         detailed
         hoverable
-        :show-detail-icon="false"
+        :show-detail-icon="true"
         custom-detail-row
         detail-key="name"
       >
@@ -16,7 +16,7 @@
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
-            width="50"
+            width="100%"
             sortable
           >
             <template>
@@ -30,42 +30,15 @@
             </template>
           </b-table-column>
 
-          <b-table-column
-            :visible="columnsVisible['conditionName'].display"
-            :label="columnsVisible['conditionName'].title"
-            width="500"
-          >
-          </b-table-column>
-
-          <b-table-column
-            :visible="columnsVisible['condtionXpath'].display"
-            :label="columnsVisible['condtionXpath'].title"
-            width="500"
-          >
-          </b-table-column>
-
-          <b-table-column
-            :visible="columnsVisible['roughXpath'].display"
-            :label="columnsVisible['roughXpath'].title"
-            width="500"
-          >
-          </b-table-column>
         </template>
 
         <template slot="detail" slot-scope="props">
           <tr v-for="item in props.row.conditions" :key="item.name">
-            <td width="50" v-show="columnsVisible['name'].display">
-              &nbsp;&nbsp;&nbsp;&nbsp;
+   <td> </td>
+            <td v-show="columnsVisible['conditionName'].display">
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
             </td>
-            <td width="500" v-show="columnsVisible['conditionName'].display">
-              {{ item.name }}
-            </td>
-            <td td width="500" v-show="columnsVisible['condtionXpath'].display">
-              {{ item.xPath }}
-            </td>
-            <td td width="500" v-show="columnsVisible['roughXpath'].display">
-              {{ item.value_xPath }}
-            </td>
+            
           </tr>
         </template>
       </b-table>
@@ -81,10 +54,8 @@ export default {
   data() {
     return {
       columnsVisible: {
-        name: { title: "Name", display: true },
+        name: { title: "Kriterium und Bedingung", display: true },
         conditionName: { title: "Bedingung", display: true },
-        condtionXpath: { title: "xPath", display: true },
-        roughXpath: { title: "ValuexPath", display: true },
       },
     };
   },
