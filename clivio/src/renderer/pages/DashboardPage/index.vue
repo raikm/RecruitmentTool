@@ -38,8 +38,7 @@ export default {
           this.currentStudies = this.responseJson
       })
       .catch((response) => {
-          //TODO: handle error: toast
-          console.log(response);
+          this.showToastError(response)
       });
     },
     uploadTestData(){

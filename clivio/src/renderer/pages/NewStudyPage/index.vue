@@ -9,7 +9,10 @@
         <NewStudyAddCriterion v-on:add-criteria="addCriteria" />
         <NewStudyCriterionList id="criteriaList" :criterions="criterions" />
         <NewStudyAddInformation v-on:add-information="addInformation" />
-        <NewStudyInformationList id="criteriaList" :informations="informations" />
+        <NewStudyInformationList
+          id="criteriaList"
+          :informations="informations"
+        />
       </div>
 
       <div>
@@ -17,8 +20,6 @@
       </div>
 
       <b-button id="btnValidate" @click="validateData()">Validieren</b-button>
-
-
     </div>
   </main>
 </template>
@@ -29,10 +30,8 @@ import NewStudyAddBasicinfos from "./NewStudyAddBasicinfos";
 import NewStudyAddCriterion from "./NewStudyAddCriterion";
 import NewStudyCriterionList from "./NewStudyCriterionList";
 import NewStudyAddInformation from "./NewStudyAddInformation";
-import NewStudyInformationList from "./NewStudyInformationList"
+import NewStudyInformationList from "./NewStudyInformationList";
 import NewStudyAddFile from "./NewStudyAddFile";
-
-
 
 export default {
   name: "NewStudyPage",
@@ -42,10 +41,10 @@ export default {
       informations: [],
       dropFiles: [],
       headerName: "EDITOR",
-      responseJson: []  
+      responseJson: [],
     };
   },
-  
+
   components: {
     AppHeader,
     NewStudyAddBasicinfos,
@@ -59,7 +58,7 @@ export default {
     addCriteria(newCriteria) {
       this.criterions = [...this.criterions, newCriteria];
     },
-     addInformation(newInformation) {
+    addInformation(newInformation) {
       this.informations = [...this.informations, newInformation];
     },
     validateData() {
@@ -69,7 +68,7 @@ export default {
       const description = document.getElementById("study-description").value;
 
       const criterions = this.criterions;
-      const informations = this.informations
+      const informations = this.informations;
       const files = this.dropFiles;
 
       //TODO: loop necessary?
@@ -96,17 +95,16 @@ export default {
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       })
-      .then((response) => {
-          this.responseJson = response.data
-          this.$router.push({ name: 'evaluation-page',  query: this.responseJson})
-          
-      })
-      .catch((response) => {
-          //TODO: handle error: toast
-
-          console.log(response);
-            
-      });
+        .then((response) => {
+          this.responseJson = response.data;
+          this.$router.push({
+            name: "evaluation-page",
+            query: this.responseJson,
+          });
+        })
+        .catch((response) => {
+          this.showToastError(response);
+        });
     },
   },
 };

@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <b-table
-    class="overview-clinical-trails-table"
+      class="overview-clinical-trails-table"
       :hoverable="true"
       :data="currentStudies"
       selectable
@@ -9,7 +9,12 @@
       focusable
     >
       <template slot-scope="props">
-        <b-table-column class="overview-clinical-trails-table-line" field="name" label="Studienname" width="40%">
+        <b-table-column
+          class="overview-clinical-trails-table-line"
+          field="name"
+          label="Studienname"
+          width="40%"
+        >
           {{ props.row.Study_Name }}
         </b-table-column>
         <b-table-column
@@ -20,7 +25,12 @@
         >
           <!-- {{ props.row.Study_Name }} -->
         </b-table-column>
-        <b-table-column class="overview-clinical-trails-table-line" field="lastAnalyse" label="Letzte Analyse" width="30%">
+        <b-table-column
+          class="overview-clinical-trails-table-line"
+          field="lastAnalyse"
+          label="Letzte Analyse"
+          width="30%"
+        >
           <!-- {{ props.row.Study_Name }} -->
         </b-table-column>
       </template>
@@ -43,34 +53,33 @@ export default {
       })
         .then((response) => {
           this.selectedStudyJson = response.data;
-          this.$router.push({ name: "study-page", query: this.selectedStudyJson });
+          this.$router.push({
+            name: "study-page",
+            query: this.selectedStudyJson,
+          });
         })
         .catch((response) => {
-          //TODO: handle error: toast
-          console.log(response);
+          this.showToastError(response);
         });
-     
     },
   },
   data() {
     return {
-      selectedStudyJson: []  
+      selectedStudyJson: [],
     };
   },
 };
 </script>
 
 <style>
-.overview-clinical-trails-table{
-   -webkit-user-select: none;
+.overview-clinical-trails-table {
+  -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
- 
 }
 
-.overview-clinical-trails-table-line{
+.overview-clinical-trails-table-line {
   cursor: pointer;
 }
-
 </style>

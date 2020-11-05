@@ -10,7 +10,7 @@
         detailed
         detail-key="patient_id"
         @details-open="(row, index) => closeAllOtherDetails(row, index)"
-        show-detail-icon="true"
+        :show-detail-icon="true"
         aria-next-label="Next page"
         aria-previous-label="Previous page"
         aria-page-label="Page"
@@ -442,9 +442,6 @@ export default {
       patientID: 0,
     };
   },
-  created: function () {
-    //console.log(this.response);
-  },
   methods: {
     checkPatient(patient_id, check_type) {
       if (check_type == true && !this.selectedPatients.includes(patient_id)) {
@@ -501,16 +498,13 @@ export default {
     showCirterionDetails(criterion_name) {
       var classList = document.getElementsByClassName(criterion_name);
       for (var i = 0; i < classList.length; i++) {
-        console.log(classList[i]);
         if (
           classList[i].style.display == "" ||
           classList[i].style.display == "none"
         ) {
           classList[i].setAttribute("style", "display:table-row !important");
-          console.log("1");
         } else {
           classList[i].setAttribute("style", "display:none");
-          console.log("2");
         }
       }
     },

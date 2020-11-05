@@ -133,7 +133,6 @@ export default {
           overviewHeader.style.display = "inline";
         })
         .catch((response) => {
-          console.log(response);
         });
     },
     showConditionDetails() {

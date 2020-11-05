@@ -80,11 +80,10 @@ export default {
       informations: [],
       dropFiles: [],
       headerName: "ÜBERPRÜFUNG",
-      responseJson: [],
+      study: {},
       patientData: [],
-      study_id: 1, //Debug
       localAnalysis: true,
-    };
+    }; // responseJson: [],
   },
 
   components: {
@@ -134,12 +133,12 @@ export default {
         method: "get",
         url:
           "http://127.0.0.1:8000/api/getSelectedPatients/study_id=" +
-          this.study_id.toString(),
+          this.study.id.toString(),
       })
         .then((response) => {
           this.$router.push({
             name: "selected-patient-history-page",
-            query: response.data,
+            query: [response.data, this.study.id],
           });
         })
         .catch((response) => {
@@ -169,7 +168,6 @@ export default {
         url: "http://127.0.0.1:8000/api/getAllPatients/",
       })
         .then((response) => {
-          console.log(response.data);
           this.patientData = response.data;
         })
         .catch((response) => {
@@ -221,14 +219,13 @@ export default {
         });
     },
     fillData() {
-      const study = this.$route.query[0];
+      this.study = this.$route.query;
       var studyName = (document.getElementById("study-name").value =
-        study.name);
+        this.study.name);
       var description = (document.getElementById("study-description").value =
-        study.description);
-      console.log(study);
-      this.criterions = study.criterions.sort(); //TODO: check names are equivalent
-      this.informations = study.information_needed;
+        this.study.description);
+      this.criterions = this.study.criterions.sort((a, b) => (a.criterion_type < b.criterion_type) ? 1 : -1);
+      this.informations = this.study.information_needed;
     },
   },
   mounted() {
