@@ -26,13 +26,22 @@
         v-for="result in currentCondition.evaluation_results.positive_hits"
         :key="result.document_id"
         @click="openCDA(result.document_id)"
+        @mouseover="showToolTip(result.document_id, 1)"
+        @mouseleave="hideToolTip(result.document_id, 1)"
       >
-        <div class="cda-datum-container">
+        <div class="cda-detail-container">
+          <div class="cda-detail-container">
+            <div class="cda-meta-infos">
+              <b-icon icon="file-document" size="is-small"> </b-icon>
+              <span>ELGA Dokument vom&nbsp;</span>
+            </div>
+          </div>
           <h2 class="cda-datum">
-            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
-              calculateMonths(new Date(result.document_date))
-            }}
-            Monate)
+            <span>
+              {{ new Date(result.document_date).toLocaleDateString("en-GB") }}
+              ({{ calculateMonths(new Date(result.document_date)) }}
+              Monate)
+            </span>
           </h2>
         </div>
 
@@ -41,6 +50,14 @@
             {{ hit }}
           </li>
         </ul>
+        <div
+          class="cda-detail-container-tooltip"
+          :id="'cda-detail-container-tooltip-' + result.document_id"
+        >
+          <b-icon icon="file-download-outline" size="is-small"> </b-icon>
+
+          <span>ELGA Dokument öffnen </span>
+        </div>
       </div>
       <h2
         v-if="currentCondition.evaluation_results.negative_hits.length > 0"
@@ -54,13 +71,20 @@
         v-for="result in currentCondition.evaluation_results.negative_hits"
         :key="result.document_id"
         @click="openCDA(result.document_id)"
+        @mouseover="showToolTip(result.document_id, 2)"
+        @mouseleave="hideToolTip(result.document_id, 2)"
       >
-        <div class="cda-datum-container">
+        <div class="cda-detail-container">
+          <div class="cda-meta-infos">
+            <b-icon icon="file-document" size="is-small"> </b-icon>
+            <span>ELGA Dokument vom&nbsp;</span>
+          </div>
           <div class="cda-datum">
-            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
-              calculateMonths(new Date(result.document_date))
-            }}
-            Monate)
+            <span>
+              {{ new Date(result.document_date).toLocaleDateString("en-GB") }}
+              ({{ calculateMonths(new Date(result.document_date)) }}
+              Monate)
+            </span>
           </div>
         </div>
         <ul>
@@ -68,6 +92,14 @@
             {{ hit }}
           </li>
         </ul>
+        <div
+          class="cda-detail-container-tooltip"
+          :id="'cda-detail-container-tooltip-negative-' + result.document_id"
+        >
+          <b-icon icon="file-download-outline" size="is-small"> </b-icon>
+
+          <span>ELGA Dokument öffnen </span>
+        </div>
       </div>
 
       <h2
@@ -82,24 +114,41 @@
         v-for="result in currentCondition.value_results.values"
         :key="result.document_id"
         @click="openCDA(result.document_id)"
+        @mouseover="showToolTip(result.document_id, 3)"
+        @mouseleave="hideToolTip(result.document_id, 3)"
       >
-        <div class="cda-datum-container">
+        <div class="cda-detail-container">
+          <div class="cda-meta-infos">
+            <b-icon icon="file-document" size="is-small"> </b-icon>
+            <span>ELGA Dokument vom&nbsp;</span>
+          </div>
+
           <div class="cda-datum">
-            {{ new Date(result.document_date).toLocaleDateString("en-GB") }} ({{
-              calculateMonths(new Date(result.document_date))
-            }}
-            Monate)
+            <span>
+              {{ new Date(result.document_date).toLocaleDateString("en-GB") }}
+              ({{ calculateMonths(new Date(result.document_date)) }}
+              Monate)
+            </span>
           </div>
         </div>
+
         <ul>
           <li class="hit-result" v-for="hit in result.value_result" :key="hit">
             {{ hit }}
           </li>
         </ul>
+        <div
+          class="cda-detail-container-tooltip"
+          :id="'cda-detail-container-tooltip-rough-' + result.document_id"
+        >
+          <b-icon icon="file-download-outline" size="is-small"> </b-icon>
+
+          <span>ELGA Dokument öffnen </span>
+        </div>
       </div>
     </div>
 
-    <div id="cda-viewer" v-html="htmlCDAFile"></div>
+    <div v-if="htmlCDAFile" id="cda-viewer" v-html="htmlCDAFile"></div>
   </div>
 </template>
 
@@ -132,8 +181,7 @@ export default {
           var overviewHeader = document.getElementById("overview-header");
           overviewHeader.style.display = "inline";
         })
-        .catch((response) => {
-        });
+        .catch((response) => {});
     },
     showConditionDetails() {
       var overviewContainer = document.getElementById("overview-container");
@@ -149,6 +197,36 @@ export default {
         current_date.getMonth() -
         (document_date.getFullYear() * 12 + document_date.getMonth());
       return months;
+    },
+    showToolTip(document_id, type) {
+      if (type == 1) {
+        document.getElementById(
+          "cda-detail-container-tooltip-" + document_id
+        ).style.display = "inline";
+      } else if (type == 2) {
+        document.getElementById(
+          "cda-detail-container-tooltip-negative-" + document_id
+        ).style.display = "inline";
+      } else if (type == 3) {
+        document.getElementById(
+          "cda-detail-container-tooltip-rough-" + document_id
+        ).style.display = "inline";
+      }
+    },
+    hideToolTip(document_id, type) {
+      if (type == 1) {
+        document.getElementById(
+          "cda-detail-container-tooltip-" + document_id
+        ).style.display = "none";
+      } else if (type == 2) {
+        document.getElementById(
+          "cda-detail-container-tooltip-negative-" + document_id
+        ).style.display = "none";
+      } else if (type == 3) {
+        document.getElementById(
+          "cda-detail-container-tooltip-rough-" + document_id
+        ).style.display = "none";
+      }
     },
   },
 };
@@ -169,12 +247,11 @@ export default {
 }
 
 .hit-container {
-  width: 90%;
-  margin: 0 6%;
+  width: 88%;
+  margin: 10px 6%;
   padding: 1%;
-  border-width: 0.5px;
-  border-color: teal;
-  border-style: solid;
+  border: 1px solid rgba(168, 165, 165, 0.487);
+  border-radius: 5px;
   display: inline-block;
   cursor: pointer;
   background: white;
@@ -183,18 +260,25 @@ export default {
   background: rgba(128, 128, 128, 0.09);
 }
 
-.cda-datum-container {
-  float: right;
+.hit-container:hover ~ #file-document-icon {
+  display: none;
 }
+
+.cda-detail-container {
+  display: flex;
+  justify-content: flex-end;
+}
+.cda-meta-infos {
+  float: left;
+}
+
 .cda-datum {
-  font-style: italic;
 }
 .hit-result {
   margin-top: 1vh;
   width: 100%;
-  border-width: 0.1px;
-  border-color: rgba(0, 128, 128, 0.513);
-  border-style: dotted;
+  padding: 2px 5px;
+  border: 0.1px solid rgba(168, 165, 165, 0.179);
   display: inline-block;
 }
 
@@ -209,5 +293,11 @@ export default {
   max-height: 80vh;
   background: white;
   padding: 1%;
+}
+
+.cda-detail-container-tooltip {
+  margin-top: 5px;
+  display: none;
+  float: right;
 }
 </style>

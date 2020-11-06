@@ -71,11 +71,7 @@ export default {
       const informations = this.informations;
       const files = this.dropFiles;
 
-      //TODO: loop necessary?
-      // var criterionArray = [];
-      // for (var i = 0; i < criterions.length; i++) {
-      //   criterionArray.push([criterions[i].criterion_type, criterions[i].name, criterions[i].xPath]);
-      // }
+    
       var criterionsJson = JSON.stringify(criterions);
       var informationsJson = JSON.stringify(informations);
 

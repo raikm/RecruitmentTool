@@ -2,13 +2,13 @@
   <main>
     <h3>Patienten/Patientinnen auswählen</h3>
   
-      <button
-        class="is-danger"
+      <b-button
+         type="is-small"
         @click="checkedRows = []"
         :disabled="!checkedRows.length"
       >
         <span>Auswahl zurücksetzen</span>
-      </button>
+      </b-button>
 
 
     <section>

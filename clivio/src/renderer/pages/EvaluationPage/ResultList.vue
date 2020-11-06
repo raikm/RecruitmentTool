@@ -34,14 +34,16 @@
           <b-table-column
             :visible="columnsVisible['icAchieved'].display"
             :label="columnsVisible['icAchieved'].title"
+            :subheading="columnsVisible['icAchieved'].subheading"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
             >{{ props.row.criterion_results_overview_ic }}</b-table-column
           >
 
           <b-table-column
+            label="icnotachieved"
             :visible="columnsVisible['icNotAchieved'].display"
-            :label="columnsVisible['icNotAchieved'].title"
+            :subheading="columnsVisible['icNotAchieved'].subheading"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
             >{{
@@ -50,8 +52,9 @@
           >
 
           <b-table-column
+            label="icnodata"
             :visible="columnsVisible['icNoData'].display"
-            :label="columnsVisible['icNoData'].title"
+            :subheading="columnsVisible['icNoData'].subheading"
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
             >{{
@@ -62,14 +65,16 @@
           <b-table-column
             :visible="columnsVisible['ecAchieved'].display"
             :label="columnsVisible['ecAchieved'].title"
+            :subheading="columnsVisible['ecAchieved'].subheading"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
             >{{ props.row.criterion_results_overview_ec }}</b-table-column
           >
 
           <b-table-column
+            label="123"
             :visible="columnsVisible['ecNotAchieved'].display"
-            :label="columnsVisible['ecNotAchieved'].title"
+            :subheading="columnsVisible['ecNotAchieved'].subheading"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
             >{{
@@ -77,8 +82,9 @@
             }}</b-table-column
           >
           <b-table-column
+            label="1233"
             :visible="columnsVisible['ecNoData'].display"
-            :label="columnsVisible['ecNoData'].title"
+            :subheading="columnsVisible['ecNoData'].subheading"
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
             >{{
@@ -247,7 +253,7 @@
               :class="item.name.replace(/ /g, '-')"
               class="condition-tr"
             >
-             <td></td>
+              <td></td>
               <td
                 class="condition-td"
                 @click="openSource(condition, item, props.row.patient_id)"
@@ -357,7 +363,7 @@
               </template>
             </tr>
           </template>
-        </template> 
+        </template>
       </b-table>
 
       <div class="popup-container">
@@ -371,11 +377,13 @@
 
         <transition name="slide" appear>
           <div class="popup-window" v-if="showModal">
-            <ConditionDetails
-              :currentCondition="currentCondition"
-              :currentCriterion="currentCriterion"
-              :patientID="patientID"
-            />
+            <div class="popup-window-content">
+              <ConditionDetails
+                :currentCondition="currentCondition"
+                :currentCriterion="currentCriterion"
+                :patientID="patientID"
+              />
+            </div>
           </div>
         </transition>
       </div>
@@ -399,32 +407,34 @@ export default {
       columnsVisible: {
         name: { title: "Patientenname", display: true },
         icAchieved: {
-          title: "erfüllt",
+          title: "EK",
           display: true,
           headerClass: "ic-achieved",
+          subheading: "erfüllt",
         },
         icNotAchieved: {
-          title: "nicht erfüllt",
+          subheading: "nicht erfüllt",
           display: true,
           headerClass: "ic-not-achieved",
         },
         icNoData: {
-          title: "keine Daten",
+          subheading: "keine Daten",
           display: true,
           headerClass: "ic-no-data",
         },
         ecAchieved: {
-          title: " erfüllt",
+          title: "AK",
+          subheading: "erfüllt",
           display: true,
           headerClass: "ec-achieved",
         }, //BUG: same name not valid
         ecNotAchieved: {
-          title: " nicht erfüllt",
+          subheading: "nicht erfüllt",
           display: true,
           headerClass: "ec-not-achieved",
         },
         ecNoData: {
-          title: " keine Daten",
+          subheading: "keine Daten",
           display: true,
           headerClass: "ec-no-data",
         },
@@ -521,36 +531,32 @@ export default {
   width: 3%;
 }
 
-.ic-achieved,
-.ic-not-achieved,
-.ic-no-data,
-.ec-achieved,
-.ec-not-achieved,
-.ec-no-data {
-  width: 5%;
-  font-size: small;
-  font-weight: 600;
-}
 
+
+.is-subheading{
+  font-size: small;
+}
 .ic-achieved,
 .ec-not-achieved {
-  color: rgb(4, 196, 90) !important;
+  color: rgb(9, 9, 9) !important;
 }
 
-.ic-not-achieved,
-.ec-achieved {
-  color: rgb(223, 51, 51) !important;
+.ic-not-achieved, .ic-no-data, .ec-not-achieved, .ec-no-data{
+  color: transparent !important;
+}
+.ec-achieved, .ec-not-achieved, .ec-no-data {
+  background-color: rgba(223, 51, 51, 0.296) !important;
 }
 
-.ec-no-data,
-.ic-no-data {
-  color: rgb(154, 154, 154) !important;
+.ic-achieved, .ic-not-achieved, .ic-no-data {
+  background-color:rgba(4, 196, 90, 0.296);
 }
 
 .type-tag {
   border-radius: 4px;
   // padding: 0 1vh;
   height: 50%;
+  width: 5vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -606,6 +612,7 @@ export default {
   justify-content: center;
   align-items: center;
   width: 100%;
+
   // min-height: 100vh;
   // overflow: hidden;
   // background-color: salmon;
@@ -618,17 +625,27 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(250, 250, 250, 0.41);
+  background-color: rgba(250, 250, 250, 0.85);
 }
+
 .popup-window {
   position: absolute;
-  top: 35%;
-  left: 70%;
+  border: 1px solid rgb(90, 90, 90);
+  padding: 1%;
+  top: 45%;
+  left: 65%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  height: 50%;
-  width: 50%;
+  height: 90%;
+  width: 60%;
   background-color: white;
+}
+
+.popup-window-content {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
 }
 .fade-enter-active,
 fade-leave-active {

@@ -77,7 +77,6 @@ export default {
   name: "NewStudyAddCriterion",
   data() {
     return {
-      // TODO: make to one object
       criterion_type: "",
       name: "",
       counter: 0,
