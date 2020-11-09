@@ -11,7 +11,6 @@
 - ✓ XDS Anbindung (eHC und IPF Framework)
 ##### Funktionalitäten für V.2 (bis Dezember)
 - Export-Möglichkeiten von selektierten Patienten/-innen
-- openRDA Anbindung
 - Studienverwaltung (z.B. Änderungen von xPaths bzw. Bedingungen)
 #### 1.10.2020 - 7.10.2020: Testing mit echten Daten, Evaluierung und Fehlverhalten finden und ausbessern (→ V.2)
 #### 01.11.2020 Masterarbeit V.1
@@ -32,12 +31,12 @@
 # 🏗Timeline Progress
 
 
-## 1.10.2010 - 31.10.2020: Fokus auf schriflichen Teil + Doku
+## 1.11.2010 - 30.11.2020: Fokus auf schriflichen Teil + Doku
 
 <details><summary>Ausblick</summary>
 <p>
 <ul>
-  <li>schriftlicher Teil grob fertig</li>
+  <li>schriftlicher Teil bis Diskussion fertig</li>
   <li>Doku Architektur</li>
 
 </ul>
@@ -47,6 +46,22 @@
 </ul>
 </p>
 </details>
+
+## 01.10.2020 - 31.10.2020: Fokus auf Prototype V.1
+
+- Grober Text-Entwurf für Masterarbeit bis Diskussion steht
+- Mockup finale Version für Prototypen
+
+### Software
+#### NEW
+- Patienten/-innen Vorauswahl
+- Auswahl zwischen Lokaler oder XDS Auswahl
+- Sortierung von EK und AK
+- Speichern von ausgewählten personen
+
+#### IMPROVE / CHANGE
+- BE: Lokale Datenverarbeitung mit Cache
+- FE: bessere Darstellung für vorhandene CDA Dokumente
 
 ## 01.09.2020 - 30.09.2020: Fokus auf Prototype V.1
 
