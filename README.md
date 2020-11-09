@@ -47,7 +47,7 @@
 </p>
 </details>
 
-## 01.10.2020 - 31.10.2020: Fokus auf Prototype V.1
+## 01.10.2020 - 31.10.2020: Fokus auf schriftlichen Teil und Prototype V.1
 
 - Grober Text-Entwurf für Masterarbeit bis Diskussion steht
 - Mockup finale Version für Prototypen
