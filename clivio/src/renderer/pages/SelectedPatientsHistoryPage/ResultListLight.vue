@@ -60,6 +60,7 @@
             :label="columnsVisible['ecNoData'].title"
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
+             width="100px"
             >{{
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
@@ -100,7 +101,6 @@
 </template>
 
 <script>
-
 export default {
   name: "ResultListLight",
   props: ["currentSelectedPatients"],
@@ -157,7 +157,7 @@ export default {
   },
   created: function () {
     for (var i = 0; i < this.currentSelectedPatients.length; i++) {
-      this.selectedPatients.push(this.currentSelectedPatients[i].patient_id)
+      this.selectedPatients.push(this.currentSelectedPatients[i].patient_id);
     }
   },
   methods: {
@@ -202,130 +202,5 @@ export default {
 </script>
 
 <style lang="scss">
-.ic-ac-main-header.th {
-  text-align: center;
-}
 
-.checkbox-patient {
-  width: 3%;
-}
-
-.ic-achieved,
-.ic-not-achieved,
-.ic-no-data,
-.ec-achieved,
-.ec-not-achieved,
-.ec-no-data {
-  width: 5%;
-  font-size: small;
-  font-weight: 600;
-}
-
-.ic-achieved,
-.ec-not-achieved {
-  color: rgb(4, 196, 90) !important;
-}
-
-.ic-not-achieved,
-.ec-achieved {
-  color: rgb(223, 51, 51) !important;
-}
-
-.ec-no-data,
-.ic-no-data {
-  color: rgb(154, 154, 154) !important;
-}
-
-.type-tag {
-  border-radius: 4px;
-  // padding: 0 1vh;
-  height: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  float: left;
-
-  color: white;
-}
-.condition-tr {
-  display: none;
-}
-
-//display: contents;
-
-.greenBackgroundClass {
-  background-color: rgb(4, 196, 90);
-}
-
-.redBackgroundClass {
-  background-color: rgb(223, 51, 51);
-}
-
-.greenFillClass {
-  color: rgb(4, 196, 90);
-}
-
-.redFillClass {
-  color: rgb(223, 51, 51);
-}
-
-.greyFillClass {
-  color: rgb(154, 154, 154);
-}
-
-.yellowFillClass {
-  color: rgb(204, 180, 41);
-}
-.criterion-name {
-  cursor: default;
-}
-.condition-t {
-  background: yellow;
-}
-
-.condition-td {
-  cursor: pointer;
-  //TODO only if results
-}
-.condition-details {
-  font-size: small;
-}
-
-.popup-container {
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  // min-height: 100vh;
-  // overflow: hidden;
-  // background-color: salmon;
-}
-
-.modal-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 98;
-  background-color: rgba(250, 250, 250, 0.41);
-}
-.popup-window {
-  position: absolute;
-  top: 35%;
-  left: 70%;
-  transform: translate(-50%, -50%);
-  z-index: 99;
-  height: 50%;
-  width: 50%;
-  background-color: white;
-}
-.fade-enter-active,
-fade-leave-active {
-  transition: opacity 0.5s;
-}
-
-.fade-enter,
-fade-leave-to {
-  opacity: 0;
-}
 </style>

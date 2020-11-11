@@ -2,7 +2,7 @@
   <main>
     <div class="main">
       <b-table
-        :data="response"
+        :data="patientListDefault"
         ref="table"
         paginated
         per-page="30"
@@ -23,6 +23,7 @@
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
             width="100%"
+            :class="props.row.patient_id.toString()"
           >
             <template>
               <a @click="toggle(props.row)"
@@ -37,6 +38,7 @@
             :subheading="columnsVisible['icAchieved'].subheading"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{ props.row.criterion_results_overview_ic }}</b-table-column
           >
 
@@ -46,6 +48,7 @@
             :subheading="columnsVisible['icNotAchieved'].subheading"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ic_negative
             }}</b-table-column
@@ -57,6 +60,7 @@
             :subheading="columnsVisible['icNoData'].subheading"
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ic_no_data
             }}</b-table-column
@@ -68,25 +72,28 @@
             :subheading="columnsVisible['ecAchieved'].subheading"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{ props.row.criterion_results_overview_ec }}</b-table-column
           >
 
           <b-table-column
-            label="123"
+            label="ecNotAchieved"
             :visible="columnsVisible['ecNotAchieved'].display"
             :subheading="columnsVisible['ecNotAchieved'].subheading"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ec_negative
             }}</b-table-column
           >
           <b-table-column
-            label="1233"
+            label="ecNoData"
             :visible="columnsVisible['ecNoData'].display"
             :subheading="columnsVisible['ecNoData'].subheading"
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
@@ -149,7 +156,12 @@
                 <template
                   v-if="item.criterion_summary_result == 'positive_hit'"
                 >
-                  <td class="greenFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Eine Bedingung konnte das EK erfüllen"
+                    class="greenFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -163,7 +175,12 @@
                     item.criterion_summary_result == 'positive_and_negative_hit'
                   "
                 >
-                  <td class="yellowFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Positive und negative Treffer bei den zugehörigen Bedingung"
+                    class="yellowFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -176,7 +193,12 @@
                   v-else-if="item.criterion_summary_result == 'negative_hit'"
                 >
                   <td></td>
-                  <td class="redFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Eine Bedingung konnte das EK ausschließen"
+                    class="redFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -187,7 +209,12 @@
                 <template v-else>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Keine Informationen zum EK wurden gefunden"
+                    class="greyFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -202,7 +229,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="redFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Eine Bedingung konnte das AK erfüllen"
+                    class="redFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -216,7 +248,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="yellowFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Positive und negative Treffer bei den zugehörigen Bedingung"
+                    class="yellowFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -229,7 +266,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="greenFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Eine Bedingung konnte das AK ausschließen"
+                    class="greenFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                   <td></td>
@@ -240,7 +282,12 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered">⬤</td>
+                  <td
+                    title="Keine Informationen zum AK wurden gefunden"
+                    class="greyFillClass has-text-centered"
+                  >
+                    ⬤
+                  </td>
                   <td></td>
                   <td></td>
                 </template>
@@ -269,6 +316,7 @@
                   "
                 >
                   <td
+                    title="Positiver Treffer für Bedingung gefunden"
                     class="greenFillClass has-text-centered condition-details"
                   >
                     ⬤
@@ -288,7 +336,10 @@
                   "
                 >
                   <td></td>
-                  <td class="redFillClass has-text-centered condition-details">
+                  <td
+                    title="Negativer Treffer für Bedingung gefunden"
+                    class="redFillClass has-text-centered condition-details"
+                  >
                     ⬤
                   </td>
                   <td></td>
@@ -301,7 +352,10 @@
                 <template v-else>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered condition-details">
+                  <td
+                    title="Keine Informationen gefunden"
+                    class="greyFillClass has-text-centered condition-details"
+                  >
                     ⬤
                   </td>
                   <td></td>
@@ -321,7 +375,10 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="redFillClass has-text-centered condition-details">
+                  <td
+                    title="Positiver Treffer für Bedingung gefunden"
+                    class="redFillClass has-text-centered condition-details"
+                  >
                     ⬤
                   </td>
                   <td></td>
@@ -340,6 +397,7 @@
                   <td></td>
                   <td></td>
                   <td
+                    title="Negativer Treffer für Bedingung gefunden"
                     class="greenFillClass has-text-centered condition-details"
                   >
                     ⬤
@@ -354,7 +412,10 @@
                   <td></td>
                   <td></td>
                   <td></td>
-                  <td class="greyFillClass has-text-centered condition-details">
+                  <td
+                    title="Keine Informationen gefunden"
+                    class="greyFillClass has-text-centered condition-details"
+                  >
                     ⬤
                   </td>
                   <td></td>
@@ -397,7 +458,7 @@ import ConditionDetails from "./ConditionDetails";
 export default {
   name: "ResultList",
   components: { ConditionDetails },
-  props: ["response"],
+  props: ["patientListDefault"],
   data() {
     return {
       showModal: false,
@@ -452,6 +513,9 @@ export default {
       patientID: 0,
     };
   },
+  mounted() {
+    this.filterPatientList();
+  },
   methods: {
     checkPatient(patient_id, check_type) {
       if (check_type == true && !this.selectedPatients.includes(patient_id)) {
@@ -488,6 +552,7 @@ export default {
           checkboxTrueElement.classList.remove("is-success");
         }
       }
+      //this.filterPatientList();
     },
     closeAllOtherDetails(row, index) {
       this.defaultOpenedDetails = [row.patient_id];
@@ -518,6 +583,31 @@ export default {
         }
       }
     },
+    filterPatientList() {
+      /*   this.rejectedPatients.forEach((id) => {
+        // change background color
+        const classList = document.getElementsByClassName(id.toString());
+        for (var i = 0; i < classList.length; i++) {
+          console.log("change color to red for" + classList[i].toString());
+          classList[i].style.backgroundColor = "rgba(255, 61, 61, 0.6)";
+        }
+      });
+      this.selectedPatients.forEach((id) => {
+        const classList = document.getElementsByClassName(id.toString());
+        for (var i = 0; i < classList.length; i++) {
+          console.log("change color to grey for" + classList[i].toString());
+          classList[i].style.backgroundColor = "transparent";
+        }
+      }); */
+      this.patientListDefault.forEach((patient) => {
+        if (patient.criterion_results_overview_ec > 0){     
+        const classList = document.getElementsByClassName(patient.patient_id.toString());
+        for (var i = 0; i < classList.length; i++) {
+          classList[i].style.backgroundColor = "rgba(255, 61, 61, 0.1)";
+        }
+        }
+      });
+    },
   },
 };
 </script>
@@ -531,9 +621,7 @@ export default {
   width: 3%;
 }
 
-
-
-.is-subheading{
+.is-subheading {
   font-size: small;
 }
 .ic-achieved,
@@ -541,22 +629,29 @@ export default {
   color: rgb(9, 9, 9) !important;
 }
 
-.ic-not-achieved, .ic-no-data, .ec-not-achieved, .ec-no-data{
+.ic-not-achieved,
+.ic-no-data,
+.ec-not-achieved,
+.ec-no-data {
   color: transparent !important;
 }
-.ec-achieved, .ec-not-achieved, .ec-no-data {
+.ec-achieved,
+.ec-not-achieved,
+.ec-no-data {
   background-color: rgba(223, 51, 51, 0.296) !important;
 }
 
-.ic-achieved, .ic-not-achieved, .ic-no-data {
-  background-color:rgba(4, 196, 90, 0.296);
+.ic-achieved,
+.ic-not-achieved,
+.ic-no-data {
+  background-color: rgba(4, 196, 90, 0.296);
 }
 
 .type-tag {
   border-radius: 4px;
   // padding: 0 1vh;
   height: 50%;
-  width: 5vh;
+  width: 8vh;
   display: flex;
   justify-content: center;
   align-items: center;

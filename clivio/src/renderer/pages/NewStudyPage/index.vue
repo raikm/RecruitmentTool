@@ -14,12 +14,7 @@
           :informations="informations"
         />
       </div>
-
-      <div>
-        <NewStudyAddFile id="addFile" :dropFiles="dropFiles" />
-      </div>
-
-      <b-button id="btnValidate" @click="validateData()">Validieren</b-button>
+      <b-button id="btnSave" @click="validateData()">Studie speichern</b-button>
     </div>
   </main>
 </template>
@@ -31,7 +26,6 @@ import NewStudyAddCriterion from "./NewStudyAddCriterion";
 import NewStudyCriterionList from "./NewStudyCriterionList";
 import NewStudyAddInformation from "./NewStudyAddInformation";
 import NewStudyInformationList from "./NewStudyInformationList";
-import NewStudyAddFile from "./NewStudyAddFile";
 
 export default {
   name: "NewStudyPage",
@@ -39,7 +33,6 @@ export default {
     return {
       criterions: [],
       informations: [],
-      dropFiles: [],
       headerName: "EDITOR",
       responseJson: [],
     };
@@ -52,7 +45,6 @@ export default {
     NewStudyCriterionList,
     NewStudyAddInformation,
     NewStudyInformationList,
-    NewStudyAddFile,
   },
   methods: {
     addCriteria(newCriteria) {
@@ -69,16 +61,11 @@ export default {
 
       const criterions = this.criterions;
       const informations = this.informations;
-      const files = this.dropFiles;
 
     
       var criterionsJson = JSON.stringify(criterions);
       var informationsJson = JSON.stringify(informations);
-
-      //TODO: is for loop necessary?
-      for (const file of files) {
-        formData.append("file", file);
-      }
+     
 
       formData.append("Study_Name", studyName);
       formData.append("Description", description);
@@ -113,9 +100,9 @@ export default {
   padding: 10px;
   /* overflow: hidden;  */
 }
-#btnValidate {
+#btnSave {
   margin-top: 25px;
-  /* float: right; */
+  float: right;
   /* margin: 1%; */
   /* background-color: var(--main-color); */
 }
