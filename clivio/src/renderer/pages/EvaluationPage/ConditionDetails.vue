@@ -106,7 +106,7 @@
         v-if="currentCondition.value_results.values.length > 0"
         class="matches-subtitle"
       >
-        Grobe Treffer
+        Informationsbedürfnisse
       </h2>
 
       <div
@@ -131,6 +131,8 @@
             </span>
           </div>
         </div>
+
+        <div class="value-description"><span>{{result.value_result_description}}</span></div>
 
         <ul>
           <li class="hit-result" v-for="hit in result.value_result" :key="hit">
