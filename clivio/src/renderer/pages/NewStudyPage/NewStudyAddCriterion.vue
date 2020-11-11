@@ -59,7 +59,13 @@
           :id="condition.roughXpathId"
           type="text"
           v-model="condition.roughXpath"
-          placeholder="Rough xPath"
+          placeholder="Grober xPath"
+        />
+          <b-input
+          :id="condition.roughDescriptionXpathId"
+          type="text"
+          v-model="condition.roughDescriptionXpath"
+          placeholder="Grober xPath Beschreibung"
         />
 
         
@@ -86,10 +92,12 @@ export default {
           xPathId: "xPath-0",
           condtionNegativeXpathId: "neg-xPath-0",
           roughXpathId: "value-xPath-0",
+          roughDescriptionXpathId: "value-desc-xPath-0",
           conditionName: "",
           condtionXpath: "",
           condtionNegativeXpath: "",
-          roughXpath: ""
+          roughXpath: "",
+          roughDescriptionXpath: "",
         },
       ],
     };
@@ -110,10 +118,12 @@ export default {
           xPathId: "xPath-0",
           condtionNegativeXpathId: "neg-xPath-0",
           roughXpathId: "value-xPath-0",
+          roughDescriptionXpathId: "value-desc-xPath-0",
           conditionName: "",
           condtionXpath: "",
           condtionNegativeXpath: "",
-          roughXpath: ""
+          roughXpath: "",
+          roughDescriptionXpath: "",
         },]
     },
     addNewLine() {
@@ -122,10 +132,12 @@ export default {
         xPathId: `xPath-${++this.counter}`,
         condtionNegativeXpathId: `neg-xPath-${++this.counter}`,
         roughXpathId:`value-xPath-${++this.counter}`,
+        roughDescriptionXpathId:`value-desc-xPath-${++this.counter}`,
         conditionName: "",
         condtionXpath: "",
         condtionNegativeXpath: "",
         roughXpath: "",
+        roughDescriptionXpath: "",
       }); 
     },
     removeLastLine() {

@@ -47,6 +47,11 @@
             :label="columnsVisible['roughXpath'].title"
             width="400"
           ></b-table-column>
+            <b-table-column
+            :visible="columnsVisible['roughDescriptionXpath'].display"
+            :label="columnsVisible['roughDescriptionXpath'].title"
+            width="400"
+          ></b-table-column>
         </template>
 
         <template slot="detail" slot-scope="props">
@@ -67,6 +72,7 @@
               v-show="columnsVisible['condtionNegativeXpath'].display"
             >{{ item.condtionNegativeXpath }}</td>
             <td td width="400" v-show="columnsVisible['roughXpath'].display">{{ item.roughXpath }}</td>
+            <td td width="400" v-show="columnsVisible['roughDescriptionXpath'].display">{{ item.roughDescriptionXpath }}</td>
           </tr>
         </template>
       </b-table>
@@ -86,7 +92,8 @@ export default {
         conditionName: { title: "Bedingung", display: true },
         condtionXpath: { title: "xPath", display: true },
         condtionNegativeXpath: { title: "Negative xPath", display: true },
-        roughXpath: { title: "Rough xPath", display: true }
+        roughXpath: { title: "Grober xPath", display: true },
+        roughDescriptionXpath: { title: "Grober xPath Beschreibung", display: true }
       }
     };
   },
