@@ -332,6 +332,26 @@
                 <template
                   v-else-if="
                     condition.evaluation_results.evaluation_result_summary ==
+                    'positive_and_negative_hits'
+                  "
+                >
+                  <td
+                    title="Positive und Negative Treffer für Bedingung gefunden"
+                    class="yellowFillClass has-text-centered condition-details"
+                  >
+                    ⬤
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </template>
+                <template
+                  v-else-if="
+                    condition.evaluation_results.evaluation_result_summary ==
                     'negative_hit'
                   "
                 >
@@ -378,6 +398,26 @@
                   <td
                     title="Positiver Treffer für Bedingung gefunden"
                     class="redFillClass has-text-centered condition-details"
+                  >
+                    ⬤
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </template>
+                 <template
+                  v-else-if="
+                    condition.evaluation_results.evaluation_result_summary ==
+                    'positive_and_negative_hits'
+                  "
+                >
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td
+                    title="Positiver und Negative Treffer für Bedingung gefunden"
+                    class="yellowFillClass has-text-centered condition-details"
                   >
                     ⬤
                   </td>
@@ -602,6 +642,9 @@ export default {
       this.patientListDefault.forEach((patient) => {
         if (patient.criterion_results_overview_ec > 0){     
         const classList = document.getElementsByClassName(patient.patient_id.toString());
+       
+
+
         for (var i = 0; i < classList.length; i++) {
           classList[i].style.backgroundColor = "rgba(255, 61, 61, 0.1)";
         }
@@ -651,7 +694,7 @@ export default {
   border-radius: 4px;
   // padding: 0 1vh;
   height: 50%;
-  width: 8vh;
+  width: 40px;
   display: flex;
   justify-content: center;
   align-items: center;

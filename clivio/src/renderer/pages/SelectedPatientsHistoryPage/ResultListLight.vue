@@ -6,6 +6,8 @@
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
+            width="100%"
+            :class="props.row.patient_id.toString()"
           >
             {{ props.row.patient_first_name }} {{ props.row.patient_last_name }}
           </b-table-column>
@@ -13,26 +15,32 @@
           <b-table-column
             :visible="columnsVisible['icAchieved'].display"
             :label="columnsVisible['icAchieved'].title"
+            :subheading="columnsVisible['icAchieved'].subheading"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{ props.row.criterion_results_overview_ic }}</b-table-column
           >
 
           <b-table-column
+            label="icnotachieved"
             :visible="columnsVisible['icNotAchieved'].display"
-            :label="columnsVisible['icNotAchieved'].title"
+            :subheading="columnsVisible['icNotAchieved'].subheading"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ic_negative
             }}</b-table-column
           >
 
           <b-table-column
+            label="icnodata"
             :visible="columnsVisible['icNoData'].display"
-            :label="columnsVisible['icNoData'].title"
+            :subheading="columnsVisible['icNoData'].subheading"
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ic_no_data
             }}</b-table-column
@@ -41,26 +49,31 @@
           <b-table-column
             :visible="columnsVisible['ecAchieved'].display"
             :label="columnsVisible['ecAchieved'].title"
+            :subheading="columnsVisible['ecAchieved'].subheading"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{ props.row.criterion_results_overview_ec }}</b-table-column
           >
 
           <b-table-column
+            label="ecNotAchieved"
             :visible="columnsVisible['ecNotAchieved'].display"
-            :label="columnsVisible['ecNotAchieved'].title"
+            :subheading="columnsVisible['ecNotAchieved'].subheading"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ec_negative
             }}</b-table-column
           >
           <b-table-column
+            label="ecNoData"
             :visible="columnsVisible['ecNoData'].display"
-            :label="columnsVisible['ecNoData'].title"
+            :subheading="columnsVisible['ecNoData'].subheading"
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
-             width="100px"
+            :class="props.row.patient_id.toString()"
             >{{
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
@@ -72,8 +85,8 @@
             class="checkbox-patient"
           >
             <b-button
-              class="is-success"
               :id="'checkbox-t-' + props.row.patient_id"
+              class="is-success"
               @click="checkPatient(props.row.patient_id, true)"
               size="is-small"
             >
@@ -113,32 +126,34 @@ export default {
       columnsVisible: {
         name: { title: "Patientenname", display: true },
         icAchieved: {
-          title: "erfüllt",
+          title: "EK",
           display: true,
           headerClass: "ic-achieved",
+          subheading: "erfüllt",
         },
         icNotAchieved: {
-          title: "nicht erfüllt",
+          subheading: "nicht erfüllt",
           display: true,
           headerClass: "ic-not-achieved",
         },
         icNoData: {
-          title: "keine Daten",
+          subheading: "keine Daten",
           display: true,
           headerClass: "ic-no-data",
         },
         ecAchieved: {
-          title: " erfüllt",
+          title: "AK",
+          subheading: "erfüllt",
           display: true,
           headerClass: "ec-achieved",
         }, //BUG: same name not valid
         ecNotAchieved: {
-          title: " nicht erfüllt",
+          subheading: "nicht erfüllt",
           display: true,
           headerClass: "ec-not-achieved",
         },
         ecNoData: {
-          title: " keine Daten",
+          subheading: "keine Daten",
           display: true,
           headerClass: "ec-no-data",
         },
@@ -158,6 +173,7 @@ export default {
   created: function () {
     for (var i = 0; i < this.currentSelectedPatients.length; i++) {
       this.selectedPatients.push(this.currentSelectedPatients[i].patient_id);
+
     }
   },
   methods: {
@@ -202,5 +218,4 @@ export default {
 </script>
 
 <style lang="scss">
-
 </style>

@@ -25,7 +25,7 @@
         class="hit-container"
         v-for="result in currentCondition.evaluation_results.positive_hits"
         :key="result.document_id"
-        @click="openCDA(result.document_id)"
+        @click="openCDA(result.document_id, result.document_hit_position[0])"
         @mouseover="showToolTip(result.document_id, 1)"
         @mouseleave="hideToolTip(result.document_id, 1)"
       >
@@ -70,7 +70,7 @@
         class="hit-container"
         v-for="result in currentCondition.evaluation_results.negative_hits"
         :key="result.document_id"
-        @click="openCDA(result.document_id)"
+        @click="openCDA(result.document_id, result.document_hit_position[0])"
         @mouseover="showToolTip(result.document_id, 2)"
         @mouseleave="hideToolTip(result.document_id, 2)"
       >
@@ -113,7 +113,7 @@
         class="hit-container"
         v-for="result in currentCondition.value_results.values"
         :key="result.document_id"
-        @click="openCDA(result.document_id)"
+        @click="openCDA(result.document_id, null)"
         @mouseover="showToolTip(result.document_id, 3)"
         @mouseleave="hideToolTip(result.document_id, 3)"
       >
@@ -132,7 +132,9 @@
           </div>
         </div>
 
-        <div class="value-description"><span>{{result.value_result_description}}</span></div>
+        <div class="value-description">
+          <span>{{ result.value_result_description }}</span>
+        </div>
 
         <ul>
           <li class="hit-result" v-for="hit in result.value_result" :key="hit">
@@ -162,10 +164,19 @@ export default {
   data() {
     return {
       htmlCDAFile: null,
+      scrollId: "",
     };
   },
+  updated() {
+    if (this.htmlCDAFile != null && this.scrollId != null) {
+      //find id
+      document.getElementById(this.scrollId).scrollIntoView();
+      //TODO: try find plain text for marking it yellow
+    }
+  },
+
   methods: {
-    openCDA(document_id) {
+    openCDA(document_id, hitPositionId) {
       this.showToastInfo("CDA Datei wird heruntergeladen");
       axios({
         method: "GET",
@@ -184,6 +195,7 @@ export default {
           overviewHeader.style.display = "inline";
         })
         .catch((response) => {});
+       this.scrollId = hitPositionId;
     },
     showConditionDetails() {
       var overviewContainer = document.getElementById("overview-container");

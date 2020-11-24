@@ -57,7 +57,7 @@
         />
       </div>
       <br />
-      <b-button id="btnValidate" @click="validateData()"
+      <b-button title="Studienkritieren mit ELGA Dokumenten gegenprüfen" id="btnValidate" @click="validateData()"
         >Patienten/Patientinnen überprüfen</b-button
       >
     </div>
@@ -116,13 +116,13 @@ export default {
       })
         .then((response) => {
           this.patientData = response.data;
-         
+
           document.getElementById("btnValidate").style.display = "inline";
           document.getElementById("upload-container").style.display = "none";
           document.getElementById(
             "patienten-collection-list-container"
           ).style.display = "inline";
-           document.getElementById("next-step-container").style.display = "none";
+          document.getElementById("next-step-container").style.display = "none";
         })
         .catch((response) => {
           this.showToastInfo(response);
@@ -147,7 +147,7 @@ export default {
     },
     collectPatients() {
       this.getPatients();
-       this.localAnalysis = false;
+      this.localAnalysis = false;
       document.getElementById(
         "patienten-collection-list-container"
       ).style.display = "inline";
@@ -160,7 +160,7 @@ export default {
         "patienten-collection-list-container"
       ).style.display = "none";
       document.getElementById("btnValidate").style.display = "none";
-       this.localAnalysis = true;
+      this.localAnalysis = true;
     },
     getPatients() {
       axios({
@@ -178,15 +178,10 @@ export default {
       const formData = new FormData();
 
       const studyName = document.getElementById("study-name").value;
-      const description = document.getElementById("study-description").value;
 
-      const criterions = this.criterions;
-      const informations = this.informations;
       const patientData = this.$refs.StudyPatientCollectionList.checkedRows;
       const files = this.dropFiles;
 
-      var criterionsJson = JSON.stringify(criterions);
-      var informationsJson = JSON.stringify(informations);
       var patientDataJson = JSON.stringify(patientData);
 
       for (const file of files) {
@@ -194,10 +189,7 @@ export default {
       }
 
       formData.append("Study_Name", studyName);
-      formData.append("Description", description);
-      formData.append("Criterias[]", criterionsJson);
       formData.append("Local_Analysis", this.localAnalysis);
-      formData.append("Information_Needs[]", informationsJson);
       formData.append("Selected_Patients[]", patientDataJson);
 
       this.showToastInfo("Daten werden verarbeitet...");
@@ -220,11 +212,22 @@ export default {
     },
     fillData() {
       this.study = this.$route.query;
-      var studyName = (document.getElementById("study-name").value =
-        this.study.name);
-      var description = (document.getElementById("study-description").value =
-        this.study.description);
-      this.criterions = this.study.criterions.sort((a, b) => (a.criterion_type < b.criterion_type) ? 1 : -1);
+      document.getElementById("study-name").value = this.study.name;
+      document.getElementById("head-of-study").value = this.study.head_of_study;
+      document.getElementById(
+        "head-of-study-contact"
+      ).value = this.study.head_of_study_contact;
+      document.getElementById("study-number").value = this.study.eudraCT_number;
+      document.getElementById(
+        "criterion-count"
+      ).value = this.study.criterion_count;
+      document.getElementById(
+        "criterion-elga-count"
+      ).value = this.study.elga_criterion_count;
+
+      this.criterions = this.study.criterions.sort((a, b) =>
+        a.criterion_type < b.criterion_type ? 1 : -1
+      );
       this.informations = this.study.information_needed;
     },
   },
