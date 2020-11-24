@@ -57,7 +57,10 @@
 - Patienten/-innen Vorauswahl
 - Auswahl zwischen Lokaler oder XDS Auswahl
 - Sortierung von EK und AK
-- Speichern von ausgewählten personen
+- Speichern von ausgewählten Personen
+- Ansicht und Sortierung nachdem Patienten analysiert wurden (AK erfüllt farblich hervorheben und nach unten sortieren)
+- Studie erstellen Dialog überarbeitet
+- Grober Treffer nun mit näherer Beschreibung
 
 #### IMPROVE / CHANGE
 - BE: Lokale Datenverarbeitung mit Cache
