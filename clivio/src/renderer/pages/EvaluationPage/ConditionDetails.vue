@@ -1,7 +1,7 @@
 <template>
   <div>
     <div id="overview-header">
-      <b-button @click="showConditionDetails">Zurück</b-button>
+      <b-button rounded @click="showConditionDetails">Zurück</b-button>
     </div>
     <div id="overview-container">
       <div

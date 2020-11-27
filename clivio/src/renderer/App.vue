@@ -1,31 +1,27 @@
 <template>
-
   <div id="app">
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdn.materialdesignicons.com/5.3.45/css/materialdesignicons.min.css"
+    />
 
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import DashboardPage from './pages/DashboardPage'
-import NewStudyPage from './pages/NewStudyPage'
+import DashboardPage from "./pages/DashboardPage";
+import NewStudyPage from "./pages/NewStudyPage";
 // import EvaluationPage from './pages/EvaluationPage'
 
-
-  export default {
-
-
-
-
-    name: 'clivio', 
-    components: {
-        NewStudyPage,
-        // EvaluationPage,
-        DashboardPage
-      }
-    
-  }
+export default {
+  name: "clivio",
+  components: {
+    NewStudyPage,
+    // EvaluationPage,
+    DashboardPage,
+  },
+};
 </script>
 
 <style lang="scss">
@@ -35,27 +31,29 @@ import NewStudyPage from './pages/NewStudyPage'
 // Set your colors
 $primary: #8c67ef;
 
-:root{
-    --main-color: #028482;
-    --main-text-color: rgb(253, 249, 249);
-    --main-text-font: arial; 
-    $secondary-color: #e46c21;
+:root {
+  --main-color: #2a6f97;
+  --main-text-color: black;
+  --main-text-font: arial;
+  $secondary-color: #e46c21;
+  background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
+}
+html,
+body {
+  font-family: "Arial";
+  height: 100%;
+  min-height: 100%;
 }
 
-  body {
-    font-family: "Arial";
-
+input[type="text"],
+textarea {
+  /* background-color: cyan; */
+  height: 24px;
+  font-size: 15px;
+  font-weight: 600;
 }
 
-input[type="text"], textarea{
-    /* background-color: cyan; */
-    height: 24px;
-    font-size: 15px;
-    font-weight: 600;
-    
-}
-
-::placeholder { 
+::placeholder {
   color: var(--main-color);
   opacity: 0.4;
 }
@@ -63,16 +61,25 @@ h {
   color: var(--main-color);
 }
 
-
 h3 {
   color: var(--main-color);
   margin: 1%;
 }
 
-
+.boxContainer {
+  background-color: rgba(255, 255, 255, 0.844);
+  margin: 10px 30px 0px 30px;
+  border: 0px solid;
+  border-radius: 10px;
+  padding: 5px;
+  /* overflow: hidden;  */
+}
+.table,
+.b-table,
+.table-wrapper {
+  background-color: rgba(255, 255, 255, 0.844) !important;
+}
 
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
-
-
 </style>

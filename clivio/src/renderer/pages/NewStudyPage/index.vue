@@ -1,7 +1,7 @@
 <template>
   <main>
     <AppHeader :headerName="headerName" />
-    <div class="mainContainer">
+    <div class="boxContainer">
       <div class="upperContainer">
         <NewStudyAddBasicinfos />
       </div>
@@ -14,7 +14,7 @@
           :informations="informations"
         />
       </div>
-      <b-button id="btnSave" @click="validateData()">Studie speichern</b-button>
+      <b-button rounded id="btnSave" @click="validateData()">Studie speichern</b-button>
     </div>
   </main>
 </template>
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style>
-.mainContainer {
+.boxContainer {
   background-color: rgba(245, 245, 245, 0.3);
   margin: 0px 50px 0px 50px;
   padding: 10px;

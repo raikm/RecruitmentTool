@@ -1,6 +1,5 @@
 <template>
   <div class="main">
-    <h3>Neue CDA Files hinzufügen</h3>
     <div class="dragfield">
       <section>
         <b-field>
@@ -19,7 +18,7 @@
         </b-field>
       </section>
     </div>
-    <div class="fileList">
+    <div v-if="dropFiles.length > 0" class="fileList">
       <b-table :data="dropFiles">
         <template slot-scope="props">
           <b-table-column label="Ausgewählte ELGA-Dokumente:" width=97%>
@@ -37,6 +36,7 @@
         </template>
       </b-table>
     </div>
+    <br/>
     <b-checkbox id="decision-checkbox" v-model="repositorySave" size="is-small">Daten im Repository abspeichern</b-checkbox>
   </div>
 </template>

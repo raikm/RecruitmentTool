@@ -81,10 +81,11 @@
           <b-table-column
             :visible="columnsVisible['check'].display"
             :label="columnsVisible['check'].title"
+            
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button
+            <b-button rounded
               :id="'checkbox-t-' + props.row.patient_id"
               class="is-success"
               @click="checkPatient(props.row.patient_id, true)"
@@ -99,7 +100,7 @@
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button
+            <b-button rounded
               :id="'checkbox-f-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, false)"
               size="is-small"

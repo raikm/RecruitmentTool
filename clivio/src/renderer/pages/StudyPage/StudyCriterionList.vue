@@ -1,7 +1,5 @@
 <template>
   <main>
-    <br />
-    <br />
     <div class="main">
       <b-table
         :data="criterions"

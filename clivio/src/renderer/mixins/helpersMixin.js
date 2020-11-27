@@ -16,7 +16,15 @@ Vue.mixin({
         duration: 5000,
         message: text,
         position: "is-bottom",
-        type: "is-light",
+        type: "is-success",
+      });
+    },
+    showToastInfo(text, duration) {
+      this.$buefy.toast.open({
+        duration: duration,
+        message: text,
+        position: "is-bottom",
+        type: "is-success",
       });
     },
   }

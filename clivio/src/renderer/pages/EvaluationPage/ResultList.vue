@@ -104,7 +104,7 @@
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button
+            <b-button rounded
               :id="'checkbox-t-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, true)"
               size="is-small"
@@ -118,7 +118,7 @@
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button
+            <b-button rounded
               :id="'checkbox-f-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, false)"
               size="is-small"

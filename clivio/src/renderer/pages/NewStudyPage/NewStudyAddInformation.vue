@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <b-button id="btn_add" @click="addInformation">Hinzufügen</b-button>
+    <b-button rounded id="btn_add" @click="addInformation">Hinzufügen</b-button>
   </form>
   <!-- </div> -->
 </template>

@@ -1,15 +1,14 @@
 <template>
   <main>
-    <h3>Patienten/Patientinnen auswählen</h3>
-  
-      <b-button
+    <div class="main">
+      <b-button rounded
          type="is-small"
         @click="checkedRows = []"
         :disabled="!checkedRows.length"
       >
-        <span>Auswahl zurücksetzen</span>
+          <b-icon icon="rotate-left" size="is-small" title="Auswahl zurücksetzen"> </b-icon > reset
       </b-button>
-
+  <div id="note-repository">Hinweis: Diese Patienten/Patientinnen sind im Repository hinterlegt.</div>
 
     <section>
       <b-table
@@ -20,9 +19,12 @@
         checkbox-position="left"
       >
       </b-table>
-    </section>
-    <span id="note-repository">Hinweis: Diese Patienten/Patientinnen sind im Repository hinterlegt.</span>
+
+  
+        </section>
+    </div>
   </main>
+  
 </template>
 
 <script>

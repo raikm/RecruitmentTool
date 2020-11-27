@@ -71,9 +71,9 @@
         
       </div>
     </div>
-    <b-button id="btn_add" @click="addNewLine">+</b-button>
-    <b-button id="btn_add" @click="removeLastLine">-</b-button>
-    <b-button id="btn_add" @click="addCriteria">Hinzufügen</b-button>
+    <b-button rounded id="btn_add" @click="addNewLine">+</b-button>
+    <b-button rounded id="btn_add" @click="removeLastLine">-</b-button>
+    <b-button rounded id="btn_add" @click="addCriteria">Hinzufügen</b-button>
 
   </main>
 </template>

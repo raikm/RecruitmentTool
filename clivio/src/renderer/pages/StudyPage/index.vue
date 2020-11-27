@@ -1,65 +1,66 @@
 <template>
   <main>
     <AppHeader :headerName="headerName" />
-    <div class="mainContainer">
-      <div class="upperContainer">
-        <StudyBasicinfos />
-      </div>
-      <b-button
-        id="btn-selected-patients"
-        class="is-small"
-        title="Patienten die nach Überprüfung gespeichert wurden"
-        @click="getSelectedPatients()"
-        >Gespeicherte Patienten/Patientinnen aufrufen</b-button
+    <div class="boxContainer">
+      <StudyBasicinfos :study="this.$route.query" />
+    </div>
+
+    <div class="boxContainer">
+      <StudyCriterionList id="criteriaList" :criterions="criterions" />
+    </div>
+    <div v-if="informations.length > 0" class="boxContainer">
+      <StudyInformationList id="criteriaList" :informations="informations" />
+    </div>
+
+    <div id="next-step-container">
+      <b-button rounded
+        title="Aus Repository auswählen"
+        class="btn-next-step"
+        id="btnShowPatients"
+        @click="collectPatients()"
+        >Patienten/Patientinnen auswählen</b-button
       >
-      <div>
-        <StudyCriterionList id="criteriaList" :criterions="criterions" />
-        <StudyInformationList id="criteriaList" :informations="informations" />
-      </div>
-      <div id="next-step-container">
-        <span id="next-step-info">⇾ Nächster Schritt: </span>
 
-        <b-button
-          title="Aus Repository auswählen"
-          class="btn-next-step"
-          id="btnShowPatients"
-          @click="collectPatients()"
-          >Patienten/Patientinnen auswählen</b-button
-        >
+      <b-button rounded
+        title=""
+        class="btn-next-step"
+        id="btnShowPatients"
+        @click="uploadCDALocal()"
+        >ELGA Dokumente auswählen</b-button
+      >
+    </div>
 
-        <b-button
-          title=""
-          class="btn-next-step"
-          id="btnShowPatients"
-          @click="uploadCDALocal()"
-          >ELGA Dokumente auswählen</b-button
-        >
-      </div>
-      <br />
-
-      <div id="upload-container">
+    <div id="upload-container">
+      <div class="boxContainer">
         <NewStudyAddFile
           ref="NewStudyAddFile"
           id="addFile"
           :dropFiles="dropFiles"
         />
         <br />
-        <b-button id="button-validate-cda-files" @click="validateCDAFiles()"
-          >Dateien überprüfen</b-button
-        >
-        <br />
-        <br />
+        <div class="button-line-validate-files">
+          <b-button rounded id="button-validate-cda-files" @click="validateCDAFiles()"
+            >Dateien überprüfen</b-button
+          >
+        </div>
       </div>
-      <div id="patienten-collection-list-container">
+    </div>
+
+    <div id="patienten-collection-list-container">
+      <div class="boxContainer">
         <StudyPatientCollectionList
           ref="StudyPatientCollectionList"
           :patientData="patientData"
         />
       </div>
-      <br />
-      <b-button title="Studienkritieren mit ELGA Dokumenten gegenprüfen" id="btnValidate" @click="validateData()"
-        >Patienten/Patientinnen überprüfen</b-button
-      >
+    </div>
+  <div class="button-line-validate">
+    <b-button rounded
+      title="Studienkritieren mit ELGA Dokumenten gegenprüfen"
+      id="btn-start-validate"
+      @click="validateData()"
+      >Patienten und Patientinnen überprüfen</b-button
+    >
     </div>
   </main>
 </template>
@@ -107,7 +108,7 @@ export default {
 
       formData.append("Repository_Save", repositorySave);
 
-      this.showToastInfo("Daten werden verarbeitet...");
+      this.showToastInfo("ELGA Daten werden geprüft", 1000);
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/api/validateSelectedCdaFiles/",
@@ -117,7 +118,7 @@ export default {
         .then((response) => {
           this.patientData = response.data;
 
-          document.getElementById("btnValidate").style.display = "inline";
+          document.getElementById("btn-start-validate").style.display = "inline";
           document.getElementById("upload-container").style.display = "none";
           document.getElementById(
             "patienten-collection-list-container"
@@ -152,14 +153,14 @@ export default {
         "patienten-collection-list-container"
       ).style.display = "inline";
       document.getElementById("upload-container").style.display = "none";
-      document.getElementById("btnValidate").style.display = "inline";
+      document.getElementById("btn-start-validate").style.display = "inline";
     },
     uploadCDALocal() {
       document.getElementById("upload-container").style.display = "inline";
       document.getElementById(
         "patienten-collection-list-container"
       ).style.display = "none";
-      document.getElementById("btnValidate").style.display = "none";
+      document.getElementById("btn-start-validate").style.display = "none";
       this.localAnalysis = true;
     },
     getPatients() {
@@ -175,14 +176,20 @@ export default {
         });
     },
     validateData() {
+      const patientDataSelected = this.$refs.StudyPatientCollectionList
+        .checkedRows;
+      if (patientDataSelected.length == 0) {
+        this.showToastError("Keine Personen ausgewählt");
+        return;
+      }
+
       const formData = new FormData();
 
-      const studyName = document.getElementById("study-name").value;
+      const studyName =this.study.name
 
-      const patientData = this.$refs.StudyPatientCollectionList.checkedRows;
       const files = this.dropFiles;
 
-      var patientDataJson = JSON.stringify(patientData);
+      var patientDataSelectedJson = JSON.stringify(patientDataSelected);
 
       for (const file of files) {
         formData.append("file", file);
@@ -190,7 +197,7 @@ export default {
 
       formData.append("Study_Name", studyName);
       formData.append("Local_Analysis", this.localAnalysis);
-      formData.append("Selected_Patients[]", patientDataJson);
+      formData.append("Selected_Patients[]", patientDataSelectedJson);
 
       this.showToastInfo("Daten werden verarbeitet...");
       axios({
@@ -203,28 +210,15 @@ export default {
           this.responseJson = response.data;
           this.$router.push({
             name: "evaluation-page",
-            query: this.responseJson,
+            query: [this.responseJson, this.study],
           });
         })
         .catch((response) => {
-          this.showToastInfo(response);
+          this.showToastError(response);
         });
     },
     fillData() {
       this.study = this.$route.query;
-      document.getElementById("study-name").value = this.study.name;
-      document.getElementById("head-of-study").value = this.study.head_of_study;
-      document.getElementById(
-        "head-of-study-contact"
-      ).value = this.study.head_of_study_contact;
-      document.getElementById("study-number").value = this.study.eudraCT_number;
-      document.getElementById(
-        "criterion-count"
-      ).value = this.study.criterion_count;
-      document.getElementById(
-        "criterion-elga-count"
-      ).value = this.study.elga_criterion_count;
-
       this.criterions = this.study.criterions.sort((a, b) =>
         a.criterion_type < b.criterion_type ? 1 : -1
       );
@@ -238,20 +232,11 @@ export default {
 </script>
 
 <style>
-.mainContainer {
-  background-color: rgba(245, 245, 245, 0.3);
-  margin: 0px 50px 0px 50px;
-  padding: 10px;
-  /* overflow: hidden;  */
-}
-
 #button-validate-cda-files {
-  margin-top: 25px;
-  float: right;
+  justify-self: center;
 }
-#btnValidate {
-  margin-top: 25px;
-  float: right;
+#btn-start-validate {
+
   display: none;
   /* margin: 1%; */
   /* background-color: var(--main-color); */
@@ -262,8 +247,7 @@ export default {
 #next-step-container {
   display: flex;
   align-items: center;
-  justify-content: right;
-  float: right;
+  justify-content: center;
 }
 
 #next-step-info {
@@ -283,7 +267,19 @@ export default {
 }
 
 #btn-selected-patients {
-  margin-top: 25px;
+  margin-left: 8px;
   float: right;
+}
+
+.button-line-validate-files {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-line-validate{
+   display: flex;
+  justify-content: center;
+  margin: 5px;
 }
 </style>

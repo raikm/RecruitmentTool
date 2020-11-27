@@ -1,25 +1,33 @@
 <template>
   <main>
     <AppHeader :headerName="headerName" />
+   <div class="boxContainer">
+      <StudyBasicinfos :study="this.$route.query[1]" />
+    </div>
+
+    <div class="boxContainer">
     <ResultListLight
       ref="ResultListLight"
       :currentSelectedPatients="currentSelectedPatients"
     />
-
-    <b-button id="btn-save-selected-patients" @click="saveSelectedPatients()"
+ </div>
+    <b-button rounded id="btn-save-selected-patients" @click="saveSelectedPatients()"
       >Speichern und Beenden</b-button
     >
+   
   </main>
 </template>
 
 <script>
 import AppHeader from "../../components/AppHeader";
 import ResultListLight from "./ResultListLight";
+import StudyBasicinfos from "../StudyPage/StudyBasicinfos"
 
 export default {
   name: "SelectedPatientsHistoryPage",
   components: {
     AppHeader,
+    StudyBasicinfos,
     ResultListLight,
   },
   data() {
