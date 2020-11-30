@@ -13,7 +13,7 @@
           title="Patienten die nach Überprüfung gespeichert wurden"
           @click="getSelectedPatients(study.id)"
         >
-          <b-icon icon="format-list-text" size="is-small"> </b-icon
+          <b-icon icon="playlist-check" size="is-small"> </b-icon
         ></b-button>
       </div>
     </div>

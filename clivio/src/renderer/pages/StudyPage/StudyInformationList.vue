@@ -3,13 +3,14 @@
     <div class="main">
       <b-table :hoverable="true" :data="informations">
         <template slot-scope="props">
-
-          <b-table-column field="information" label="Information" width="50%">
+          <b-table-column field="information" label="Informationsbedürfnisse" >
+            <div
+              class="type-tag blueBackgroundClass"
+              title="Informationsbedürfnis"
+            >
+             IB
+            </div>
             {{ props.row.name }}
-          </b-table-column>
-
-          <b-table-column field="xPath" label="xPath"  width="50%">
-            {{ props.row.xPath }}
           </b-table-column>
         </template>
       </b-table>
@@ -25,4 +26,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.blueBackgroundClass{
+  background-color: rgb(54, 51, 223);
+}
+
+</style>

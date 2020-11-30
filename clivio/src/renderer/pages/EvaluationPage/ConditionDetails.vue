@@ -3,7 +3,7 @@
     <div id="overview-header">
       <b-button rounded @click="showConditionDetails">Zurück</b-button>
     </div>
-    <div id="overview-container">
+    <div v-if="currentCriterion" id="overview-container">
       <div
         class="type-tag"
         :class="{
@@ -151,6 +151,52 @@
         </div>
       </div>
     </div>
+    <div v-if="currentInformation" id="overview-container">
+      <h2
+        class="matches-subtitle"
+      >
+        Informationsbedürfnisse für: {{currentInformation.information}}
+      </h2>
+
+      <div
+        class="hit-container"
+        v-for="result in currentInformation.results_for_documents"
+        :key="result.document_id"
+        @click="openCDA(result.document_id, null)"
+        @mouseover="showToolTip(result.document_id, 3)"
+        @mouseleave="hideToolTip(result.document_id, 3)"
+      >
+        <div class="cda-detail-container">
+          <div class="cda-meta-infos">
+            <b-icon icon="file-document" size="is-small"> </b-icon>
+            <span>ELGA Dokument vom&nbsp;</span>
+          </div>
+
+          <div class="cda-datum">
+            <span>
+              {{ new Date(result.document_date).toLocaleDateString("en-GB") }}
+              ({{ calculateMonths(new Date(result.document_date)) }}
+              Monate)
+            </span>
+          </div>
+        </div>
+
+
+        <ul>
+          <li class="hit-result" v-for="hit in result.value_results" :key="hit">
+            {{ hit }}
+          </li>
+        </ul>
+        <div
+          class="cda-detail-container-tooltip"
+          :id="'cda-detail-container-tooltip-rough-' + result.document_id"
+        >
+          <b-icon icon="file-download-outline" size="is-small"> </b-icon>
+
+          <span>ELGA Dokument öffnen </span>
+        </div>
+      </div>
+    </div>
 
     <div v-if="htmlCDAFile" id="cda-viewer" v-html="htmlCDAFile"></div>
   </div>
@@ -160,7 +206,12 @@
 export default {
   name: "ConditionDetails",
   components: {},
-  props: ["currentCondition", "currentCriterion", "patientID"],
+  props: [
+    "currentCondition",
+    "currentCriterion",
+    "currentInformation",
+    "patientID",
+  ],
   data() {
     return {
       htmlCDAFile: null,
@@ -195,7 +246,7 @@ export default {
           overviewHeader.style.display = "inline";
         })
         .catch((response) => {});
-       this.scrollId = hitPositionId;
+      this.scrollId = hitPositionId;
     },
     showConditionDetails() {
       var overviewContainer = document.getElementById("overview-container");

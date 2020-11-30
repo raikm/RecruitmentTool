@@ -104,7 +104,8 @@
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button rounded
+            <b-button
+              rounded
               :id="'checkbox-t-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, true)"
               size="is-small"
@@ -118,7 +119,8 @@
             :centered="true"
             class="checkbox-patient"
           >
-            <b-button rounded
+            <b-button
+              rounded
               :id="'checkbox-f-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, false)"
               size="is-small"
@@ -406,7 +408,7 @@
                   <td></td>
                   <td></td>
                 </template>
-                 <template
+                <template
                   v-else-if="
                     condition.evaluation_results.evaluation_result_summary ==
                     'positive_and_negative_hits'
@@ -464,6 +466,48 @@
               </template>
             </tr>
           </template>
+
+          <template v-for="item in props.row.information_needed_results">
+            <tr
+              :key="props.row.patient_id + item.name"
+              :class="{
+                disabledLineClass: item.results_for_documents.length == 0,
+                nondisabledLineClass: item.results_for_documents.length > 0,
+              }"
+              :title="
+                item.results_for_documents.length == 0
+                  ? 'Keine Treffer für das Informationsbedürfniss gefunden'
+                  : 'Informationsbedrüfnisse gefunden'
+              "
+            >
+              <td></td>
+
+              <td
+                v-show="columnsVisible['name'].display"
+                @click="openSource(item, props.row.patient_id)"
+              >
+                <div
+                  class="type-tag blueBackgroundClass"
+                  :class="{
+                    blueBackgroundClass: item.results_for_documents.length > 0,
+                    blueDisabledBackgroundClass:
+                      item.results_for_documents.length == 0,
+                  }"
+                >
+                  IB
+                </div>
+                {{ item.information }}
+              </td>
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+              <td />
+            </tr>
+          </template>
         </template>
       </b-table>
 
@@ -482,6 +526,7 @@
               <ConditionDetails
                 :currentCondition="currentCondition"
                 :currentCriterion="currentCriterion"
+                :currentInformation="currentInformation"
                 :patientID="patientID"
               />
             </div>
@@ -550,6 +595,7 @@ export default {
       },
 
       currentCondition: {},
+      currentInformation: {},
       patientID: 0,
     };
   },
@@ -610,6 +656,16 @@ export default {
       //   this.showToastError("Kriterium hat keine Ergebnisse!")
       // }
     },
+    openSource(information, patientId) {
+      if (information.results_for_documents.length > 0) {
+      this.showModal = true;
+      this.currentInformation = information;
+      this.patientID = patientId;
+      }
+      //else{
+      //   this.showToastError("Kriterium hat keine Ergebnisse!")
+      // }
+    },
     showCirterionDetails(criterion_name) {
       var classList = document.getElementsByClassName(criterion_name);
       for (var i = 0; i < classList.length; i++) {
@@ -640,14 +696,14 @@ export default {
         }
       }); */
       this.patientListDefault.forEach((patient) => {
-        if (patient.criterion_results_overview_ec > 0){     
-        const classList = document.getElementsByClassName(patient.patient_id.toString());
-       
+        if (patient.criterion_results_overview_ec > 0) {
+          const classList = document.getElementsByClassName(
+            patient.patient_id.toString()
+          );
 
-
-        for (var i = 0; i < classList.length; i++) {
-          classList[i].style.backgroundColor = "rgba(255, 61, 61, 0.1)";
-        }
+          for (var i = 0; i < classList.length; i++) {
+            classList[i].style.backgroundColor = "rgba(255, 61, 61, 0.1)";
+          }
         }
       });
     },
@@ -769,6 +825,7 @@ export default {
 .popup-window {
   position: absolute;
   border: 1px solid rgb(90, 90, 90);
+  border-radius: 10px;
   padding: 1%;
   top: 45%;
   left: 65%;
@@ -793,5 +850,18 @@ fade-leave-active {
 .fade-enter,
 fade-leave-to {
   opacity: 0;
+}
+
+.blueDisabledBackgroundClass {
+  background-color: rgba(54, 51, 223, 0.508);
+}
+
+.disabledLineClass {
+  color: gray;
+  cursor: default;
+}
+
+.nondisabledLineClass {
+  cursor: pointer;
 }
 </style>
