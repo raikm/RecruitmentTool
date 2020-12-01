@@ -740,7 +740,7 @@ export default {
 }
 .ic-not-achieved,
 .ec-not-achieved {
-  color: rgb(255, 255, 255) !important;
+  color: rgb(0, 0, 0) !important;
   font-size: small;
 
 }

@@ -14,7 +14,8 @@
 
           <b-table-column
             :visible="columnsVisible['icAchieved'].display"
-            :label="columnsVisible['icAchieved'].title"
+
+             label="icachieved"
             :subheading="columnsVisible['icAchieved'].subheading"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
@@ -23,7 +24,7 @@
           >
 
           <b-table-column
-            label="icnotachieved"
+                        :label="columnsVisible['icAchieved'].title"
             :visible="columnsVisible['icNotAchieved'].display"
             :subheading="columnsVisible['icNotAchieved'].subheading"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
@@ -48,7 +49,7 @@
 
           <b-table-column
             :visible="columnsVisible['ecAchieved'].display"
-            :label="columnsVisible['ecAchieved'].title"
+             label="ecAchieved"
             :subheading="columnsVisible['ecAchieved'].subheading"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
@@ -57,7 +58,8 @@
           >
 
           <b-table-column
-            label="ecNotAchieved"
+           
+            :label="columnsVisible['ecAchieved'].title"
             :visible="columnsVisible['ecNotAchieved'].display"
             :subheading="columnsVisible['ecNotAchieved'].subheading"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
@@ -124,10 +126,10 @@ export default {
       selectedPatients: [],
       rejectedPatients: [],
       defaultOpenedDetails: [1],
-      columnsVisible: {
+     columnsVisible: {
         name: { title: "Patientenname", display: true },
         icAchieved: {
-          title: "EK",
+          title: "Einschlusskriterien",
           display: true,
           headerClass: "ic-achieved",
           subheading: "erfüllt",
@@ -143,11 +145,11 @@ export default {
           headerClass: "ic-no-data",
         },
         ecAchieved: {
-          title: "AK",
+          title: "Ausschlusskriterien",
           subheading: "erfüllt",
           display: true,
           headerClass: "ec-achieved",
-        }, //BUG: same name not valid
+        }, 
         ecNotAchieved: {
           subheading: "nicht erfüllt",
           display: true,
@@ -167,6 +169,7 @@ export default {
           display: true,
         },
       },
+
 
       patientID: 0,
     };
