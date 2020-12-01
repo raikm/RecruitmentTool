@@ -6,9 +6,9 @@
     </div>
 
     <div class="boxContainer">
-    <ResultListLight
-      ref="ResultListLight"
-      :currentSelectedPatients="currentSelectedPatients"
+    <ResultList
+      ref="ResultList"
+      :patientListDefault="patientListDefault"
     />
  </div>
     <b-button rounded id="btn-save-selected-patients" @click="saveSelectedPatients()"
@@ -20,7 +20,7 @@
 
 <script>
 import AppHeader from "../../components/AppHeader";
-import ResultListLight from "./ResultListLight";
+import ResultList from "../EvaluationPage/ResultList";
 import StudyBasicinfos from "../StudyPage/StudyBasicinfos"
 
 export default {
@@ -28,22 +28,23 @@ export default {
   components: {
     AppHeader,
     StudyBasicinfos,
-    ResultListLight,
+    ResultList,
   },
   data() {
     return {
       headerName: "HISTORIE: AUSGEWÄHLTE PATIENTEN/PATIENTINNEN",
-      currentSelectedPatients: this.$route.query[0],
+      patientListDefault: this.$route.query[0],
     };
   },
   methods: {
     saveSelectedPatients() {
       const formData = new FormData();
-      const rejectedData = this.$refs.ResultListLight.rejectedPatients;
+      const rejectedData = this.$refs.ResultList.rejectedPatients;
       var rejectedDataJson = JSON.stringify(rejectedData);
-      formData.append("Study_Id",  this.$route.query[1]);
+
+      formData.append("Study_Id",  this.$route.query[1].id);
       formData.append("Rejected_Patients[]", rejectedDataJson);
-      this.showToastInfo("Auswahl wird gespeichert");
+
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/api/updateSelectedPatients/",
@@ -51,7 +52,7 @@ export default {
         headers: { "Content-Type": "multipart/form-data" },
       })
         .then((response) => {
-          this.showToastInfo(response.data);
+         this.showToastInfo("Auswahl gespeichert");
         })
         .catch((response) => {
           this.showToastInfo(response.data);

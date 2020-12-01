@@ -115,6 +115,7 @@
               :id="'checkbox-t-' + props.row.patient_id"
               @click="checkPatient(props.row.patient_id, true)"
               size="is-small"
+              :class="{'is-success':pageName.name == 'selected-patient-history-page'}"
             >
               <b-icon icon="check" size="is-small"> </b-icon
             ></b-button>
@@ -553,6 +554,7 @@ export default {
   data() {
     return {
       showModal: false,
+      pageName: this.$router.currentRoute,
       defaultOpenedDetails: [1],
       selectedPatients: [],
       rejectedPatients: [],
@@ -605,6 +607,12 @@ export default {
       patientID: 0,
     };
   },
+   created: function () {
+    for (var i = 0; i < this.selectedPatients.length; i++) {
+      this.selectedPatients.push(this.patientListDefault[i].patient_id);
+
+    }
+  },
   mounted() {
     this.filterPatientList();
   },
@@ -638,11 +646,13 @@ export default {
           if (index > -1) {
             this.selectedPatients.splice(index, 1);
           }
-          var checkboxTrueElement = document.getElementById(
+         
+         
+        }
+         var checkboxTrueElement = document.getElementById(
             "checkbox-t-" + patient_id
           );
-          checkboxTrueElement.classList.remove("is-success");
-        }
+         checkboxTrueElement.classList.remove("is-success");
       }
       //this.filterPatientList();
     },
