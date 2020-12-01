@@ -79,12 +79,12 @@ export default {
   color: white;
 }
 .greenBackgroundClass{
-  background-color: rgb(4, 196, 90);
+  background-color:  var(--main-green-color);
   
 }
 
 .redBackgroundClass{
-  background-color: rgb(223, 51, 51);
+  background-color:  var(--main-red-color);
 }
 
 </style>

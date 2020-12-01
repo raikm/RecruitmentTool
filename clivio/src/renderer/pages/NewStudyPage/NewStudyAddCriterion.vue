@@ -148,12 +148,7 @@ export default {
 </script>
 
 <style lang="scss">
-/* .inputContainer {
-  display: inline-flex;
-  width: 100%;
-  margin-bottom: 1%;
-  /* background-color:green; */
-/* }  */
+
 
 #btn_add,
 #btn_import {

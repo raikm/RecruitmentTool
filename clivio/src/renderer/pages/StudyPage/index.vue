@@ -154,14 +154,19 @@ export default {
       ).style.display = "inline";
       document.getElementById("upload-container").style.display = "none";
       document.getElementById("btn-start-validate").style.display = "inline";
+      setTimeout(function(){ 
+      window.scrollTo(0,document.body.scrollHeight); }, 100);
+
     },
     uploadCDALocal() {
+      
       document.getElementById("upload-container").style.display = "inline";
       document.getElementById(
         "patienten-collection-list-container"
       ).style.display = "none";
       document.getElementById("btn-start-validate").style.display = "none";
       this.localAnalysis = true;
+       window.scrollTo(0,document.body.scrollHeight);
     },
     getPatients() {
       axios({

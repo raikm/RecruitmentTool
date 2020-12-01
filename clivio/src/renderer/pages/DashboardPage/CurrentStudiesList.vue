@@ -24,7 +24,7 @@
         </b-table-column>
         <b-table-column
           field="id"
-          label="EudraCT Nummer"
+          label="Studien Nummer"
           width="30%"
           class="overview-clinical-trails-table-line"
         >

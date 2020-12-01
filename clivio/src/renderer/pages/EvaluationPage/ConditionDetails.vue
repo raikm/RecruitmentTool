@@ -246,7 +246,11 @@ export default {
           overviewHeader.style.display = "inline";
         })
         .catch((response) => {});
+      if (hitPositionId != null){
       this.scrollId = hitPositionId;
+      }else{
+         this.scrollId = "IDPatientContainer";
+      }
     },
     showConditionDetails() {
       var overviewContainer = document.getElementById("overview-container");

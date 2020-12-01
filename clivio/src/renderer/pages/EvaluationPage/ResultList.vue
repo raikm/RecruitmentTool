@@ -22,7 +22,7 @@
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
-            width="100%"
+             width="60%"
             :class="props.row.patient_id.toString()"
           >
             <template>
@@ -34,21 +34,23 @@
 
           <b-table-column
             :visible="columnsVisible['icAchieved'].display"
-            :label="columnsVisible['icAchieved'].title"
+            label="achieved"
             :subheading="columnsVisible['icAchieved'].subheading"
             :headerClass="columnsVisible['icAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+            width="4"
             >{{ props.row.criterion_results_overview_ic }}</b-table-column
           >
 
           <b-table-column
-            label="icnotachieved"
+            :label="columnsVisible['icAchieved'].title"
             :visible="columnsVisible['icNotAchieved'].display"
             :subheading="columnsVisible['icNotAchieved'].subheading"
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+             width="4"
             >{{
               props.row.criterion_results_overview_ic_negative
             }}</b-table-column
@@ -61,6 +63,7 @@
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+             width="4"
             >{{
               props.row.criterion_results_overview_ic_no_data
             }}</b-table-column
@@ -68,21 +71,23 @@
 
           <b-table-column
             :visible="columnsVisible['ecAchieved'].display"
-            :label="columnsVisible['ecAchieved'].title"
+            label="akachieved"
             :subheading="columnsVisible['ecAchieved'].subheading"
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+             width="4"
             >{{ props.row.criterion_results_overview_ec }}</b-table-column
           >
 
           <b-table-column
-            label="ecNotAchieved"
+            :label="columnsVisible['ecAchieved'].title"
             :visible="columnsVisible['ecNotAchieved'].display"
             :subheading="columnsVisible['ecNotAchieved'].subheading"
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+             width="4"
             >{{
               props.row.criterion_results_overview_ec_negative
             }}</b-table-column
@@ -94,6 +99,7 @@
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
+             width="4"
             >{{
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
@@ -305,7 +311,10 @@
               <td></td>
               <td
                 class="condition-td"
-                @click="openSource(condition, item, props.row.patient_id)"
+                @click="
+                  openConditionSource(condition, item, props.row.patient_id)
+                "
+  
                 title="Bedingung"
               >
                 &emsp;&emsp;&emsp;{{ condition.name }}
@@ -482,10 +491,7 @@
             >
               <td></td>
 
-              <td
-                v-show="columnsVisible['name'].display"
-                @click="openSource(item, props.row.patient_id)"
-              >
+              <td @click="openSource(item, props.row.patient_id)">
                 <div
                   class="type-tag blueBackgroundClass"
                   :class="{
@@ -553,7 +559,7 @@ export default {
       columnsVisible: {
         name: { title: "Patientenname", display: true },
         icAchieved: {
-          title: "EK",
+          title: "Einschlusskriterien",
           display: true,
           headerClass: "ic-achieved",
           subheading: "erfüllt",
@@ -569,11 +575,11 @@ export default {
           headerClass: "ic-no-data",
         },
         ecAchieved: {
-          title: "AK",
+          title: "Ausschlusskriterien",
           subheading: "erfüllt",
           display: true,
           headerClass: "ec-achieved",
-        }, //BUG: same name not valid
+        }, 
         ecNotAchieved: {
           subheading: "nicht erfüllt",
           display: true,
@@ -646,21 +652,30 @@ export default {
     toggle(row) {
       this.$refs.table.toggleDetails(row);
     },
-    openSource(condition, item, patientId) {
-      // if (item.criterion_summary_result != "no_hit") {
+    openConditionSource(condition, item, patientId) {
+
+      if (
+        condition.evaluation_results.evaluation_result_summary == "no_hit" &&
+        condition.value_results.values.length == 0
+      ) {
+        return;
+      }
       this.showModal = true;
+      this.currentInformation = null
       this.currentCondition = condition;
       this.currentCriterion = item;
       this.patientID = patientId;
-      // }else{
-      //   this.showToastError("Kriterium hat keine Ergebnisse!")
-      // }
     },
     openSource(information, patientId) {
+      if (this.currentCondition) {
+        this.currentCondition = null;
+        this.currentCriterion = null;
+      }
+
       if (information.results_for_documents.length > 0) {
-      this.showModal = true;
-      this.currentInformation = information;
-      this.patientID = patientId;
+        this.showModal = true;
+        this.currentInformation = information;
+        this.patientID = patientId;
       }
       //else{
       //   this.showToastError("Kriterium hat keine Ergebnisse!")
@@ -723,27 +738,31 @@ export default {
 .is-subheading {
   font-size: small;
 }
-.ic-achieved,
+.ic-not-achieved,
 .ec-not-achieved {
-  color: rgb(9, 9, 9) !important;
+  color: rgb(255, 255, 255) !important;
+  font-size: small;
+
 }
 
-.ic-not-achieved,
+.ic-achieved,
 .ic-no-data,
-.ec-not-achieved,
+.ec-achieved,
 .ec-no-data {
   color: transparent !important;
 }
+
+//Table-Header
 .ec-achieved,
 .ec-not-achieved,
 .ec-no-data {
-  background-color: rgba(223, 51, 51, 0.296) !important;
+  background-color: var(--main-red-transparent-color) !important;
 }
 
 .ic-achieved,
 .ic-not-achieved,
 .ic-no-data {
-  background-color: rgba(4, 196, 90, 0.296);
+  background-color:  var(--main-green-transparent-color) !important;
 }
 
 .type-tag {
@@ -765,33 +784,33 @@ export default {
 //display: contents;
 
 .greenBackgroundClass {
-  background-color: rgb(4, 196, 90);
+  background-color: var(--main-green-color);
 }
 
 .redBackgroundClass {
-  background-color: rgb(223, 51, 51);
+  background-color: var(--main-red-color);
 }
 
 .greenFillClass {
-  color: rgb(4, 196, 90);
+  color:  var(--main-green-color);
 }
 
 .redFillClass {
-  color: rgb(223, 51, 51);
+  color:  var(--main-red-color);
 }
 
 .greyFillClass {
-  color: rgb(154, 154, 154);
+  color:  var(--main-grey-color);
 }
 
 .yellowFillClass {
-  color: rgb(204, 180, 41);
+  color:  var(--main-yellow-color);
 }
 .criterion-name {
   cursor: default;
 }
 .condition-t {
-  background: yellow;
+  background: var(--main-yellow-color);
 }
 
 .condition-td {
@@ -853,7 +872,7 @@ fade-leave-to {
 }
 
 .blueDisabledBackgroundClass {
-  background-color: rgba(54, 51, 223, 0.508);
+  background-color: var(--main-blue-transparent-color) !important;
 }
 
 .disabledLineClass {

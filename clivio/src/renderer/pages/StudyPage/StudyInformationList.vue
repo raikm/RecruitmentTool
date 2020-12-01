@@ -28,7 +28,7 @@ export default {
 
 <style lang="scss">
 .blueBackgroundClass{
-  background-color: rgb(54, 51, 223);
+  background-color:  var(--main-blue-color);
 }
 
 </style>

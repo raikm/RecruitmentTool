@@ -35,6 +35,15 @@ $primary: #8c67ef;
   --main-color: #2a6f97;
   --main-text-color: black;
   --main-text-font: arial;
+  --main-red-color: #d52f20;
+  --main-red-transparent-color: rgba(255, 0, 0, 0.7);
+  --main-yellow-color: yellow;
+  --main-green-color: #20bf55;
+  --main-green-transparent-color: rgba(32, 191, 85, 0.7);
+  --main-blue-color: #208abf;
+  --main-blue-transparent-color:rgba(32, 138, 191, 0.7);
+  --main-grey-color: grey;
+
   $secondary-color: #e46c21;
   background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
 }
