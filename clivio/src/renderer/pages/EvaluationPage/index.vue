@@ -61,10 +61,8 @@ export default {
       const formData = new FormData();
 
       var selectedDataJson = JSON.stringify( this.$refs.ResultList.selectedPatients);
-      var patientResultsJson = JSON.stringify (this.patientListDefault);
       formData.append("Study_Id", this.$route.query[0].study_id);
       formData.append("Selected_Patients[]", selectedDataJson);
-      formData.append("Patient_Results", patientResultsJson);
       this.showToastInfo("Auswahl wird gespeichert");
       axios({
         method: "POST",

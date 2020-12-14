@@ -16,7 +16,7 @@
         </b-table-column>
         <b-table-column
           field="investigator"
-          label="Verantwortliche Partei"
+          label="Primary Investigator"
           width="30%"
           class="overview-clinical-trails-table-line"
         >

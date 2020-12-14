@@ -39,7 +39,7 @@
         </b-field>
       </div>
       <div class="column">
-        <b-field label="Anzahl Ges. Kriterien" label-position="inside">
+        <b-field label="Anzahl Kriterien gesamt" label-position="inside">
           <b-input
             class="input-field-basic"
             id="criterion-count"

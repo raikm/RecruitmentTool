@@ -22,7 +22,7 @@
           <b-table-column
             :visible="columnsVisible['name'].display"
             :label="columnsVisible['name'].title"
-             width="60%"
+            width="60%"
             :class="props.row.patient_id.toString()"
           >
             <template>
@@ -50,7 +50,7 @@
             :headerClass="columnsVisible['icNotAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
-             width="4"
+            width="4"
             >{{
               props.row.criterion_results_overview_ic_negative
             }}</b-table-column
@@ -63,7 +63,7 @@
             :headerClass="columnsVisible['icNoData'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
-             width="4"
+            width="4"
             >{{
               props.row.criterion_results_overview_ic_no_data
             }}</b-table-column
@@ -76,7 +76,7 @@
             :headerClass="columnsVisible['ecAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
-             width="4"
+            width="4"
             >{{ props.row.criterion_results_overview_ec }}</b-table-column
           >
 
@@ -87,7 +87,7 @@
             :headerClass="columnsVisible['ecNotAchieved'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
-             width="4"
+            width="4"
             >{{
               props.row.criterion_results_overview_ec_negative
             }}</b-table-column
@@ -99,7 +99,7 @@
             :headerClass="columnsVisible['ecNoData'].headerClass"
             :centered="true"
             :class="props.row.patient_id.toString()"
-             width="4"
+            width="4"
             >{{
               props.row.criterion_results_overview_ec_no_data
             }}</b-table-column
@@ -113,9 +113,11 @@
             <b-button
               rounded
               :id="'checkbox-t-' + props.row.patient_id"
-              @click="checkPatient(props.row.patient_id, true)"
+              @click="checkPatient(props.row, true)"
               size="is-small"
-              :class="{'is-success':pageName.name == 'selected-patient-history-page'}"
+              :class="{
+                'is-success': pageName.name == 'selected-patient-history-page',
+              }"
             >
               <b-icon icon="check" size="is-small"> </b-icon
             ></b-button>
@@ -129,7 +131,7 @@
             <b-button
               rounded
               :id="'checkbox-f-' + props.row.patient_id"
-              @click="checkPatient(props.row.patient_id, false)"
+              @click="checkPatient(props.row, false)"
               size="is-small"
             >
               <b-icon icon="close" size="is-small"> </b-icon
@@ -315,7 +317,6 @@
                 @click="
                   openConditionSource(condition, item, props.row.patient_id)
                 "
-  
                 title="Bedingung"
               >
                 &emsp;&emsp;&emsp;{{ condition.name }}
@@ -581,7 +582,7 @@ export default {
           subheading: "erfüllt",
           display: true,
           headerClass: "ec-achieved",
-        }, 
+        },
         ecNotAchieved: {
           subheading: "nicht erfüllt",
           display: true,
@@ -607,52 +608,53 @@ export default {
       patientID: 0,
     };
   },
-   created: function () {
+  created: function () {
     for (var i = 0; i < this.selectedPatients.length; i++) {
       this.selectedPatients.push(this.patientListDefault[i].patient_id);
-
     }
   },
   mounted() {
     this.filterPatientList();
   },
   methods: {
-    checkPatient(patient_id, check_type) {
-      if (check_type == true && !this.selectedPatients.includes(patient_id)) {
+    checkPatient(patient, check_type) {
+      if (check_type == true && !this.selectedPatients.includes(patient)) {
         var checkboxTrueElement = document.getElementById(
-          "checkbox-t-" + patient_id
+          "checkbox-t-" + patient.patient_id
         );
         checkboxTrueElement.classList.add("is-success");
-        this.selectedPatients.push(patient_id);
-        if (this.rejectedPatients.includes(patient_id)) {
-          const index = this.rejectedPatients.indexOf(patient_id);
+        this.selectedPatients.push(patient);
+        if (this.rejectedPatients.includes(patient.patient_id)) {
+          const index = this.rejectedPatients.indexOf(patient.patient_id);
           if (index > -1) {
             this.rejectedPatients.splice(index, 1);
           }
           var checkboxFalseElement = document.getElementById(
-            "checkbox-f-" + patient_id
+            "checkbox-f-" + patient.patient_id
           );
           checkboxFalseElement.classList.remove("is-danger");
         }
       }
-      if (check_type == false && !this.rejectedPatients.includes(patient_id)) {
+      if (
+        check_type == false &&
+        !this.rejectedPatients.includes(patient.patient_id)
+      ) {
+        console.log("patient rejected und noch nicht eingetragen bisher");
         var checkboxFalseElement = document.getElementById(
-          "checkbox-f-" + patient_id
+          "checkbox-f-" + patient.patient_id
         );
         checkboxFalseElement.classList.add("is-danger");
-        this.rejectedPatients.push(patient_id);
-        if (this.selectedPatients.includes(patient_id)) {
-          const index = this.selectedPatients.indexOf(patient_id);
+        this.rejectedPatients.push(patient.patient_id);
+        if (this.selectedPatients.includes(patient)) {
+          const index = this.selectedPatients.indexOf(patient);
           if (index > -1) {
             this.selectedPatients.splice(index, 1);
           }
-         
-         
         }
-         var checkboxTrueElement = document.getElementById(
-            "checkbox-t-" + patient_id
-          );
-         checkboxTrueElement.classList.remove("is-success");
+        var checkboxTrueElement = document.getElementById(
+          "checkbox-t-" + patient.patient_id
+        );
+        checkboxTrueElement.classList.remove("is-success");
       }
       //this.filterPatientList();
     },
@@ -663,7 +665,6 @@ export default {
       this.$refs.table.toggleDetails(row);
     },
     openConditionSource(condition, item, patientId) {
-
       if (
         condition.evaluation_results.evaluation_result_summary == "no_hit" &&
         condition.value_results.values.length == 0
@@ -671,7 +672,7 @@ export default {
         return;
       }
       this.showModal = true;
-      this.currentInformation = null
+      this.currentInformation = null;
       this.currentCondition = condition;
       this.currentCriterion = item;
       this.patientID = patientId;
@@ -752,7 +753,6 @@ export default {
 .ec-not-achieved {
   color: rgb(0, 0, 0) !important;
   font-size: small;
-
 }
 
 .ic-achieved,
@@ -772,7 +772,7 @@ export default {
 .ic-achieved,
 .ic-not-achieved,
 .ic-no-data {
-  background-color:  var(--main-green-transparent-color) !important;
+  background-color: var(--main-green-transparent-color) !important;
 }
 
 .type-tag {
@@ -802,19 +802,19 @@ export default {
 }
 
 .greenFillClass {
-  color:  var(--main-green-color);
+  color: var(--main-green-color);
 }
 
 .redFillClass {
-  color:  var(--main-red-color);
+  color: var(--main-red-color);
 }
 
 .greyFillClass {
-  color:  var(--main-grey-color);
+  color: var(--main-grey-color);
 }
 
 .yellowFillClass {
-  color:  var(--main-yellow-color);
+  color: var(--main-yellow-color);
 }
 .criterion-name {
   cursor: default;
