@@ -11,13 +11,13 @@
 
 <script>
 import DashboardPage from "./pages/DashboardPage";
-import NewStudyPage from "./pages/NewStudyPage";
+import StudyEditorPage from "./pages/StudyEditorPage";
 // import EvaluationPage from './pages/EvaluationPage'
 
 export default {
   name: "clivio",
   components: {
-    NewStudyPage,
+    StudyEditorPage,
     // EvaluationPage,
     DashboardPage,
   },

@@ -70,11 +70,11 @@ import AppHeader from "../../components/AppHeader";
 import StudyBasicinfos from "./StudyBasicinfos";
 import StudyCriterionList from "./StudyCriterionList";
 import StudyInformationList from "./StudyInformationList";
-import NewStudyAddFile from "../NewStudyPage/NewStudyAddFile";
+import NewStudyAddFile from "../StudyEditorPage/NewStudyAddFile";
 import StudyPatientCollectionList from "./StudyPatientCollectionList";
 
 export default {
-  name: "NewStudyPage",
+  name: "StudyEditorPage",
   data() {
     return {
       criterions: [],

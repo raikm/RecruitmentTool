@@ -10,7 +10,9 @@
             >
              IB
             </div>
+            <div :title="props.row.xpath">
             {{ props.row.name }}
+            </div>
           </b-table-column>
         </template>
       </b-table>

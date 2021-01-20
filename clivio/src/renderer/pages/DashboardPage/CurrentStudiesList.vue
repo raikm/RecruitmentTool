@@ -34,15 +34,32 @@
           class="overview-clinical-trails-table-line"
           field="selectedPatients"
           label=""
-          width="5%"
+          width="2.5%"
           :centered="true"
         >
-          <b-button rounded
+          <b-button
+            rounded
             @click="getSelectedPatients(props.row)"
             size="is-small"
-            title="ausgewählte Personen"        
+            title="ausgewählte Personen"
           >
             <b-icon icon="playlist-check" size="is-small"> </b-icon
+          ></b-button>
+        </b-table-column>
+        <b-table-column
+          class="overview-clinical-trails-table-line"
+          field="edit"
+          label=" "
+          width="2.5%"
+          :centered="true"
+        >
+          <b-button
+            rounded
+            @click="openEditor(props.row)"
+            size="is-small"
+            title="Editor"
+          >
+            <b-icon icon="pencil" size="is-small"> </b-icon
           ></b-button>
         </b-table-column>
       </template>
@@ -90,6 +107,24 @@ export default {
         })
         .catch((response) => {
           this.showToastError(response);
+        });
+    },
+
+    openEditor(row) {
+      var study_id = row.id;
+      axios({
+        method: "get",
+        url:
+          "http://127.0.0.1:8000/api/getStudy/study_id=" + study_id.toString(),
+      })
+        .then((response) => {
+          this.$router.push({
+            name: "study-editor-page",
+            query: [response.data, row],
+          });
+        })
+        .catch((response) => {
+          this.showToastInfo(response);
         });
     },
   },

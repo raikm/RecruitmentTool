@@ -19,7 +19,7 @@
     </div>
     <div class="columns">
       <div class="column">
-        <b-field label="Verantwortliche Partei" label-position="inside">
+        <b-field label="Primary Investigator" label-position="inside">
           <b-input
             class="input-field-basic"
             id="head-of-study"

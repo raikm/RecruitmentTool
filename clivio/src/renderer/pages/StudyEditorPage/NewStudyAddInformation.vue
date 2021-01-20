@@ -1,14 +1,14 @@
 <template>
   <!-- <div class="main"> -->
   <form>
-    <h3>Neues Informationsbedürfniss</h3>
+    <b-field label="Neues Informationsbedürfniss"></b-field>
 
     <div class="columns">
       <div class="column">
         <b-input
           id="information-input-text"
           type="text"
-          v-model="informationName"
+          v-model="name"
           placeholder="Information"
         />
       </div>
@@ -17,7 +17,7 @@
         <b-input
           id="xPath-input-text"
           type="text"
-          v-model="informationXPath"
+          v-model="xpath"
           placeholder="xPath"
         />
       </div>
@@ -33,16 +33,16 @@ export default {
   name: "NewStudyAddInformation",
   data() {
     return {
-      informationName: "",
-      informationXPath: "",
+      name: "",
+      xpath: "",
     };
   },
   methods: {
     addInformation(e) {
       e.preventDefault();
       const newInformation = {
-        informationName: this.informationName,
-        informationXPath: this.informationXPath,
+        name: this.name,
+        xpath: this.xpath,
       };
       this.$emit("add-information", newInformation);
       document.getElementById("information-input-text").value = "";

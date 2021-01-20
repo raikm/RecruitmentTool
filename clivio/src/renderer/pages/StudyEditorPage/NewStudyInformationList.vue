@@ -5,11 +5,11 @@
         <template slot-scope="props">
 
           <b-table-column field="information" label="Information" width="50%">
-            {{ props.row.informationName }}
+            {{ props.row.name }}
           </b-table-column>
 
           <b-table-column field="xPath" label="xPath"  width="50%">
-            {{ props.row.informationXPath }}
+            {{ props.row.xpath }}
           </b-table-column>
         </template>
       </b-table>

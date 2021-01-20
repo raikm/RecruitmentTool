@@ -14,6 +14,16 @@
         {{ currentCriterion.criterion_type }}
       </div>
       <h1 id="condition-name">{{ currentCondition.name }}</h1>
+        <div
+         v-if="currentCondition.evaluation_results.positive_hits.length > 0"
+        class="type-tag"
+        :class="{
+          greenFillClass: currentCriterion.criterion_type == 'EK',
+          redFillClass: currentCriterion.criterion_type == 'AK',
+        }"
+      >
+       ⬤
+      </div>
       <h2
         v-if="currentCondition.evaluation_results.positive_hits.length > 0"
         class="matches-subtitle"
@@ -58,6 +68,16 @@
 
           <span>ELGA Dokument öffnen </span>
         </div>
+      </div>
+       <div
+        v-if="currentCondition.evaluation_results.negative_hits.length > 0"
+        class="type-tag"
+        :class="{
+          redFillClass: currentCriterion.criterion_type == 'EK',
+          greenFillClass: currentCriterion.criterion_type == 'AK',
+        }"
+      >
+       ⬤
       </div>
       <h2
         v-if="currentCondition.evaluation_results.negative_hits.length > 0"
@@ -104,7 +124,8 @@
 
       <h2
         v-if="currentCondition.value_results.values.length > 0"
-        class="matches-subtitle"
+        class="matches-subtitle information-need-title"
+
       >
         Informationsbedürfnisse
       </h2>
@@ -362,11 +383,16 @@ export default {
   max-height: 80vh;
   background: white;
   padding: 1%;
+
 }
 
 .cda-detail-container-tooltip {
   margin-top: 5px;
   display: none;
   float: right;
+}
+
+.information-need-title{
+  color: var(--main-blue-transparent-color);
 }
 </style>

@@ -33,7 +33,7 @@
         <template slot="detail" slot-scope="props">
           <tr v-for="item in props.row.conditions" :key="item.name">
    <td> </td>
-            <td v-show="columnsVisible['conditionName'].display" :title="item.xpath">
+            <td v-show="columnsVisible['name'].display" :title="item.xpath">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
             </td>
             
@@ -52,8 +52,8 @@ export default {
   data() {
     return {
       columnsVisible: {
-        name: { title: "Kriterium und Bedingung", display: true },
-        conditionName: { title: "Bedingung", display: true },
+        name: { title: "Ein- und Ausschlusskriterien inkl. Bedingungen", display: true },
+        name: { title: "Bedingung", display: true },
       },
     };
   },

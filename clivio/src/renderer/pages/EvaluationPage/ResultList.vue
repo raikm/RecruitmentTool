@@ -848,7 +848,7 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(250, 250, 250, 0.85);
+  background-color: rgba(250, 250, 250, 0.05);
 }
 
 .popup-window {

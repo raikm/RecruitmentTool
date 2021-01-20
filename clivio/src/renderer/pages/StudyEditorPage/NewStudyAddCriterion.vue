@@ -1,6 +1,6 @@
 <template>
   <main>
-    <h3>Neues Kriterium</h3>
+    <b-field label="Neues Kriterium"></b-field>
     <!-- TODO: put in new divs and change margin instead of br -->
 
     <div class="columns">
@@ -36,7 +36,7 @@
       <div class="column">
         <b-input
           :id="condition.conditionId"
-          v-model="condition.conditionName"
+          v-model="condition.name"
           type="text"
           placeholder="Bedingung"
         />
@@ -44,27 +44,31 @@
 
       <div class="column is-half">
         <b-input
+          class="input-xPath"
           :id="condition.xPathId"
           type="text"
-          v-model="condition.condtionXpath"
+          v-model="condition.xpath"
           placeholder="xPath"
         />
        <b-input
-          :id="condition.condtionNegativeXpathId"
+        class="input-xPath"
+          :id="condition.xpathId"
           type="text"
-          v-model="condition.condtionNegativeXpath"
+          v-model="condition.neg_xpath"
           placeholder="Negative xPath"
         />
         <b-input
-          :id="condition.roughXpathId"
+         class="input-xPath"
+          :id="condition.rough_xpathId"
           type="text"
-          v-model="condition.roughXpath"
+          v-model="condition.rough_xpath"
           placeholder="Grober xPath"
         />
           <b-input
-          :id="condition.roughDescriptionXpathId"
+           class="input-xPath"
+          :id="condition.rough_xpath_descriptionId"
           type="text"
-          v-model="condition.roughDescriptionXpath"
+          v-model="condition.rough_xpath_description"
           placeholder="Grober xPath Beschreibung"
         />
 
@@ -90,14 +94,14 @@ export default {
         {
           conditionId: "condition-0",
           xPathId: "xPath-0",
-          condtionNegativeXpathId: "neg-xPath-0",
-          roughXpathId: "value-xPath-0",
-          roughDescriptionXpathId: "value-desc-xPath-0",
-          conditionName: "",
-          condtionXpath: "",
-          condtionNegativeXpath: "",
-          roughXpath: "",
-          roughDescriptionXpath: "",
+          xpathId: "neg-xPath-0",
+          rough_xpathId: "value-xPath-0",
+          rough_xpath_descriptionId: "value-desc-xPath-0",
+          name: "",
+          xpath: "",
+          neg_xpath: "",
+          rough_xpath: "",
+          rough_xpath_description: "",
         },
       ],
     };
@@ -116,28 +120,28 @@ export default {
       this.conditions = [{
           conditionId: "condition-0",
           xPathId: "xPath-0",
-          condtionNegativeXpathId: "neg-xPath-0",
-          roughXpathId: "value-xPath-0",
-          roughDescriptionXpathId: "value-desc-xPath-0",
-          conditionName: "",
-          condtionXpath: "",
-          condtionNegativeXpath: "",
-          roughXpath: "",
-          roughDescriptionXpath: "",
+          xpathId: "neg-xPath-0",
+          rough_xpathId: "value-xPath-0",
+          rough_xpath_descriptionId: "value-desc-xPath-0",
+          name: "",
+          xpath: "",
+          neg_xpath: "",
+          rough_xpath: "",
+          rough_xpath_description: "",
         },]
     },
     addNewLine() {
       this.conditions.push({
         conditionId: `condition-${++this.counter}`,
         xPathId: `xPath-${++this.counter}`,
-        condtionNegativeXpathId: `neg-xPath-${++this.counter}`,
-        roughXpathId:`value-xPath-${++this.counter}`,
-        roughDescriptionXpathId:`value-desc-xPath-${++this.counter}`,
-        conditionName: "",
-        condtionXpath: "",
-        condtionNegativeXpath: "",
-        roughXpath: "",
-        roughDescriptionXpath: "",
+        xpathId: `neg-xPath-${++this.counter}`,
+        rough_xpathId:`value-xPath-${++this.counter}`,
+        rough_xpath_descriptionId:`value-desc-xPath-${++this.counter}`,
+        name: "",
+        xpath: "",
+        neg_xpath: "",
+        rough_xpath: "",
+        rough_xpath_description: "",
       }); 
     },
     removeLastLine() {
@@ -168,5 +172,9 @@ export default {
 
 .cright {
   width: 100%;
+}
+
+.input-xPath{
+  margin-bottom: 25px;
 }
 </style>

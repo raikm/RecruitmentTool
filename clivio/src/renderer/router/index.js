@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import NewStudyPage from '../pages/NewStudyPage'
+import StudyEditorPage from '../pages/StudyEditorPage'
 import StudyPage from '../pages/StudyPage'
 import EvaluationPage from '../pages/EvaluationPage'
 import DashboardPage from '../pages/DashboardPage'
@@ -18,9 +18,9 @@ export default new Router({
       query: true
     },
     {
-      path: '/newstudy',
-      name: 'newstudy-page',
-      component: NewStudyPage,
+      path: '/study-editor',
+      name: 'study-editor-page',
+      component: StudyEditorPage,
       props: true,
       query: true
     },

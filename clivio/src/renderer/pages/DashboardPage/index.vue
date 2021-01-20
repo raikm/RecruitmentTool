@@ -9,7 +9,7 @@
       />
     </div>
     <div class="button-line">
-      <b-button rounded id="btn-new-study" @click="openNewStudyPage()"
+      <b-button rounded id="btn-new-study" @click="openStudyEditorPage()"
         >Neue Studie anlegen</b-button
       >
       <b-button rounded id="btn-upload-testdata" @click="uploadTestData()"
@@ -48,9 +48,9 @@ export default {
           this.showToastError(response);
         });
     },
-    openNewStudyPage() {
+    openStudyEditorPage() {
       this.$router.push({
-        name: "newstudy-page",
+        name: "study-editor-page",
       });
     },
     uploadTestData() {
