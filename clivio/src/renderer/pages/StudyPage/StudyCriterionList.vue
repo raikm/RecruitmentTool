@@ -33,7 +33,7 @@
         <template slot="detail" slot-scope="props">
           <tr v-for="item in props.row.conditions" :key="item.name">
    <td> </td>
-            <td v-show="columnsVisible['conditionName'].display">
+            <td v-show="columnsVisible['conditionName'].display" :title="item.xpath">
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
             </td>
             
