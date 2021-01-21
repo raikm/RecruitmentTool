@@ -20,7 +20,16 @@
             sortable
           >
             <template>
-              <a @click="toggle(props.row)" @dblclick="edit(props.row)">{{
+              <div
+                class="type-tag"
+                :class="{
+                  greenBackgroundClass: props.row.criterion_type == 'EK',
+                  redBackgroundClass: props.row.criterion_type == 'AK',
+                }"
+              >
+                {{ props.row.criterion_type }}
+              </div>
+              <a @click="toggle(props.row)">{{
                 props.row.name
               }}</a>
             </template>
@@ -45,6 +54,21 @@
           ></b-table-column>
 
           <b-table-column
+            :visible="true"
+            label="Edit"
+            width="50"
+          >
+            <b-button
+              rounded
+              @click="edit(props.row)"
+              size="is-small"
+              title="Editor"
+            >
+              <b-icon icon="pencil" size="is-small"> </b-icon
+            ></b-button>
+          </b-table-column>
+
+          <!--     <b-table-column
             :visible="columnsVisible['rough_xpath'].display"
             :label="columnsVisible['rough_xpath'].title"
             width="400"
@@ -53,7 +77,7 @@
             :visible="columnsVisible['rough_xpath_description'].display"
             :label="columnsVisible['rough_xpath_description'].title"
             width="400"
-          ></b-table-column>
+          ></b-table-column> -->
         </template>
 
         <template slot="detail" slot-scope="props">
@@ -74,7 +98,7 @@
             <td td width="400" v-show="columnsVisible['neg_xpath'].display">
               {{ item.xpath }}
             </td>
-            <td td width="400" v-show="columnsVisible['rough_xpath'].display">
+            <!-- <td td width="400" v-show="columnsVisible['rough_xpath'].display">
               {{ item.rough_xpath }}
             </td>
             <td
@@ -83,7 +107,7 @@
               v-show="columnsVisible['rough_xpath_description'].display"
             >
               {{ item.rough_xpath_description }}
-            </td>
+            </td> -->
           </tr>
         </template>
       </b-table>
@@ -117,10 +141,11 @@ export default {
       //this.editRowParent(row)
     },
     edit(row) {
-     //this.editRowParent(row)
+      this.editRowParent(row)
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>

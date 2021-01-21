@@ -5,7 +5,7 @@
         <b-input
           v-model="basicInfos.studyName"
           type="text"
-          v-on:input="updateValue($event)"
+        
         />
       </b-field>
       <b-field label="Anzahl der Studienkriterien">
@@ -16,6 +16,9 @@
       </b-field>
       <b-field label="E-Mail">
         <b-input v-model="basicInfos.headOfStudyContact" type="text" />
+      </b-field>
+       <b-field label="Studiennummer">
+        <b-input v-model="basicInfos.studyNumber" type="text" />
       </b-field>
     </div>
   </form>
