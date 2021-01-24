@@ -15,21 +15,14 @@
 # 🏗Timeline Progress
 
 
-## 1.11.2010 - 30.11.2020: Fokus auf schriflichen Teil + Doku
+## 1.11.2010 - 15.01.2021: Last Changes, Bugfixes
 
-<details><summary>Ausblick</summary>
-<p>
-<ul>
-  <li>schriftlicher Teil bis Diskussion fertig</li>
-  <li>Doku Architektur</li>
+### Software
+#### NEW
 
-</ul>
-<ul>
-   <li>Doku im Code</li>
-   <li>Bugfixes</li>
-</ul>
-</p>
-</details>
+#### IMPROVE / CHANGE
+- BE:
+- FE:
 
 ## 01.10.2020 - 31.10.2020: Fokus auf schriftlichen Teil und Prototype V.1
 
