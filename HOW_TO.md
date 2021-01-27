@@ -34,31 +34,31 @@ Install all dependencies listed in a package.json file (Go to the root dictionar
 npm install
 ```
 
-### Programm starten
+### Hotw to start application
 
-To start the program, open Project in Visual Studio. In the terminal run
+To start the app, go to root directory ("GitHub\RecruitmentTool\clivio") and run
 
 ```none
 npm run dev
 ```
 
-and the application starts and is also running at http://localhost:9080/
+and the electron application starts and is also running at http://localhost:9080/
 
 ## Back-End
 
 ### Django Server
 
-#### Install Packages and Libraries
+#### Install all needed packages and libraries
 
 ```py
 pip install -r /path/to/requirements.txt
 ```
 
-#### Start in PyCharm: 
+#### How to start Server in PyCharm: 
 
 https://www.jetbrains.com/help/pycharm/creating-and-running-your-first-django-project.html
 
-#### Start in Terminal
+#### How to start Server in Terminal
 Go to \GitHub\RecruitmentTool_Backend\Django_Server\recruitmenttool and run
 
 ```
