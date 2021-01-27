@@ -26,7 +26,7 @@
 [IPF XDS Repositorycis](https://github.com/oehf/ipf.git)
 
 
-## Front-End
+## 🖥 Front-End
 
 Install all dependencies listed in a package.json file (Go to the root dictionary: "GitHub\RecruitmentTool\clivio") [More Information](https://www.jetbrains.com/help/webstorm/installing-and-removing-external-software-using-node-package-manager.html#ws_installing_and_upgrading_packages):
 
@@ -44,7 +44,7 @@ npm run dev
 
 and the electron application starts and is also running at http://localhost:9080/
 
-## Back-End
+## 🧮 Back-End
 
 ### Django Server
 
