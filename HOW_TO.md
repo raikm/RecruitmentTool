@@ -34,7 +34,7 @@ Install all dependencies listed in a package.json file (Go to the root dictionar
 npm install
 ```
 
-### Hotw to start application
+### How to start the application
 
 To start the app, go to root directory ("GitHub\RecruitmentTool\clivio") and run
 
@@ -54,11 +54,11 @@ and the electron application starts and is also running at http://localhost:9080
 pip install -r /path/to/requirements.txt
 ```
 
-#### How to start Server in PyCharm: 
+#### How to start server in PyCharm: 
 
 https://www.jetbrains.com/help/pycharm/creating-and-running-your-first-django-project.html
 
-#### How to start Server in Terminal
+#### How to start server in Terminal
 Go to \GitHub\RecruitmentTool_Backend\Django_Server\recruitmenttool and run
 
 ```
