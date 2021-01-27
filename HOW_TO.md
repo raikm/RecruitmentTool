@@ -1,90 +1,89 @@
 # Installationsanleitung
 
-### Verwendete Tools
+## Needed Installations
 
-Python 3.9
+[Download Python >= 3.9](https://www.python.org/downloads/)
 
-Node.js
+[Download Node.js >= 14.15.0](https://nodejs.org/en/download/)
 
-GitHub Desktop
 
-Visual Studio Code
+## Tools for Development used
 
-PyCharm
+* GitHub Desktop
+* Visual Studio Code: for VueJS Application
+* PyCharm: for Django
+* Eclipse: for eHealth Connector
+* TablePlus: for Datenbank Datenmanipulation
 
-Eclipse
+## Github Repositories
 
-TablePlus
+[VueJS Application](https://github.com/raikm/RecruitmentTool)
 
-#### Github Repositories
+[Django Server](https://github.com/raikm/RecruitmentTool_Backend)
 
-https://github.com/raikm/RecruitmentTool
+[eHealthConnector](https://github.com/raikm/eHealthConnectorMiniAPI)
 
-https://github.com/raikm/RecruitmentTool_Backend
+[IPF XDS Repositorycis](https://github.com/oehf/ipf.git)
 
-https://github.com/raikm/eHealthConnectorMiniAPI
 
-Projekte mit git pullen
+## Front-End
 
-#### Front-End
+Install all dependencies listed in a package.json file (Go to the root dictionary: "GitHub\RecruitmentTool\clivio") [More Information](https://www.jetbrains.com/help/webstorm/installing-and-removing-external-software-using-node-package-manager.html#ws_installing_and_upgrading_packages):
 
-Electron Installieren: https://www.electronjs.org/docs/tutorial/installation
+```none
+npm install
+```
 
-##### Installing and updating packages﻿ from package.json	
+### Programm starten
 
-https://www.jetbrains.com/help/webstorm/installing-and-removing-external-software-using-node-package-manager.html#ws_installing_and_upgrading_packages
-
-##### Programm starten
-
-Um Programm zu starten Project in Visual Studio öffnen und in den Pfad "GitHub\RecruitmentTool\clivio" wechseln. Im Terminal
+To start the program, open Project in Visual Studio. In the terminal run
 
 ```none
 npm run dev
 ```
 
-ausführen und das electron programm wird gestartet
+and the application starts and is also running at http://localhost:9080/
 
-#### Back-End
+## Back-End
 
-##### Django Server
+### Django Server
 
-###### Install Packages and Libraries
+#### Install Packages and Libraries
 
 ```py
 pip install -r /path/to/requirements.txt
 ```
 
-###### In PyCharm: 
+#### Start in PyCharm: 
 
 https://www.jetbrains.com/help/pycharm/creating-and-running-your-first-django-project.html
 
-###### In Terminal
+#### Start in Terminal
+Go to \GitHub\RecruitmentTool_Backend\Django_Server\recruitmenttool and run
 
 ```
-python manage.py runserver 8080
+python manage.py runserver 8000
 ```
 
-###### Datenbank Änderungen übernehmen
+### eHealth connector
 
-`python manage.py makemigrations` 
+* Runs on Java 1.7
 
-`python manage.py migrate --run-syncdb`
+* Reference Libraries:
+** ref-client-0.0.2-SNAPSHOT-jar-with-dependencies.jar (in GitHub Repositry attached)
+** py4j0.10.9.1.jar [Official Website](https://www.py4j.org/download.html)
+** ehealth_connector-fatjar-gen-1.8.0-202007.jar (in GitHub Repositry attached)
 
-##### eHealth connector
+### XDS Repository
 
-Java 1.7
+#### Installation
+* cd tutorial/xds
+* mvn clean install assembly:single
+* cd target
+* unzip ipf-tutorials-xds-4.0-SNAPSHOT-bin.zip
 
-Reference Libraries: 
+#### Start XDS Repository
+* cd ipf-tutorials-xds-4.0-SNAPSHOT-bin\ipf-tutorials-xds-4.0-SNAPSHOT
+* startup.bat
 
-ref-client-0.0.2-SNAPSHOT-jar-with-dependencies.jar
-
-- in GitHub Repositry hinterlegt
-
-py4j0.10.9.1.jar
-
-https://www.py4j.org/
-
-ehealth_connector-fatjar-gen-1.8.0-202007.jar
-
-- in GitHub Repositry hinterlegt
-
+Run on http://localhost:9091/
