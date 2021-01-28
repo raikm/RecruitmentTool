@@ -41,17 +41,17 @@ $primary: #8c67ef;
   --main-green-color: #20bf55;
   --main-green-transparent-color: rgba(32, 191, 85, 0.1);
   --main-blue-color: #208abf;
-  --main-blue-transparent-color:rgba(32, 138, 191, 0.7);
+  --main-blue-transparent-color: rgba(32, 138, 191, 0.7);
   --main-grey-color: grey;
 
   $secondary-color: #e46c21;
-  background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
 }
 html,
 body {
   font-family: "Arial";
   height: 100%;
   min-height: 100%;
+  background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%);
 }
 
 input[type="text"],

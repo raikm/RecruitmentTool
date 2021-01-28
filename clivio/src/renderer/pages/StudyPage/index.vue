@@ -13,7 +13,8 @@
     </div>
 
     <div id="next-step-container">
-      <b-button rounded
+      <b-button
+        rounded
         title="Aus Repository auswählen"
         class="btn-next-step"
         id="btnShowPatients"
@@ -21,7 +22,8 @@
         >Patienten/Patientinnen auswählen</b-button
       >
 
-      <b-button rounded
+      <b-button
+        rounded
         title=""
         class="btn-next-step"
         id="btnShowPatients"
@@ -39,7 +41,10 @@
         />
         <br />
         <div class="button-line-validate-files">
-          <b-button rounded id="button-validate-cda-files" @click="validateCDAFiles()"
+          <b-button
+            rounded
+            id="button-validate-cda-files"
+            @click="validateCDAFiles()"
             >Dateien überprüfen</b-button
           >
         </div>
@@ -54,13 +59,16 @@
         />
       </div>
     </div>
-  <div class="button-line-validate">
-    <b-button rounded
-      title="Studienkritieren mit ELGA Dokumenten gegenprüfen"
-      id="btn-start-validate"
-      @click="validateData()"
-      >Patienten und Patientinnen überprüfen</b-button
-    >
+
+    <StudyStatusInformation v-if="showPleaseWaitDialog" />
+    <div class="button-line-validate">
+      <b-button
+        rounded
+        title="Studienkritieren mit ELGA Dokumenten gegenprüfen"
+        id="btn-start-validate"
+        @click="validateData()"
+        >Patienten und Patientinnen überprüfen</b-button
+      >
     </div>
   </main>
 </template>
@@ -72,6 +80,7 @@ import StudyCriterionList from "./StudyCriterionList";
 import StudyInformationList from "./StudyInformationList";
 import NewStudyAddFile from "../StudyEditorPage/NewStudyAddFile";
 import StudyPatientCollectionList from "./StudyPatientCollectionList";
+import StudyStatusInformation from "./StudyStatusInformation";
 
 export default {
   name: "StudyEditorPage",
@@ -84,6 +93,7 @@ export default {
       study: {},
       patientData: [],
       localAnalysis: true,
+      showPleaseWaitDialog: false,
     }; // responseJson: [],
   },
 
@@ -94,6 +104,7 @@ export default {
     StudyInformationList,
     NewStudyAddFile,
     StudyPatientCollectionList,
+    StudyStatusInformation,
   },
   methods: {
     validateCDAFiles() {
@@ -118,7 +129,8 @@ export default {
         .then((response) => {
           this.patientData = response.data;
 
-          document.getElementById("btn-start-validate").style.display = "inline";
+          document.getElementById("btn-start-validate").style.display =
+            "inline";
           document.getElementById("upload-container").style.display = "none";
           document.getElementById(
             "patienten-collection-list-container"
@@ -154,19 +166,18 @@ export default {
       ).style.display = "inline";
       document.getElementById("upload-container").style.display = "none";
       document.getElementById("btn-start-validate").style.display = "inline";
-      setTimeout(function(){ 
-      window.scrollTo(0,document.body.scrollHeight); }, 100);
-
+      setTimeout(function () {
+        window.scrollTo(0, document.body.scrollHeight);
+      }, 100);
     },
     uploadCDALocal() {
-      
       document.getElementById("upload-container").style.display = "inline";
       document.getElementById(
         "patienten-collection-list-container"
       ).style.display = "none";
       document.getElementById("btn-start-validate").style.display = "none";
       this.localAnalysis = true;
-       window.scrollTo(0,document.body.scrollHeight);
+      window.scrollTo(0, document.body.scrollHeight);
     },
     getPatients() {
       axios({
@@ -190,7 +201,7 @@ export default {
 
       const formData = new FormData();
 
-      const studyName =this.study.name
+      const studyName = this.study.name;
 
       const files = this.dropFiles;
 
@@ -204,7 +215,7 @@ export default {
       formData.append("Local_Analysis", this.localAnalysis);
       formData.append("Selected_Patients[]", patientDataSelectedJson);
 
-      this.showToastInfo("Daten werden verarbeitet...");
+      this.showPleaseWaitDialog = true;
       axios({
         method: "POST",
         url: "http://127.0.0.1:8000/api/validateData/",
@@ -212,6 +223,7 @@ export default {
         headers: { "Content-Type": "multipart/form-data" },
       })
         .then((response) => {
+          this.showPleaseWaitDialog = false;
           this.responseJson = response.data;
           this.$router.push({
             name: "evaluation-page",
@@ -219,6 +231,7 @@ export default {
           });
         })
         .catch((response) => {
+          this.showPleaseWaitDialog = false;
           this.showToastError(response);
         });
     },
@@ -241,7 +254,6 @@ export default {
   justify-self: center;
 }
 #btn-start-validate {
-
   display: none;
   /* margin: 1%; */
   /* background-color: var(--main-color); */
@@ -282,8 +294,8 @@ export default {
   justify-content: center;
 }
 
-.button-line-validate{
-   display: flex;
+.button-line-validate {
+  display: flex;
   justify-content: center;
   margin: 5px;
 }

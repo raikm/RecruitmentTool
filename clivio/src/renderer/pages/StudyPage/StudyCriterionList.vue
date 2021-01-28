@@ -34,7 +34,7 @@
           <tr v-for="item in props.row.conditions" :key="item.name">
    <td> </td>
             <td v-show="columnsVisible['name'].display" :title="item.xpath">
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ item.name }}
             </td>
             
           </tr>
