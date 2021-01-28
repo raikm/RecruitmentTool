@@ -19,10 +19,15 @@
 
 ### Software
 #### NEW
+- Tooltips mit xPaths in der Studienansicht
+- Datenexport in JSON Format
+- Auswertungen von selektierten PatientInnen werden abspeichert
 
 #### IMPROVE / CHANGE
-- BE:
-- FE:
+- BE: Config File für bessere Konfiguration
+- BE: API Ausbau für Kl. Studien Anpassungen
+- FE: Pop-up für Bedingungs Details mit mehr farbl. Infos
+- FE: Editor für klinische Studien
 
 ## 01.10.2020 - 31.10.2020: Fokus auf schriftlichen Teil und Prototype V.1
 
