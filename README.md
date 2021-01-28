@@ -26,6 +26,7 @@
 #### IMPROVE / CHANGE
 - BE: Config File für bessere Konfiguration
 - BE: API Ausbau für Kl. Studien Anpassungen
+- BE: Unit Test Ausbau
 - FE: Pop-up für Bedingungs Details mit mehr farbl. Infos
 - FE: Editor für klinische Studien
 
