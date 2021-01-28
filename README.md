@@ -6,11 +6,11 @@
 
 #### [🎯 Kanban Board Backend Software](https://github.com/raikm/RecruitmentTool/projects/2)
 
-#### [Backend Repository](https://github.com/raikm/RecruitmentTool_Backend)
-
-#### [eHC Repository](https://github.com/raikm/eHealthConnectorMiniAPI)
-
 #### [🎯 Kanban Board Frontend Software](https://github.com/raikm/RecruitmentTool/projects/3)
+
+#### [💽 Backend Repository](https://github.com/raikm/RecruitmentTool_Backend)
+
+#### [💽 eHC Repository](https://github.com/raikm/eHealthConnectorMiniAPI)
 
 # 🏗Timeline Progress
 
