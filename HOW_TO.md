@@ -1,5 +1,7 @@
 # Installationsanleitung
 
+ℹ️ Patient Files are no real data!
+
 ## Needed Installations
 
 [Download Python >= 3.9](https://www.python.org/downloads/)
