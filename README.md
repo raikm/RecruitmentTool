@@ -12,6 +12,8 @@
 
 #### [💽 eHC Repository](https://github.com/raikm/eHealthConnectorMiniAPI)
 
+ℹ️ Patient Files are no real data!
+
 # 🏗Timeline Progress
 
 
