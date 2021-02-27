@@ -53,7 +53,7 @@ export default {
     return {
       columnsVisible: {
         name: { title: "Ein- und Ausschlusskriterien inkl. Bedingungen", display: true },
-        name: { title: "Bedingung", display: true },
+        name: { title: "Ein- und Ausschlusskriterien inkl. Bedingungen", display: true },
       },
     };
   },
