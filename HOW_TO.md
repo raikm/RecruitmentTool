@@ -1,4 +1,4 @@
-# Installationsanleitung
+# How to
 
 ℹ️ Patient Files are no real data!
 
