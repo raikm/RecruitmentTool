@@ -72,9 +72,9 @@ python manage.py runserver 8000
 * Runs on Java 1.7
 
 * Reference Libraries:
-** ref-client-0.0.2-SNAPSHOT-jar-with-dependencies.jar (in GitHub Repositry attached)
-** py4j0.10.9.1.jar [Official Website](https://www.py4j.org/download.html)
-** ehealth_connector-fatjar-gen-1.8.0-202007.jar (in GitHub Repositry attached)
+  * ref-client-0.0.2-SNAPSHOT-jar-with-dependencies.jar (in GitHub Repositry attached)
+  * py4j0.10.9.1.jar [Official Website](https://www.py4j.org/download.html)
+  * ehealth_connector-fatjar-gen-1.8.0-202007.jar (in GitHub Repositry attached)
 
 ### XDS Repository
 
